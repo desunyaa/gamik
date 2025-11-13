@@ -4,6 +4,7 @@ pub struct TemplateApp {
     button_size: Option<f32>,
     world: GameWorld,
     event_queue: Vec<GameEvent>,
+    font_size: f32,
 }
 
 impl Default for TemplateApp {
@@ -14,6 +15,7 @@ impl Default for TemplateApp {
             button_size: None, // Will be calculated on first frame
             world: GameWorld::create_test_world(),
             event_queue: Vec::new(),
+            font_size: 16.0, // Default font size
         }
     }
 }
@@ -156,7 +158,7 @@ impl eframe::App for TemplateApp {
                 let letter_size = letter_width.max(letter_height);
 
                 // Add padding to ensure consistent size
-                let padding = 2.0;
+                let padding = 8.0;
                 self.button_size = Some(letter_size + padding);
             }
 
