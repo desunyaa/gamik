@@ -1,3 +1,5 @@
+use egui::{FontId, RichText};
+
 pub struct TemplateApp {
     grid_cols: usize,
     grid_rows: usize,
@@ -15,7 +17,7 @@ impl Default for TemplateApp {
             button_size: None, // Will be calculated on first frame
             world: GameWorld::create_test_world(),
             event_queue: Vec::new(),
-            font_size: 16.0, // Default font size
+            font_size: 20.0, // Default font size
         }
     }
 }
@@ -140,10 +142,17 @@ impl eframe::App for TemplateApp {
 
         // Central panel with letter grid
         egui::CentralPanel::default().show(ctx, |ui| {
+            // Customize button styling for tighter spacing
+            let mut style = ui.style_mut();
+            style.spacing.button_padding = egui::vec2(0.0, 0.0);
+            style.visuals.widgets.inactive.bg_stroke.width = 0.0;
+            style.visuals.widgets.hovered.bg_stroke.width = 0.0;
+            style.visuals.widgets.active.bg_stroke.width = 0.0;
+
             // Calculate button size on first frame if not already calculated
             if self.button_size.is_none() {
                 let chinese_char = "中";
-                let font_id = egui::TextStyle::Button.resolve(ui.style());
+                let font_id = egui::FontId::new(self.font_size, egui::FontFamily::Proportional);
                 let letter_galley = ui.fonts_mut(|f| {
                     f.layout_no_wrap(
                         chinese_char.to_string(),
@@ -157,8 +166,8 @@ impl eframe::App for TemplateApp {
                 let letter_height = letter_galley.size().y;
                 let letter_size = letter_width.max(letter_height);
 
-                // Add padding to ensure consistent size
-                let padding = 8.0;
+                // Minimal padding for tight roguelike feel
+                let padding = 0.0;
                 self.button_size = Some(letter_size + padding);
             }
 
@@ -203,9 +212,13 @@ impl eframe::App for TemplateApp {
                                 // Get the character to display at this position
                                 let button_text = self.world.get_display_char(&point);
 
-                                let button = egui::Button::new(button_text)
-                                    .min_size(egui::vec2(button_size, button_size))
-                                    .corner_radius(0.0);
+                                let button = egui::Button::new(
+                                    RichText::new(button_text)
+                                        .font(FontId::proportional(self.font_size)),
+                                )
+                                .min_size(egui::vec2(button_size, button_size))
+                                .small()
+                                .corner_radius(0.0);
                                 if ui.add(button).clicked() {
                                     println!("Button clicked at row: {}, col: {}", row, col);
                                 }
