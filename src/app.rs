@@ -190,9 +190,19 @@ struct Point {
     x: u32,
     y: u32,
 }
-struct PointEntityMap(rustc_hash::FxHashMap<Point, Entity>);
+struct PointEntityMap(rustc_hash::FxHashMap<Point, Vec<Entity>>);
 
+struct EntityPointMap(rustc_hash::FxHashMap<Entity, Point>);
 struct GameWorld {
-    pemap: PointEntityMap,
+    spatial: SpatialWorld,
     player: Entity,
+}
+
+struct SpatialWorld {
+    pemap: PointEntityMap,
+    epmap: EntityPointMap,
+}
+
+impl SpatialWorld {
+    fn insert_ent_at_point(&mut self, ent: Entity, point: Point) {}
 }
