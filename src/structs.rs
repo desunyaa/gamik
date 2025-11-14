@@ -1,7 +1,7 @@
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-struct Entity(u32);
+pub struct Entity(u32);
 
-struct EntityGenerator(u32);
+pub struct EntityGenerator(u32);
 
 impl EntityGenerator {
     fn default() -> Self {
@@ -15,12 +15,12 @@ impl EntityGenerator {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-struct Point {
-    x: u32,
-    y: u32,
+pub struct Point {
+    pub x: u32,
+    pub y: u32,
 }
 
-struct PointEntityMap(rustc_hash::FxHashMap<Point, Vec<Entity>>);
+pub struct PointEntityMap(rustc_hash::FxHashMap<Point, Vec<Entity>>);
 
 impl PointEntityMap {
     fn new() -> Self {
@@ -45,7 +45,7 @@ impl PointEntityMap {
     }
 }
 
-struct EntityPointMap(rustc_hash::FxHashMap<Entity, Point>);
+pub struct EntityPointMap(rustc_hash::FxHashMap<Entity, Point>);
 
 impl EntityPointMap {
     fn new() -> Self {
@@ -66,7 +66,7 @@ impl EntityPointMap {
 }
 
 #[derive(Debug, Clone, Copy)]
-enum Direction {
+pub enum Direction {
     Up,
     Down,
     Left,
@@ -74,7 +74,7 @@ enum Direction {
 }
 
 #[derive(Debug)]
-enum GameEvent {
+pub enum GameEvent {
     Move {
         entity: Entity,
         direction: Direction,
@@ -82,12 +82,12 @@ enum GameEvent {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-enum EntityType {
+pub enum EntityType {
     Player,
     Tree,
 }
 
-struct EntityTypeMap(rustc_hash::FxHashMap<Entity, EntityType>);
+pub struct EntityTypeMap(rustc_hash::FxHashMap<Entity, EntityType>);
 
 impl EntityTypeMap {
     fn new() -> Self {
@@ -103,17 +103,17 @@ impl EntityTypeMap {
     }
 }
 
-struct GameWorld {
+pub struct GameWorld {
     spatial: SpatialWorld,
-    player: Entity,
-    entity_types: EntityTypeMap,
+    pub player: Entity,
+    pub entity_types: EntityTypeMap,
 
-    event_queue: Vec<GameEvent>,
+    pub event_queue: Vec<GameEvent>,
 
-    entity_gen: EntityGenerator,
+    pub entity_gen: EntityGenerator,
 }
 
-struct SpatialWorld {
+pub struct SpatialWorld {
     pemap: PointEntityMap,
     epmap: EntityPointMap,
 }
@@ -163,7 +163,7 @@ impl SpatialWorld {
 }
 
 impl GameWorld {
-    fn create_test_world() -> Self {
+    pub fn create_test_world() -> Self {
         let mut entity_gen = EntityGenerator::default();
         let mut spatial = SpatialWorld::new();
         let mut entity_types = EntityTypeMap::new();
@@ -200,11 +200,11 @@ impl GameWorld {
         }
     }
 
-    fn move_entity(&mut self, entity: Entity, direction: Direction) {
+    pub fn move_entity(&mut self, entity: Entity, direction: Direction) {
         self.spatial.move_entity(entity, direction);
     }
 
-    fn get_display_char(&self, point: &Point) -> &str {
+    pub fn get_display_char(&self, point: &Point) -> &str {
         if let Some(entities) = self.spatial.pemap.get(point) {
             // Display the first entity at this position
             if let Some(&entity) = entities.first() {
