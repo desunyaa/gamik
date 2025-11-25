@@ -19,7 +19,6 @@ pub struct TemplateApp {
     button_size: Option<f32>,
 
     world: GameWorld,
-    net_world: GameWorld,
     font_size: f32,
 
     // Networking state
@@ -37,7 +36,6 @@ impl Default for TemplateApp {
             grid_rows: 1,
             button_size: None,
             world: GameWorld::create_test_world(),
-            net_world: GameWorld::create_test_world(),
             font_size: 20.0,
             message_count: Message::Blank,
             message_rx: None,
@@ -122,8 +120,12 @@ impl eframe::App for TemplateApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         // Check for new message counts from server
         if let Some(rx) = &mut self.message_rx {
-            while let Ok(count) = rx.try_recv() {
-                self.message_count = count;
+            while let Ok(smsg) = rx.try_recv() {
+                if let Message::ServerMessage(ServerMessage::EntityMap(emap)) = smsg {
+                    for (eid, e) in emap.iter() {
+                        self.world.entities.insert(eid.clone(), e.clone());
+                    }
+                }
             }
         }
 
@@ -134,13 +136,6 @@ impl eframe::App for TemplateApp {
         self.input(ctx);
 
         // Process all events
-        self.net_world.process_events();
-
-        let cl_info = self.net_world.gen_client_info(self.player_id);
-
-        for (eid, e) in cl_info.iter() {
-            self.world.entities.insert(eid.clone(), e.clone());
-        }
 
         // Right sidebar
         self.right_panel(ctx);
@@ -155,9 +150,11 @@ impl eframe::App for TemplateApp {
 
 impl TemplateApp {
     pub fn input(&mut self, ctx: &egui::Context) {
+        let mut messages_to_send = Vec::new();
+
         ctx.input(|i| {
             if i.key_pressed(egui::Key::W) || i.key_pressed(egui::Key::ArrowUp) {
-                self.net_world.event_queue.push(GameEvent::Move {
+                messages_to_send.push(GameEvent::Move {
                     entity: self.world.player,
                     direction: Direction::Up,
                 });
@@ -168,19 +165,19 @@ impl TemplateApp {
             }
 
             if i.key_pressed(egui::Key::S) || i.key_pressed(egui::Key::ArrowDown) {
-                self.net_world.event_queue.push(GameEvent::Move {
+                messages_to_send.push(GameEvent::Move {
                     entity: self.world.player,
                     direction: Direction::Down,
                 });
             }
             if i.key_pressed(egui::Key::A) || i.key_pressed(egui::Key::ArrowLeft) {
-                self.net_world.event_queue.push(GameEvent::Move {
+                messages_to_send.push(GameEvent::Move {
                     entity: self.world.player,
                     direction: Direction::Left,
                 });
             }
             if i.key_pressed(egui::Key::D) || i.key_pressed(egui::Key::ArrowRight) {
-                self.net_world.event_queue.push(GameEvent::Move {
+                messages_to_send.push(GameEvent::Move {
                     entity: self.world.player,
                     direction: Direction::Right,
                 });

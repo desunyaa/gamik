@@ -10,7 +10,6 @@ use n0_error::{Result, StdResultExt};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
-use egui::{FontId, RichText};
 use tokio::sync::mpsc;
 
 const ALPN: &[u8] = b"iroh-example/echo/0";
