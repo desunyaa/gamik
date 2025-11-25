@@ -1,5 +1,8 @@
 use crate::structs::*;
 
+use std::sync::Arc;
+use std::sync::atomic::{AtomicU64, Ordering};
+
 use bincode::{Decode, Encode};
 use iroh::{
     Endpoint, EndpointAddr,
@@ -19,12 +22,23 @@ enum ClientMessage {
     GameMessage(GameEvent),
 }
 
+#[derive(Debug, Clone, Encode, Decode)]
+enum ServerMessage {
+    MessageCount(u64),
+}
+
+#[derive(Debug, Clone, Encode, Decode)]
+enum Message {
+    ClientMessage(ClientMessage),
+    ServerMessage(ServerMessage),
+}
+
 // ====================
 // Unidirectional Stream Solution
 // ====================
 
 /// Send one message on a new unidirectional stream
-async fn send_one_way(conn: &Connection, msg: &ClientMessage) -> Result<()> {
+async fn send_one_way(conn: &Connection, msg: &Message) -> Result<()> {
     let mut send = conn.open_uni().await.anyerr()?;
 
     let encoded = bincode::encode_to_vec(msg, bincode::config::standard())
@@ -37,7 +51,7 @@ async fn send_one_way(conn: &Connection, msg: &ClientMessage) -> Result<()> {
 }
 
 /// Receive one message from a unidirectional stream
-async fn recv_one_way(mut recv: iroh::endpoint::RecvStream) -> Result<ClientMessage> {
+async fn recv_one_way(mut recv: iroh::endpoint::RecvStream) -> Result<Message> {
     let bytes = recv.read_to_end(MAX_MESSAGE_SIZE).await.anyerr()?;
 
     let (msg, _) = bincode::decode_from_slice(&bytes, bincode::config::standard())
@@ -57,24 +71,52 @@ async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<u64>)
     let endpoint = Endpoint::bind().await?;
     let conn = endpoint.connect(addr, ALPN).await?;
 
-    // Infinite stress test: send a message every 100ms
+    // Spawn a task to receive messages from server
+    let conn_clone = conn.clone();
+    tokio::spawn(async move {
+        loop {
+            match conn_clone.accept_uni().await {
+                Ok(recv) => {
+                    match recv_one_way(recv).await {
+                        Ok(Message::ServerMessage(ServerMessage::MessageCount(count))) => {
+                            // Send the server's count to the UI
+                            let _ = tx.send(count);
+                            if count % 10 == 0 {
+                                println!("Client received server count: {}", count);
+                            }
+                        }
+                        Ok(Message::ClientMessage(_)) => {
+                            eprintln!("Client received unexpected ClientMessage");
+                        }
+                        Err(e) => {
+                            eprintln!("Error receiving server message: {}", e);
+                        }
+                    }
+                }
+                Err(_) => {
+                    println!("Server connection closed");
+                    break;
+                }
+            }
+        }
+    });
+
+    // Send messages to server
     let mut message_count = 0u64;
-    let messages = vec![ClientMessage::GameMessage(GameEvent::Move {
+    let client_msg = ClientMessage::GameMessage(GameEvent::Move {
         entity: EntityID(5),
         direction: Direction::Up,
-    })];
+    });
 
     loop {
-        let msg = &messages[message_count as usize % messages.len()];
+        let msg = Message::ClientMessage(client_msg.clone());
 
-        match send_one_way(&conn, msg).await {
+        match send_one_way(&conn, &msg).await {
             Ok(_) => {
                 message_count += 1;
-                // Send the count to the UI
-                let _ = tx.send(message_count);
 
                 if message_count % 10 == 0 {
-                    println!("Sent {} messages", message_count);
+                    println!("Client sent {} messages", message_count);
                 }
             }
             Err(e) => {
@@ -89,9 +131,6 @@ async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<u64>)
 
     Ok(())
 }
-
-use std::sync::Arc;
-use std::sync::atomic::{AtomicU64, Ordering};
 
 #[derive(Debug, Clone)]
 struct Echo {
@@ -117,11 +156,14 @@ impl ProtocolHandler for Echo {
                 Ok(recv) => {
                     // Increment the shared counter atomically
                     let current_count = self.receive_count.fetch_add(1, Ordering::SeqCst);
+                    let new_count = current_count + 1;
+
+                    let conn_clone = connection.clone();
 
                     // Spawn a task to handle each stream independently
                     tokio::spawn(async move {
                         match recv_one_way(recv).await {
-                            Ok(msg) => {
+                            Ok(Message::ClientMessage(msg)) => {
                                 // Just log occasionally to avoid spam
                                 if current_count % 10 == 0 {
                                     println!(
@@ -129,6 +171,16 @@ impl ProtocolHandler for Echo {
                                         current_count, msg
                                     );
                                 }
+
+                                // Send the count back to the client
+                                let response =
+                                    Message::ServerMessage(ServerMessage::MessageCount(new_count));
+                                if let Err(e) = send_one_way(&conn_clone, &response).await {
+                                    eprintln!("Error sending count to client: {}", e);
+                                }
+                            }
+                            Ok(Message::ServerMessage(_)) => {
+                                eprintln!("Server received unexpected ServerMessage");
                             }
                             Err(e) => {
                                 eprintln!("Error receiving message: {}", e);
@@ -151,6 +203,7 @@ impl ProtocolHandler for Echo {
         Ok(())
     }
 }
+
 pub struct TemplateApp {
     player_id: EntityID,
     grid_cols: usize,
@@ -272,7 +325,7 @@ async fn run_singleplayer_internal(tx: mpsc::UnboundedSender<u64>) -> Result<()>
 impl eframe::App for TemplateApp {
     /// Called each time the UI needs repainting, which may be many times per second.
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // Check for new message counts
+        // Check for new message counts from server
         if let Some(rx) = &mut self.message_rx {
             while let Ok(count) = rx.try_recv() {
                 self.message_count = count;
@@ -357,7 +410,10 @@ impl TemplateApp {
             .show(ctx, |ui| {
                 ui.heading("Bottom Bar");
                 ui.separator();
-                ui.label(format!("Messages sent: {}", self.message_count));
+                ui.label(format!(
+                    "Messages received by server: {}",
+                    self.message_count
+                ));
             });
     }
 
