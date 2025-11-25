@@ -4,3 +4,5 @@ mod app;
 pub use app::TemplateApp;
 mod structs;
 pub use structs::*;
+mod network;
+pub use network::*;
