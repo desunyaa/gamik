@@ -341,7 +341,7 @@ impl eframe::App for TemplateApp {
         // Process all events
         self.net_world.process_events();
 
-        let cl_info = self.net_world.send_client_info(self.player_id);
+        let cl_info = self.net_world.gen_client_info(self.player_id);
 
         for (eid, e) in cl_info.iter() {
             self.world.entities.insert(eid.clone(), e.clone());

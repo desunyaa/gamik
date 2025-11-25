@@ -132,7 +132,7 @@ impl GameWorld {
         }
     }
 
-    pub fn send_client_info(&self, entity_id: EntityID) -> EntityMap {
+    pub fn gen_client_info(&self, entity_id: EntityID) -> EntityMap {
         self.entities.clone()
     }
 
