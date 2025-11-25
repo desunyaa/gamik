@@ -6,6 +6,7 @@ pub type EntityMap = FxHashMap<EntityID, Entity>;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct EntityID(pub u32);
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct EntityGenerator(u32);
 
 impl EntityGenerator {
@@ -53,6 +54,7 @@ pub struct Entity {
     pub entity_type: EntityType,
 }
 
+#[derive(Debug)]
 pub struct GameWorld {
     pub player: EntityID,
     pub entity_gen: EntityGenerator,

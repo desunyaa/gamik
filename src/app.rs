@@ -1,8 +1,5 @@
 use crate::structs::*;
 
-use std::sync::Arc;
-use std::sync::atomic::{AtomicU64, Ordering};
-
 use bincode::{Decode, Encode};
 use iroh::{
     Endpoint, EndpointAddr,
@@ -10,6 +7,8 @@ use iroh::{
     protocol::{AcceptError, ProtocolHandler, Router},
 };
 use n0_error::{Result, StdResultExt};
+use std::sync::Arc;
+use tokio::sync::Mutex;
 
 use egui::{FontId, RichText};
 use tokio::sync::mpsc;
@@ -84,9 +83,6 @@ async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<Messa
                             let _ = tx.send(msg.clone());
                             println!("Client received server count: {:#?}", msg);
                         }
-                        Ok(Message::ClientMessage(_)) => {
-                            eprintln!("Client received unexpected ClientMessage");
-                        }
                         Err(e) => {
                             eprintln!("Error receiving server message: {}", e);
                         }
@@ -125,7 +121,7 @@ async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<Messa
         }
 
         // Uncomment to slow down message sending
-        // tokio::time::sleep(tokio::time::Duration::from_millis(1)).await;
+        tokio::time::sleep(tokio::time::Duration::from_millis(1000)).await;
     }
 
     Ok(())
@@ -133,13 +129,13 @@ async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<Messa
 
 #[derive(Debug, Clone)]
 struct Echo {
-    receive_count: Arc<AtomicU64>,
+    net_world: Arc<Mutex<GameWorld>>,
 }
 
 impl Echo {
     fn new() -> Self {
         Self {
-            receive_count: Arc::new(AtomicU64::new(0)),
+            net_world: Arc::new(Mutex::new(GameWorld::create_test_world())),
         }
     }
 }
@@ -153,9 +149,7 @@ impl ProtocolHandler for Echo {
         loop {
             match connection.accept_uni().await {
                 Ok(recv) => {
-                    // Increment the shared counter atomically
-                    let current_count = self.receive_count.fetch_add(1, Ordering::SeqCst);
-                    let new_count = current_count + 1;
+                    let world = self.net_world.clone();
 
                     let conn_clone = connection.clone();
 
@@ -163,20 +157,24 @@ impl ProtocolHandler for Echo {
                     tokio::spawn(async move {
                         match recv_one_way(recv).await {
                             Ok(Message::ClientMessage(msg)) => {
-                                // Just log occasionally to avoid spam
-                                if current_count % 10 == 0 {
-                                    println!(
-                                        "Server received message #{}: {:?}",
-                                        current_count, msg
-                                    );
-                                }
+                                match msg {
+                                    ClientMessage::GameMessage(gmsg) => {
+                                        // Lock only when needed, and drop the guard quickly
+                                        let mut world_guard = world.lock().await;
+                                        world_guard.event_queue.push(gmsg);
+                                        world_guard.process_events();
+                                        let client_update =
+                                            world_guard.gen_client_info(EntityID(5));
+                                        // Guard is dropped here when it goes out of scope
 
-                                // Send the count back to the client
-                                let response = Message::ServerMessage(ServerMessage::EntityMap(
-                                    EntityMap::default(),
-                                ));
-                                if let Err(e) = send_one_way(&conn_clone, &response).await {
-                                    eprintln!("Error sending count to client: {}", e);
+                                        // Send the response after releasing the lock
+                                        let response = Message::ServerMessage(
+                                            ServerMessage::EntityMap(client_update),
+                                        );
+                                        if let Err(e) = send_one_way(&conn_clone, &response).await {
+                                            eprintln!("Error sending response to client: {}", e);
+                                        }
+                                    }
                                 }
                             }
                             Ok(Message::ServerMessage(_)) => {
@@ -193,11 +191,7 @@ impl ProtocolHandler for Echo {
                 }
                 Err(_) => {
                     // Connection closed
-                    let total_count = self.receive_count.load(Ordering::SeqCst);
-                    println!(
-                        "Connection closed. Total messages received: {}",
-                        total_count
-                    );
+                    println!("Connection closed. Total messages received: ",);
                     break;
                 }
             }
