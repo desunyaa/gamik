@@ -24,13 +24,14 @@ enum ClientMessage {
 
 #[derive(Debug, Clone, Encode, Decode)]
 enum ServerMessage {
-    MessageCount(u64),
+    EntityMap(EntityMap),
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
 enum Message {
     ClientMessage(ClientMessage),
     ServerMessage(ServerMessage),
+    Blank,
 }
 
 // ====================
@@ -67,7 +68,7 @@ async fn run_server_internal() -> Result<Router> {
     Ok(router)
 }
 
-async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<u64>) -> Result<()> {
+async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<Message>) -> Result<()> {
     let endpoint = Endpoint::bind().await?;
     let conn = endpoint.connect(addr, ALPN).await?;
 
@@ -78,12 +79,10 @@ async fn run_client_internal(addr: EndpointAddr, tx: mpsc::UnboundedSender<u64>)
             match conn_clone.accept_uni().await {
                 Ok(recv) => {
                     match recv_one_way(recv).await {
-                        Ok(Message::ServerMessage(ServerMessage::MessageCount(count))) => {
+                        Ok(msg) => {
                             // Send the server's count to the UI
-                            let _ = tx.send(count);
-                            if count % 10 == 0 {
-                                println!("Client received server count: {}", count);
-                            }
+                            let _ = tx.send(msg.clone());
+                            println!("Client received server count: {:#?}", msg);
                         }
                         Ok(Message::ClientMessage(_)) => {
                             eprintln!("Client received unexpected ClientMessage");
@@ -173,13 +172,17 @@ impl ProtocolHandler for Echo {
                                 }
 
                                 // Send the count back to the client
-                                let response =
-                                    Message::ServerMessage(ServerMessage::MessageCount(new_count));
+                                let response = Message::ServerMessage(ServerMessage::EntityMap(
+                                    EntityMap::default(),
+                                ));
                                 if let Err(e) = send_one_way(&conn_clone, &response).await {
                                     eprintln!("Error sending count to client: {}", e);
                                 }
                             }
                             Ok(Message::ServerMessage(_)) => {
+                                eprintln!("Server received unexpected ServerMessage");
+                            }
+                            Ok(Message::Blank) => {
                                 eprintln!("Server received unexpected ServerMessage");
                             }
                             Err(e) => {
@@ -215,8 +218,8 @@ pub struct TemplateApp {
     font_size: f32,
 
     // Networking state
-    message_count: u64,
-    message_rx: Option<mpsc::UnboundedReceiver<u64>>,
+    message_count: Message,
+    message_rx: Option<mpsc::UnboundedReceiver<Message>>,
     _router: Option<Router>,
 }
 
@@ -230,7 +233,7 @@ impl Default for TemplateApp {
             world: GameWorld::create_test_world(),
             net_world: GameWorld::create_test_world(),
             font_size: 20.0,
-            message_count: 0,
+            message_count: Message::Blank,
             message_rx: None,
             _router: None,
         }
@@ -308,7 +311,7 @@ impl TemplateApp {
     }
 }
 
-async fn run_singleplayer_internal(tx: mpsc::UnboundedSender<u64>) -> Result<()> {
+async fn run_singleplayer_internal(tx: mpsc::UnboundedSender<Message>) -> Result<()> {
     let router = run_server_internal().await?;
     router.endpoint().online().await;
     let server_addr = router.endpoint().addr();
@@ -411,7 +414,7 @@ impl TemplateApp {
                 ui.heading("Bottom Bar");
                 ui.separator();
                 ui.label(format!(
-                    "Messages received by server: {}",
+                    "Messages received by server: {:#?}",
                     self.message_count
                 ));
             });

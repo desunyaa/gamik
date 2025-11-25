@@ -19,7 +19,7 @@ impl EntityGenerator {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct Point {
     pub x: i32,
     pub y: i32,
@@ -41,13 +41,13 @@ pub enum GameEvent {
     },
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Encode, Decode)]
 pub enum EntityType {
     Player,
     Tree,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Encode, Decode)]
 pub struct Entity {
     pub position: Point,
     pub entity_type: EntityType,
