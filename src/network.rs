@@ -2,7 +2,7 @@ use crate::structs::*;
 
 use bincode::{Decode, Encode};
 use iroh::{
-    Endpoint, EndpointAddr,
+    Endpoint, EndpointAddr, EndpointId,
     endpoint::Connection,
     protocol::{AcceptError, ProtocolHandler, Router},
 };
@@ -61,6 +61,8 @@ async fn recv_one_way(mut recv: iroh::endpoint::RecvStream) -> Result<Message> {
 
 pub async fn run_server_internal() -> Result<Router> {
     let endpoint = Endpoint::bind().await?;
+
+    endpoint.online().await;
     let router = Router::builder(endpoint).accept(ALPN, Echo::new()).spawn();
     println!("Server started at {:#?}", router.endpoint().addr());
     Ok(router)
@@ -80,13 +82,16 @@ impl Echo {
 }
 // In network.rs - Update run_client_internal to accept a receiver channel
 pub async fn run_client_internal(
-    addr: EndpointAddr,
+    addr: EndpointId,
     tx: mpsc::UnboundedSender<Message>,
     mut rx: mpsc::UnboundedReceiver<GameEvent>, // New parameter
 ) -> Result<()> {
-    let endpoint = Endpoint::bind().await?;
+    let endpoint = Endpoint::builder().bind().await?;
+    endpoint.online().await;
+    println!("client endpoint created: {:#?}", endpoint.addr());
+    println!("trying to connect to {}", addr);
     let conn = endpoint.connect(addr, ALPN).await?;
-
+    println!("CLIENT CONNECTED");
     // Spawn a task to receive messages from server
     let conn_clone = conn.clone();
     tokio::spawn(async move {

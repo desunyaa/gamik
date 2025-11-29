@@ -99,7 +99,7 @@ impl TemplateApp {
 
         self.server_to_client_rx = Some(msg_rx);
         self.client_to_server_tx = Some(event_tx);
-        let server_addr = self.router.as_ref().unwrap().endpoint().addr();
+        let server_addr = self.router.as_ref().unwrap().endpoint().id();
         // Spawn the networking tasks
         tokio::spawn(async move {
             run_client_internal(server_addr, msg_tx, event_rx).await;
@@ -129,6 +129,7 @@ impl TemplateApp {
             // You'll need to poll for it in the update loop
             if let Ok(router) = router_rx.try_recv() {
                 self.router = Some(router);
+                println!("GOT ROUTER");
             }
         }
     }
@@ -234,7 +235,6 @@ impl TemplateApp {
     }
 
     fn rogue_screen(&mut self, ctx: &egui::Context) {
-        println!("RENDERING ROGUE SCREEN");
         egui::CentralPanel::default().show(ctx, |ui| {
             // Customize button styling for tighter spacing
             let style = ui.style_mut();
