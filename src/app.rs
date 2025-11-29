@@ -104,16 +104,20 @@ impl TemplateApp {
         app
     }
 
-    fn start_client(&mut self, addr: impl Into<EndpointAddr>) {
+    fn start_client<A>(&mut self, addr: A)
+    where
+        A: Into<EndpointAddr> + Clone,
+    {
         let (msg_tx, msg_rx) = mpsc::unbounded_channel();
         let (event_tx, event_rx) = mpsc::unbounded_channel();
 
+        let s_addr = addr.clone().into();
+
         self.server_to_client_rx = Some(msg_rx);
         self.client_to_server_tx = Some(event_tx);
-        let server_addr = self.router.as_ref().unwrap().endpoint().id();
-        // Spawn the networking tasks
+
         tokio::spawn(async move {
-            run_client_internal(server_addr, msg_tx, event_rx).await;
+            run_client_internal(s_addr, msg_tx, event_rx).await;
         });
     }
     fn start_server(&mut self) {
