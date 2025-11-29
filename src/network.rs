@@ -150,13 +150,39 @@ impl ProtocolHandler for Echo {
         let endpoint_id = connection.remote_id();
         println!("Accepted connection from {}", endpoint_id);
 
-        // Accept unidirectional streams in a loop
+        let world = self.net_world.clone();
+        let conn_clone = connection.clone();
+
+        // Spawn a task for periodic updates every 50ms
+        tokio::spawn(async move {
+            let mut interval = tokio::time::interval(Duration::from_millis(50));
+
+            loop {
+                interval.tick().await;
+
+                // Lock the world, process any pending events, and generate update
+                let client_update = {
+                    let mut world_guard = world.lock().await;
+                    world_guard.process_events();
+                    world_guard.gen_client_info(EntityID(5))
+                };
+
+                // Send the periodic update
+                let response = Message::ServerMessage(ServerMessage::EntityMap(client_update));
+
+                if let Err(e) = send_one_way(&conn_clone, &response).await {
+                    eprintln!("Error sending periodic update to client: {}", e);
+                    break; // Exit if connection is broken
+                }
+            }
+        });
+
+        // Accept unidirectional streams in a loop (for incoming messages)
         loop {
+            println!("CHECKING FOR MSG");
             match connection.accept_uni().await {
                 Ok(recv) => {
                     let world = self.net_world.clone();
-
-                    let conn_clone = connection.clone();
 
                     // Spawn a task to handle each stream independently
                     tokio::spawn(async move {
@@ -164,21 +190,10 @@ impl ProtocolHandler for Echo {
                             Ok(Message::ClientMessage(msg)) => {
                                 match msg {
                                     ClientMessage::GameMessage(gmsg) => {
-                                        // Lock only when needed, and drop the guard quickly
+                                        // Lock only when needed, and add event to queue
                                         let mut world_guard = world.lock().await;
                                         world_guard.event_queue.push(gmsg);
-                                        world_guard.process_events();
-                                        let client_update =
-                                            world_guard.gen_client_info(EntityID(5));
-                                        // Guard is dropped here when it goes out of scope
-
-                                        // Send the response after releasing the lock
-                                        let response = Message::ServerMessage(
-                                            ServerMessage::EntityMap(client_update),
-                                        );
-                                        if let Err(e) = send_one_way(&conn_clone, &response).await {
-                                            eprintln!("Error sending response to client: {}", e);
-                                        }
+                                        // Don't process events here - let the periodic task handle it
                                     }
                                 }
                             }
@@ -186,7 +201,7 @@ impl ProtocolHandler for Echo {
                                 eprintln!("Server received unexpected ServerMessage");
                             }
                             Ok(Message::Blank) => {
-                                eprintln!("Server received unexpected ServerMessage");
+                                eprintln!("Server received unexpected Blank message");
                             }
                             Err(e) => {
                                 eprintln!("Error receiving message: {}", e);
@@ -196,7 +211,7 @@ impl ProtocolHandler for Echo {
                 }
                 Err(_) => {
                     // Connection closed
-                    println!("Connection closed. Total messages received: ",);
+                    println!("Connection closed");
                     break;
                 }
             }
