@@ -11,18 +11,27 @@ pub struct TemplateApp {
     grid_rows: usize,
     button_size: Option<f32>,
 
+    multiplayer_endpoint_input: String,
     world: GameWorld,
     font_size: f32,
     router: Option<Router>,
     // Networking state
     server_to_client_rx: Option<mpsc::UnboundedReceiver<Message>>,
     client_to_server_tx: Option<mpsc::UnboundedSender<GameEvent>>, // New field
+    game_state: GameState,
 }
-
+#[derive(Debug, Clone, PartialEq)]
+enum GameState {
+    MainMenu,
+    Connecting,
+    Playing,
+}
 impl Default for TemplateApp {
     fn default() -> Self {
         Self {
+            multiplayer_endpoint_input: String::new(),
             router: None,
+            game_state: GameState::MainMenu,
             player_id: EntityID(0),
             grid_cols: 1,
             grid_rows: 1,
@@ -152,24 +161,105 @@ impl eframe::App for TemplateApp {
 
         // Request continuous repainting to keep UI responsive
         ctx.request_repaint();
+        match self.game_state {
+            GameState::MainMenu => {
+                self.show_main_menu(ctx);
+            }
+            GameState::Connecting => {
+                self.show_connecting_screen(ctx);
+            }
+            GameState::Playing => {
+                // Check for new message counts from server
+                if let Some(rx) = &mut self.server_to_client_rx {
+                    while let Ok(smsg) = rx.try_recv() {
+                        if let Message::ServerMessage(ServerMessage::EntityMap(emap)) = smsg {
+                            for (eid, e) in emap.iter() {
+                                self.world.entities.insert(eid.clone(), e.clone());
+                            }
+                        }
+                    }
+                }
 
-        // Handle keyboard input
-        self.input(ctx);
+                // Handle keyboard input
+                self.input(ctx);
 
-        // Process all events
+                // Right sidebar
+                self.right_panel(ctx);
 
-        // Right sidebar
-        self.right_panel(ctx);
+                // Bottom bar
+                self.bottom_panel(ctx);
 
-        // Bottom bar
-        self.bottom_panel(ctx);
-
-        // Central panel with letter grid
-        self.rogue_screen(ctx);
+                // Central panel with letter grid
+                self.rogue_screen(ctx);
+            }
+        }
     }
 }
 
 impl TemplateApp {
+    fn show_main_menu(&mut self, ctx: &egui::Context) {
+        egui::CentralPanel::default().show(ctx, |ui| {
+            ui.vertical_centered(|ui| {
+                ui.add_space(100.0);
+
+                ui.heading(RichText::new("Roguelike Game").size(32.0));
+                ui.add_space(50.0);
+
+                if ui
+                    .button(RichText::new("Start Singleplayer Game").size(20.0))
+                    .clicked()
+                {
+                    println!("LOL");
+                }
+
+                ui.add_space(20.0);
+
+                if ui
+                    .button(RichText::new("Host Multiplayer Game").size(20.0))
+                    .clicked()
+                {
+                    println!("LOL");
+                }
+
+                ui.add_space(20.0);
+
+                ui.separator();
+                ui.add_space(20.0);
+
+                ui.heading("Join Multiplayer Game");
+                ui.add_space(10.0);
+
+                ui.horizontal(|ui| {
+                    ui.label("Endpoint ID:");
+                    ui.text_edit_singleline(&mut self.multiplayer_endpoint_input);
+                });
+
+                ui.add_space(10.0);
+
+                if ui.button(RichText::new("Connect").size(18.0)).clicked() {
+                    println!("LOL");
+                }
+            });
+        });
+    }
+
+    fn show_connecting_screen(&mut self, ctx: &egui::Context) {
+        egui::CentralPanel::default().show(ctx, |ui| {
+            ui.vertical_centered(|ui| {
+                ui.add_space(200.0);
+
+                ui.heading("lol");
+                ui.add_space(20.0);
+                ui.spinner();
+
+                ui.add_space(40.0);
+
+                if ui.button("Cancel").clicked() {
+                    self.game_state = GameState::MainMenu;
+                }
+            });
+        });
+    }
     pub fn input(&mut self, ctx: &egui::Context) {
         let mut messages_to_send = Vec::new();
 
