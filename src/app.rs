@@ -18,7 +18,7 @@ pub struct TemplateApp {
     router: Option<Router>,
     // Networking state
     server_to_client_rx: Option<mpsc::UnboundedReceiver<Message>>,
-    client_to_server_tx: Option<mpsc::UnboundedSender<GameEvent>>, // New field
+    client_to_server_tx: Option<mpsc::UnboundedSender<GameCommand>>, // New field
     game_state: GameState,
 }
 #[derive(Debug, Clone, PartialEq)]
@@ -287,10 +287,7 @@ impl TemplateApp {
 
         ctx.input(|i| {
             if i.key_pressed(egui::Key::W) || i.key_pressed(egui::Key::ArrowUp) {
-                messages_to_send.push(GameEvent::Move {
-                    entity: self.world.player,
-                    direction: Direction::Up,
-                });
+                messages_to_send.push(GameCommand::Move(Direction::Up));
             }
 
             if i.key_pressed(egui::Key::Q) {
@@ -298,22 +295,13 @@ impl TemplateApp {
             }
 
             if i.key_pressed(egui::Key::S) || i.key_pressed(egui::Key::ArrowDown) {
-                messages_to_send.push(GameEvent::Move {
-                    entity: self.world.player,
-                    direction: Direction::Down,
-                });
+                messages_to_send.push(GameCommand::Move(Direction::Down));
             }
             if i.key_pressed(egui::Key::A) || i.key_pressed(egui::Key::ArrowLeft) {
-                messages_to_send.push(GameEvent::Move {
-                    entity: self.world.player,
-                    direction: Direction::Left,
-                });
+                messages_to_send.push(GameCommand::Move(Direction::Left));
             }
             if i.key_pressed(egui::Key::D) || i.key_pressed(egui::Key::ArrowRight) {
-                messages_to_send.push(GameEvent::Move {
-                    entity: self.world.player,
-                    direction: Direction::Right,
-                });
+                messages_to_send.push(GameCommand::Move(Direction::Right));
             }
         }); // Send all the collected messages
         if let Some(tx) = &self.client_to_server_tx {

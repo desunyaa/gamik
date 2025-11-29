@@ -1,7 +1,10 @@
 use bincode::{Decode, Encode};
+use egui::ahash::HashMapExt;
+use iroh::EndpointId;
 use rustc_hash::FxHashMap;
 
 pub type EntityMap = FxHashMap<EntityID, Entity>;
+pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct EntityID(pub u32);
@@ -35,12 +38,11 @@ pub enum Direction {
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
-pub enum GameEvent {
-    Move {
-        entity: EntityID,
-        direction: Direction,
-    },
+pub enum GameCommand {
+    Move(Direction),
 }
+
+pub type GameEvent = (EntityID, GameCommand);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Encode, Decode)]
 pub enum EntityType {
@@ -56,9 +58,9 @@ pub struct Entity {
 
 #[derive(Debug)]
 pub struct GameWorld {
-    pub player: EntityID,
     pub entity_gen: EntityGenerator,
     pub event_queue: Vec<GameEvent>,
+    pub endpoints: EndpointMap,
 
     // entities now stored in a hashmap
     pub entities: EntityMap,
@@ -101,7 +103,7 @@ impl GameWorld {
         }
 
         GameWorld {
-            player,
+            endpoints: EndpointMap::new(),
             entity_gen,
             event_queue: Vec::new(),
             entities,
@@ -134,17 +136,17 @@ impl GameWorld {
         }
     }
 
-    pub fn gen_client_info(&self, entity_id: EntityID) -> EntityMap {
+    pub fn gen_client_info(&self) -> EntityMap {
         self.entities.clone()
     }
 
     pub fn process_events(&mut self) {
         let events: Vec<GameEvent> = self.event_queue.drain(..).collect();
 
-        for event in events {
-            match event {
-                GameEvent::Move { entity, direction } => {
-                    self.move_entity(entity, direction);
+        for (eid, command) in events {
+            match command {
+                GameCommand::Move(direction) => {
+                    self.move_entity(eid, direction);
                 }
             }
         }

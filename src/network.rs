@@ -17,7 +17,7 @@ const MAX_MESSAGE_SIZE: usize = 10 * 1024 * 1024; // 10MB limit
 
 #[derive(Debug, Clone, Encode, Decode)]
 pub enum ClientMessage {
-    GameMessage(GameEvent),
+    GameMessage(GameCommand),
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
@@ -87,7 +87,7 @@ impl Echo {
 pub async fn run_client_internal(
     addr: impl Into<EndpointAddr>,
     tx: mpsc::UnboundedSender<Message>,
-    mut rx: mpsc::UnboundedReceiver<GameEvent>, // New parameter
+    mut rx: mpsc::UnboundedReceiver<GameCommand>, // New parameter
 ) -> Result<()> {
     let endpoint = Endpoint::bind().await?;
     //    endpoint.online().await;
@@ -164,7 +164,7 @@ impl ProtocolHandler for Echo {
                 let client_update = {
                     let mut world_guard = world.lock().await;
                     world_guard.process_events();
-                    world_guard.gen_client_info(EntityID(5))
+                    world_guard.gen_client_info()
                 };
 
                 // Send the periodic update
@@ -192,7 +192,7 @@ impl ProtocolHandler for Echo {
                                     ClientMessage::GameMessage(gmsg) => {
                                         // Lock only when needed, and add event to queue
                                         let mut world_guard = world.lock().await;
-                                        world_guard.event_queue.push(gmsg);
+                                        world_guard.event_queue.push((EntityID(4), gmsg));
                                         // Don't process events here - let the periodic task handle it
                                     }
                                 }
