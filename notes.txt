@@ -85,6 +85,7 @@ controlling game speed,pausing the game
 farming crops and raising animals and fruit trees
 building
 eating
+YOGA
 
 CRAFTING---------------------------------------------------
 embroidery,engraving,naming,plating,folding,wrapping,
