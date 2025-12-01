@@ -151,8 +151,11 @@ impl ProtocolHandler for Echo {
         println!("Accepted connection from {}", endpoint_id);
 
         let world = self.net_world.clone();
+        let mut spawn_guard = world.lock().await;
+        let pid = spawn_guard.spawn_player();
+        spawn_guard.endpoints.insert(endpoint_id, pid);
         let conn_clone = connection.clone();
-
+        drop(spawn_guard);
         // Spawn a task for periodic updates every 50ms
         tokio::spawn(async move {
             let mut interval = tokio::time::interval(Duration::from_millis(50));
@@ -179,7 +182,8 @@ impl ProtocolHandler for Echo {
 
         // Accept unidirectional streams in a loop (for incoming messages)
         loop {
-            println!("CHECKING FOR MSG");
+            let endpoint_id = connection.remote_id();
+
             match connection.accept_uni().await {
                 Ok(recv) => {
                     let world = self.net_world.clone();
@@ -192,7 +196,12 @@ impl ProtocolHandler for Echo {
                                     ClientMessage::GameMessage(gmsg) => {
                                         // Lock only when needed, and add event to queue
                                         let mut world_guard = world.lock().await;
-                                        world_guard.event_queue.push((EntityID(4), gmsg));
+                                        if let Some(pid) =
+                                            world_guard.endpoints.get(&endpoint_id).cloned()
+                                        {
+                                            world_guard.event_queue.push((pid, gmsg));
+                                        }
+
                                         // Don't process events here - let the periodic task handle it
                                     }
                                 }

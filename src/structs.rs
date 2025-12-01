@@ -50,7 +50,7 @@ pub enum EntityType {
     Tree,
 }
 
-#[derive(Debug, Clone, Copy, Encode, Decode)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct Entity {
     pub position: Point,
     pub entity_type: EntityType,
@@ -67,6 +67,18 @@ pub struct GameWorld {
 }
 
 impl GameWorld {
+    pub fn spawn_player(&mut self) -> EntityID {
+        let player = self.entity_gen.new_entity();
+        self.entities.insert(
+            player,
+            Entity {
+                position: Point { x: 10, y: 10 },
+                entity_type: EntityType::Player,
+            },
+        );
+
+        player
+    }
     pub fn create_test_world() -> Self {
         let mut entity_gen = EntityGenerator::default();
         let mut entities = EntityMap::default();
