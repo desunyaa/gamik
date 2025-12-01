@@ -1,0 +1,2042 @@
+
+***
+
+### 1. 鱼 (yú) - Fish
+This suffix is used for animals that live in water, primarily fish, but also aquatic mammals due to historical classification.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 鱼 | 鱼 | yú | Fish |
+| 鱼 | 鲨鱼 | shāyú | Shark |
+| 鱼 | 鲸鱼 | jīngyú | Whale |
+| 鱼 | 鳄鱼 | èyú | Crocodile/Alligator |
+| 鱼 | 金鱼 | jīnyú | Goldfish |
+| 鱼 | 章鱼 | zhāngyú | Octopus |
+| 鱼 | 鲤鱼 | lǐyú | Carp |
+| 鱼 | 三文鱼 | sānwényú | Salmon |
+
+***
+
+### 2. 鸟 (niǎo) - Bird
+This suffix is used for all kinds of birds.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 鸟 | 鸟 | niǎo | Bird |
+| 鸟 | 犀鸟 | xīniǎo | Hornbill |
+| 鸟 | 蜂鸟 | fēngniǎo | Hummingbird |
+| 鸟 | 鸵鸟 | tuóniǎo | Ostrich |
+| 鸟 | 海鸟 | hǎiniǎo | Seabird |
+| 鸟 | 水鸟 | shuǐniǎo | Waterbird |
+
+***
+
+### 3. 兽 (shòu) - Beast / Mammal
+This formal suffix refers to beasts or large mammals. It's often used in scientific or formal contexts.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 兽 | 野兽 | yěshòu | Wild Beast |
+| 兽 | 哺乳兽 | bǔrǔshòu | Mammal (technical) |
+| 兽 | 犀牛兽 | xīniúshòu | Rhinoceros (less common) |
+| 兽 | 海兽 | hǎishòu | Marine Mammal |
+
+***
+
+### 4. 虫 (chóng) - Insect / Bug
+This suffix is used for insects, worms, and other small creatures, including some reptiles and amphibians.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 虫 | 虫 | chóng | Insect/Bug |
+| 虫 | 昆虫 | kūnchóng | Insect (formal) |
+| 虫 | 毛毛虫 | máomáochóng | Caterpillar |
+| 虫 | 瓢虫 | piáochóng | Ladybug |
+| 虫 | 蠕虫 | rúchóng | Worm |
+| 虫 | 蝗虫 | huángchóng | Locust |
+| 虫 | 甲虫 | jiǎchóng | Beetle |
+
+***
+
+### 5. 蛇 (shé) - Snake
+This is both a word and a suffix for snake-like creatures.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 蛇 | 蛇 | shé | Snake |
+| 蛇 | 毒蛇 | dúshé | Venomous Snake |
+| 蛇 | 蟒蛇 | mǎngshé | Python/Boa |
+| 蛇 | 海蛇 | hǎishé | Sea Snake |
+
+***
+
+### 6. 牛 (niú) - Bovine
+Literally "cow," this suffix is used for large, bovine-like or powerful animals.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 牛 | 牛 | niú | Cow/Ox |
+| 牛 | 水牛 | shuǐniú | Water Buffalo |
+| 牛 | 犀牛 | xīniú | Rhinoceros ("Nose Cow") |
+| 牛 | 蜗牛 | wōniú | Snail ("Snail Cow") |
+| 牛 | 天牛 | tiānniú | Longhorn Beetle ("Sky Cow") |
+
+***
+
+### 7. 马 (mǎ) - Horse
+Literally "horse," this suffix is used for equine-like or large, fast-moving animals.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 马 | 马 | mǎ | Horse |
+| 马 | 河马 | hémǎ | Hippopotamus ("River Horse") |
+| 马 | 海马 | hǎimǎ | Seahorse ("Sea Horse") |
+| 马 | 斑马 | bānmǎ | Zebra ("Striped Horse") |
+| 马 | 角马 | jiǎomǎ | Wildebeest ("Horned Horse") |
+
+***
+
+### 8. 狼 (láng) - Wolf
+This suffix is used for canine-like animals.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 狼 | 狼 | láng | Wolf |
+| 狼 | 豺狼 | cháiláng | Jackal |
+| 狼 | 土狼 | tǔláng | Aardwolf ("Earth Wolf") |
+| 狼 | 海狼 | hǎiláng | Wolf Eel (a fish, "Sea Wolf") |
+
+***
+
+### 9. 猴 (hóu) - Monkey
+This suffix is used for primates.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 猴 | 猴 | hóu | Monkey |
+| 猴 | 猴子 | hóuzi | Monkey (with common suffix 子) |
+| 猴 | 猩猩 | xīngxing | Orangutan/Gorilla (reduplicated) |
+| 猴 | 长臂猿 | chángbìyuán | Gibbon (uses 猿 yuán, another word for ape) |
+
+***
+
+### Important Note on 子 (zi)
+While not a "category" suffix like the others, **子 (zi)** is an extremely common **nominal suffix** added to many nouns, including animals, to form a comfortable two-syllable word. It often doesn't change the meaning.
+
+*   兔**子** (tù**zi**) - Rabbit
+*   猴**子** (hóu**zi**) - Monkey
+*   狮**子** (shī**zi**) - Lion
+*   鸭**子** (yā**zi**) - Duck
+*   蚊**子** (wén**zi**) - Mosquito
+
+***
+
+### 1. 衫 (shān) - Shirt / Top
+A general suffix for tops and blouses.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 衫 | 衬衫 | chènshān | Dress Shirt |
+| 衫 | T恤衫 | T xùshān | T-Shirt |
+| 衫 | 毛衣衫 | máoyīshān | Sweater (less common, usually just 毛衣) |
+| 衫 | 汗衫 | hànshān | Undershirt / T-shirt (traditional) |
+| 衫 | 卫衣 | wèiyī | Hoodie (uses 衣, not 衫) |
+
+***
+
+### 2. 衣 (yī) - Clothing / Garment
+A more formal and general character for "clothing," used in many compound words.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 衣 | 大衣 | dàyī | Overcoat |
+| 衣 | 风衣 | fēngyī | Trench Coat ("Wind Coat") |
+| 衣 | 雨衣 | yǔyī | Raincoat |
+| 衣 | 内衣 | nèiyī | Underwear |
+| 衣 | 外衣 | wàiyī | Outerwear |
+| 衣 | 睡衣 | shuìyī | Pajamas |
+| 衣 | 毛衣 | máoyī | Sweater ("Wool Clothing") |
+| 衣 | 羽绒服 | yǔróngfú | Down Jacket (uses 服 fú, a synonym for 衣) |
+
+***
+
+### 3. 裤 (kù) - Pants / Trousers
+The universal suffix for any garment worn on the legs.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 裤 | 裤子 | kùzi | Pants / Trousers |
+| 裤 | 牛仔裤 | niúzǎikù | Jeans ("Cowboy Pants") |
+| 裤 | 短裤 | duǎnkù | Shorts ("Short Pants") |
+| 裤 | 长裤 | chángkù | Long Pants |
+| 裤 | 运动裤 | yùndòngkù | Sweatpants |
+| 裤 | 内裤 | nèikù | Underwear ("Inner Pants") |
+| 裤 | 睡裤 | shuìkù | Pajama Pants |
+| 裤 | 紧身裤 | jǐnshēnkù | Leggings |
+
+***
+
+### 4. 裙 (qún) - Skirt
+The suffix for all skirt-like garments.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 裙 | 裙子 | qúnzi | Skirt |
+| 裙 | 短裙 | duǎnqún | Short Skirt |
+| 裙 | 长裙 | chángqún | Long Skirt |
+| 裙 | 连衣裙 | liányīqún | Dress ("Connected Clothing Skirt") |
+| 裙 | 半身裙 | bànshēnqún | Half-length Skirt |
+| 裙 | 衬衫裙 | chènshānqún | Shirt Dress |
+
+***
+
+### 5. 帽 (mào) - Hat / Cap
+The suffix for headwear.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 帽 | 帽子 | màozi | Hat / Cap |
+| 帽 | 鸭舌帽 | yāshémào | Baseball Cap ("Duck Tongue Hat") |
+| 帽 | 太阳帽 | tàiyángmào | Sun Hat |
+| 帽 | 草帽 | cǎomào | Straw Hat |
+| 帽 | 毛线帽 | máoxiànmào | Beanie ("Wool Thread Hat") |
+| 帽 | 安全帽 | ānquánmào | Safety Helmet |
+
+***
+
+### 6. 鞋 (xié) - Shoes
+The suffix for footwear.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 鞋 | 鞋子 | xiézi | Shoes |
+| 鞋 | 运动鞋 | yùndòngxié | Sneakers / Athletic Shoes |
+| 鞋 | 高跟鞋 | gāogēnxié | High-heeled Shoes |
+| 鞋 | 平底鞋 | píngdǐxié | Flat Shoes |
+| 鞋 | 靴子 | xuēzi | Boots (uses 子, but 靴 xuē means boot) |
+| 鞋 | 凉鞋 | liángxié | Sandals |
+| 鞋 | 拖鞋 | tuōxié | Slippers |
+
+***
+
+### 7. 袜 (wà) - Socks
+The suffix for hosiery.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 袜 | 袜子 | wàzi | Socks |
+| 袜 | 短袜 | duǎnwà | Ankle Socks |
+| 袜 | 长袜 | chángwà | Knee-high Socks |
+| 袜 | 连裤袜 | liánkùwà | Pantyhose ("Connected Pants Socks") |
+| 袜 | 丝袜 | sīwà | Silk Stockings |
+
+***
+
+### 8. 服 (fú) - Clothing (Formal/Garment)
+Similar to 衣 (yī), it means "clothing" and is used for specific types of garments, often uniforms or full outfits.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 服 | 衣服 | yīfu | Clothing (general term, combines 衣 and 服) |
+| 服 | 西装 | xīzhuāng | Western Suit (uses 装 zhuāng, a synonym) |
+| 服 | 礼服 | lǐfú | Formal Wear / Evening Gown |
+| 服 | 校服 | xiàofú | School Uniform |
+| 服 | 运动服 | yùndòngfú | Tracksuit / Sportswear |
+| 服 | 睡衣 | shuìyī | Pajamas (uses 衣, but means "sleep clothing") |
+| 服 | 羽绒服 | yǔróngfú | Down Jacket |
+
+***
+
+### 9. 装 (zhuāng) - Attire / Outfit
+Often refers to a full outfit, costume, or suit. It can be interchangeable with 服 in some contexts.
+
+| Suffix | Chinese Characters | Pinyin | English |
+| :--- | :--- | :--- | :--- |
+| 装 | 服装 | fúzhuāng | Clothing (general, formal) |
+| 装 | 西装 | xīzhuāng | Western Suit |
+| 装 | 中山装 | Zhōngshānzhuāng | Mao Suit |
+| 装 | 女装 | nǚzhuāng | Women's Clothing |
+| 装 | 男装 | nánzhuāng | Men's Clothing |
+| 装 | 童装 | tóngzhuāng | Children's Clothing |
+| 装 | 泳装 | yǒngzhuāng | Swimsuit |
+
+***
+
+### Important Note on 子 (zi)
+Just like with animals, the suffix **子 (zi)** is extremely common in clothing words to form a comfortable two-syllable word. It often doesn't change the meaning.
+
+*   裤**子** (kù**zi**) - Pants
+*   裙**子** (qún**zi**) - Skirt
+*   帽**子** (mào**zi**) - Hat
+*   鞋**子** (xié**zi**) - Shoes
+*   袜**子** (wà**zi**) - Socks
+*   袖**子** (xiù**zi**) - Sleeve
+*   领**子** (lǐng**zi**) - Collar
+
+**General Description + Material + Core Noun**
+
+
+---
+
+### 1. "A horse leather left glove"
+
+In Chinese, the order for describing a noun is:
+**Left/Right + (Other attributes) + Material + Noun**
+
+*   **Left:** 左 (zuǒ)
+*   **Glove:** 手套 (shǒutào)
+*   **Horse Leather:** 马皮 (mǎpí) - "Horse" + "Leather/Skin"
+
+Putting it together, we get:
+**左 + 马皮 + 手套**
+
+> **Simplified:** 一只左马皮手套
+> **Traditional:** 一隻左馬皮手套
+> **Pinyin:** Yī zhī zuǒ mǎpí shǒutào.
+> **Literal:** "One [classifier] left horse-leather glove."
+
+**Explanation:**
+*   **一只 (yī zhī):** "One." 只 (zhī) is a common classifier for one of a pair (like gloves, hands, eyes).
+*   The order is the opposite of English: "Left" comes before the material "horse leather."
+
+---
+
+### 2. "Wool sweater with embroidered golden thread in cross patterns"
+
+This is more complex and requires breaking it into logical chunks. The core noun is "sweater" (毛衣, máoyī).
+
+The descriptive order is:
+**Pattern + Design/Embellishment + Material + Noun**
+
+Let's identify the components:
+*   **Wool:** 羊毛 (yángmáo)
+*   **Sweater:** 毛衣 (máoyī) - This word already contains "wool" (毛), so you often don't need to repeat it. However, for clarity and emphasis, you can.
+*   **Embroidered:** 绣有...的 (xiù yǒu... de) - "embellished with..."
+*   **Golden Thread:** 金线 (jīnxiàn)
+*   **Cross Patterns:** 十字图案 (shízì tú'àn)
+
+We can structure this in two main ways:
+
+#### **Option 1: More direct and common**
+
+We describe the sweater as a "wool sweater" and then add the embroidery as a separate clause.
+
+> **Simplified:** 一件绣有金线十字图案的羊毛毛衣。
+> **Traditional:** 一件繡有金線十字圖案的羊毛毛衣。
+> **Pinyin:** Yī jiàn xiù yǒu jīnxiàn shízì tú'àn de yángmáo máoyī.
+> **Literal:** "One [classifier] embroidered-with golden-thread cross-pattern **'s** wool sweater."
+
+#### **Option 2: More concise (and very natural)**
+
+Since 毛衣 (máoyī) implies "wool," we can drop 羊毛 (yángmáo) to avoid repetition.
+
+> **Simplified:** 一件绣有金线十字图案的毛衣。
+> **Traditional:** 一件繡有金線十字圖案的的毛衣。
+> **Pinyin:** Yī jiàn xiù yǒu jīnxiàn shízì tú'àn de máoyī.
+> **Literal:** "One [classifier] embroidered-with golden-thread cross-pattern **'s** sweater."
+
+---
+
+### **Key Grammar Takeaways:**
+
+1.  **The Magic 的 (de):** This particle is the glue that attaches all descriptions to the main noun. Think of it as **'s**.
+    *   `[绣有金线十字图案]的[毛衣]` = `[embroidered with gold thread]'s [sweater]`
+
+2.  **Word Order is Reversed from English:** Always start with the smallest detail and move toward the main noun.
+    *   **English:** Wool sweater [with] embroidered golden thread [in] cross patterns.
+    *   **Chinese:** [Cross-pattern golden-thread embroidered]'s wool sweater.
+    *   `十字图案 (cross pattern)` -> `金线 (gold thread)` -> `绣有...的 (embroidered with)` -> `毛衣 (sweater)`
+
+3.  **Classifiers (量词 liàngcí):** Remember to use the correct classifier before the noun.
+    *   **只 (zhī):** For one of a pair (gloves, shoes, hands).
+    *   **件 (jiàn):** For upper body clothing (shirts, sweaters, jackets).
+
+By following this structure—**Specific Description + 的 + Material + Core Noun**—you can accurately describe almost any object in Chinese.
+
+
+
+
+Human Body Parts, Clothing, and Components - Chinese Vocabulary
+================================================================================
+
+HEAD (头 - tóu)
+--------------------------------------------------------------------------------
+Components:
+- 头发 (tóufa) - hair
+- 大脑 (dànǎo) - brain
+- 头骨 (tóugǔ) - skull
+- 头皮 (tóupí) - scalp
+- 太阳穴 (tàiyángxué) - temple
+- 后脑勺 (hòunǎosháo) - back of head
+
+Clothing/Accessories:
+- 帽子 (màozi) - hat
+- 头巾 (tóujīn) - headscarf
+- 发带 (fàdài) - hairband
+- 耳机 (ěrjī) - headphones
+- 眼镜 (yǎnjìng) - glasses
+- 太阳镜 (tàiyángjìng) - sunglasses
+
+FACE (脸 - liǎn)
+--------------------------------------------------------------------------------
+Components:
+- 眼睛 (yǎnjing) - eyes
+- 鼻子 (bízi) - nose
+- 嘴巴 (zuǐba) - mouth
+- 耳朵 (ěrduo) - ears
+- 眉毛 (méimáo) - eyebrows
+- 睫毛 (jiémáo) - eyelashes
+- 脸颊 (liǎnjiá) - cheeks
+- 额头 (étóu) - forehead
+- 下巴 (xiàba) - chin
+- 嘴唇 (zuǐchún) - lips
+- 牙齿 (yáchǐ) - teeth
+- 舌头 (shétou) - tongue
+
+Clothing/Accessories:
+- 口罩 (kǒuzhào) - face mask
+- 围巾 (wéijīn) - scarf
+- 耳环 (ěrhuán) - earrings
+- 鼻环 (bíhuán) - nose ring
+- 唇膏 (chúngāo) - lipstick
+
+NECK (脖子 - bózi)
+--------------------------------------------------------------------------------
+Components:
+- 喉咙 (hóulóng) - throat
+- 颈椎 (jǐngzhuī) - cervical vertebrae
+- 喉结 (hóujié) - Adam's apple
+- 颈动脉 (jǐngdòngmài) - carotid artery
+
+Clothing/Accessories:
+- 项链 (xiàngliàn) - necklace
+- 围巾 (wéijīn) - scarf
+- 领带 (lǐngdài) - tie
+- 衣领 (yīlǐng) - collar
+- 颈链 (jǐngliàn) - choker
+
+TORSO/UPPER BODY (躯干 - qūgàn)
+--------------------------------------------------------------------------------
+Components:
+- 胸部 (xiōngbù) - chest
+- 腹部 (fùbù) - abdomen
+- 背部 (bèibù) - back
+- 肩膀 (jiānbǎng) - shoulders
+- 肋骨 (lèigǔ) - ribs
+- 脊柱 (jǐzhù) - spine
+- 心脏 (xīnzàng) - heart
+- 肺部 (fèibù) - lungs
+- 胃 (wèi) - stomach
+- 肝脏 (gānzàng) - liver
+- 腰部 (yāobù) - waist
+- 肚脐 (dùqí) - navel
+
+Clothing:
+- 衬衫 (chènshān) - shirt
+- T恤 (T xù) - T-shirt
+- 毛衣 (máoyī) - sweater
+- 外套 (wàitào) - jacket
+- 西装 (xīzhuāng) - suit
+- 胸罩 (xiōngzhào) - bra
+- 背心 (bèixīn) - tank top/vest
+- 腰带 (yāodài) - belt
+
+ARMS (手臂 - shǒubì)
+--------------------------------------------------------------------------------
+Components:
+- 上臂 (shàngbì) - upper arm
+- 前臂 (qiánbì) - forearm
+- 肘部 (zhǒubù) - elbow
+- 腋下 (yèxià) - armpit
+- 二头肌 (èrtóujī) - bicep
+- 三头肌 (sāntóujī) - tricep
+
+Clothing:
+- 袖子 (xiùzi) - sleeve
+- 臂章 (bìzhāng) - armband
+
+HANDS (手 - shǒu)
+--------------------------------------------------------------------------------
+Components:
+- 手掌 (shǒuzhǎng) - palm
+- 手背 (shǒubèi) - back of hand
+- 手指 (shǒuzhǐ) - fingers
+- 拇指 (mǔzhǐ) - thumb
+- 食指 (shízhǐ) - index finger
+- 中指 (zhōngzhǐ) - middle finger
+- 无名指 (wúmíngzhǐ) - ring finger
+- 小指 (xiǎozhǐ) - little finger
+- 指甲 (zhǐjia) - fingernail
+- 关节 (guānjié) - knuckle
+- 手腕 (shǒuwàn) - wrist
+
+Clothing/Accessories:
+- 手套 (shǒutào) - gloves
+- 手镯 (shǒuzhuó) - bracelet
+- 手表 (shǒubiǎo) - watch
+- 戒指 (jièzhi) - ring
+
+LOWER BODY (下半身 - xiàbànshēn)
+--------------------------------------------------------------------------------
+Components:
+- 臀部 (túnbù) - buttocks
+- 骨盆 (gǔpén) - pelvis
+- 髋部 (kuānbù) - hips
+- 腹股沟 (fùgǔgōu) - groin
+
+Clothing:
+- 裤子 (kùzi) - pants
+- 裙子 (qúnzi) - skirt
+- 内裤 (nèikù) - underwear
+- 短裤 (duǎnkù) - shorts
+- 腰带 (yāodài) - belt
+
+LEGS (腿 - tuǐ)
+--------------------------------------------------------------------------------
+Components:
+- 大腿 (dàtuǐ) - thigh
+- 小腿 (xiǎotuǐ) - calf
+- 膝盖 (xīgài) - knee
+- 膝盖骨 (xīgàigǔ) - kneecap
+- 脚踝 (jiǎohuái) - ankle
+- 胫骨 (jìnggǔ) - shin
+- 股骨 (gǔgǔ) - femur
+- 肌肉 (jīròu) - muscle
+
+Clothing:
+- 袜子 (wàzi) - socks
+- 腿套 (tuǐtào) - leg warmers
+- 护膝 (hùxī) - knee pads
+
+FEET (脚 - jiǎo)
+--------------------------------------------------------------------------------
+Components:
+- 脚趾 (jiǎozhǐ) - toes
+- 脚掌 (jiǎozhǎng) - sole
+- 脚背 (jiǎobèi) - instep
+- 脚跟 (jiǎogēn) - heel
+- 脚踝 (jiǎohuái) - ankle
+- 脚趾甲 (jiǎozhǐjia) - toenail
+- 足弓 (zúgōng) - arch
+
+Clothing/Accessories:
+- 鞋子 (xiézi) - shoes
+- 拖鞋 (tuōxié) - slippers
+- 短袜 (duǎnwà) - ankle socks
+- 长袜 (chángwà) - long socks
+- 脚链 (jiǎoliàn) - ankle bracelet
+
+INTERNAL ORGANS (内脏 - nèizàng)
+--------------------------------------------------------------------------------
+Components:
+- 心脏 (xīnzàng) - heart
+- 肺部 (fèibù) - lungs
+- 胃 (wèi) - stomach
+- 肝脏 (gānzàng) - liver
+- 肾脏 (shènzàng) - kidneys
+- 肠子 (chángzi) - intestines
+- 胰腺 (yíxiàn) - pancreas
+- 胆囊 (dǎnnáng) - gallbladder
+- 脾脏 (pízàng) - spleen
+- 膀胱 (pángguāng) - bladder
+
+SKIN & SURFACE (皮肤 - pífū)
+--------------------------------------------------------------------------------
+Components:
+- 皮肤 (pífū) - skin
+- 毛孔 (máokǒng) - pores
+- 汗毛 (hànmáo) - body hair
+- 痣 (zhì) - mole
+- 疤痕 (bāhén) - scar
+- 皱纹 (zhòuwén) - wrinkles
+
+================================================================================
+Vocabulary Summary:
+- Total Body Parts: 25 main categories
+- Total Components: 80+ specific parts
+- Total Clothing Items: 40+ articles
+- All entries include Chinese Characters and Pinyin
+
+
+```txt
+Chinese Vocabulary: Variants and Related Terms
+===============================================
+
+TREES AND WOOD PRODUCTS
+===============================================
+
+PLUM (李 - lǐ)
+- 李树 (lǐshù) - plum tree
+- 李子 (lǐzi) - plum fruit
+- 李树木材 (lǐshù mùcái) - plum tree wood
+- 李树枝 (lǐshù zhī) - plum tree branches
+- 李树叶 (lǐshù yè) - plum tree leaves
+- 李树花 (lǐshù huā) - plum blossoms
+- 李树根 (lǐshù gēn) - plum tree roots
+- 李子酱 (lǐzi jiàng) - plum jam
+- 李子汁 (lǐzi zhī) - plum juice
+
+PEACH (桃 - táo)
+- 桃树 (táoshù) - peach tree
+- 桃子 (táozi) - peach fruit
+- 桃木 (táomù) - peach wood
+- 桃树枝 (táoshù zhī) - peach tree branches
+- 桃花 (táohuā) - peach blossoms
+- 桃叶 (táoyè) - peach leaves
+- 桃核 (táohé) - peach pit
+- 桃酱 (táo jiàng) - peach jam
+
+PINE (松 - sōng)
+- 松树 (sōngshù) - pine tree
+- 松木 (sōngmù) - pine wood
+- 松枝 (sōngzhī) - pine branches
+- 松针 (sōngzhēn) - pine needles
+- 松果 (sōngguǒ) - pine cone
+- 松香 (sōngxiāng) - pine resin
+- 松树皮 (sōngshù pí) - pine bark
+- 松树根 (sōngshù gēn) - pine roots
+
+OAK (橡 - xiàng)
+- 橡树 (xiàngshù) - oak tree
+- 橡木 (xiàngmù) - oak wood
+- 橡树枝 (xiàngshù zhī) - oak branches
+- 橡树叶 (xiàngshù yè) - oak leaves
+- 橡子 (xiàngzi) - acorn
+- 橡树皮 (xiàngshù pí) - oak bark
+
+MAPLE (枫 - fēng)
+- 枫树 (fēngshù) - maple tree
+- 枫木 (fēngmù) - maple wood
+- 枫树枝 (fēngshù zhī) - maple branches
+- 枫叶 (fēngyè) - maple leaves
+- 枫树液 (fēngshù yè) - maple sap
+- 枫糖 (fēngtáng) - maple syrup
+
+WILLOW (柳 - liǔ)
+- 柳树 (liǔshù) - willow tree
+- 柳木 (liǔmù) - willow wood
+- 柳枝 (liǔzhī) - willow branches
+- 柳叶 (liǔyè) - willow leaves
+- 柳条 (liǔtiáo) - willow twigs
+
+BAMBOO (竹 - zhú)
+- 竹子 (zhúzi) - bamboo plant
+- 竹材 (zhúcái) - bamboo wood
+- 竹枝 (zhúzhī) - bamboo branches
+- 竹叶 (zhúyè) - bamboo leaves
+- 竹笋 (zhúsǔn) - bamboo shoot
+- 竹根 (zhúgēn) - bamboo roots
+- 竹片 (zhúpiàn) - bamboo strips
+
+CHERRY (樱 - yīng)
+- 樱桃树 (yīngtáoshù) - cherry tree
+- 樱桃 (yīngtáo) - cherry fruit
+- 樱桃木 (yīngtáomù) - cherry wood
+- 樱桃花 (yīngtáohuā) - cherry blossoms
+- 樱桃枝 (yīngtáo zhī) - cherry branches
+
+ANIMALS AND ANIMAL PRODUCTS
+===============================================
+
+SHEEP (羊 - yáng)
+- 羊 (yáng) - sheep
+- 羊毛 (yángmáo) - sheep wool
+- 羊肉 (yángròu) - sheep meat (mutton)
+- 羊皮 (yángpí) - sheep leather
+- 羊角 (yángjiǎo) - sheep horn
+- 羊奶 (yángnǎi) - sheep milk
+- 羊骨 (yánggǔ) - sheep bone
+- 羊脂 (yángzhī) - sheep fat/tallow
+
+COW (牛 - niú)
+- 牛 (niú) - cow
+- 牛皮 (niúpí) - cow leather
+- 牛肉 (niúròu) - beef
+- 牛奶 (niúnǎi) - cow milk
+- 牛角 (niújiǎo) - cow horn
+- 牛骨 (niúgǔ) - cow bone
+- 牛油 (niúyóu) - beef fat/butter
+- 牛毛 (niúmáo) - cow hair
+
+PIG (猪 - zhū)
+- 猪 (zhū) - pig
+- 猪肉 (zhūròu) - pork
+- 猪皮 (zhūpí) - pig leather
+- 猪油 (zhūyóu) - lard
+- 猪骨 (zhūgǔ) - pig bone
+- 猪毛 (zhūmáo) - pig hair/bristles
+- 猪蹄 (zhūtí) - pig trotters
+- 猪血 (zhūxuè) - pig blood
+
+CHICKEN (鸡 - jī)
+- 鸡 (jī) - chicken
+- 鸡肉 (jīròu) - chicken meat
+- 鸡蛋 (jīdàn) - chicken egg
+- 鸡毛 (jīmáo) - chicken feathers
+- 鸡皮 (jīpí) - chicken skin
+- 鸡骨 (jīgǔ) - chicken bone
+- 鸡冠 (jīguān) - chicken comb
+- 鸡爪 (jīzhuǎ) - chicken feet
+
+DEER (鹿 - lù)
+- 鹿 (lù) - deer
+- 鹿肉 (lùròu) - venison
+- 鹿皮 (lùpí) - deerskin
+- 鹿角 (lùjiǎo) - deer antlers
+- 鹿茸 (lùróng) - deer velvet (young antlers)
+- 鹿骨 (lùgǔ) - deer bone
+- 鹿血 (lùxuè) - deer blood
+
+FISH (鱼 - yú)
+- 鱼 (yú) - fish
+- 鱼肉 (yúròu) - fish meat
+- 鱼皮 (yúpí) - fish skin
+- 鱼鳞 (yúlín) - fish scales
+- 鱼骨 (yúgǔ) - fish bone
+- 鱼鳍 (yúqí) - fish fin
+- 鱼鳔 (yúbiào) - fish swim bladder
+- 鱼卵 (yúluǎn) - fish roe
+
+METALS AND METAL PRODUCTS
+===============================================
+
+GOLD (金 - jīn)
+- 金矿 (jīnkuàng) - gold ore
+- 金条 (jīntiáo) - gold bar
+- 金币 (jīnbì) - gold coin
+- 金匕首 (jīn bǐshǒu) - gold dagger
+- 金戒指 (jīn jièzhi) - gold ring
+- 金项链 (jīn xiàngliàn) - gold necklace
+- 金手镯 (jīn shǒuzhuó) - gold bracelet
+- 金碗 (jīn wǎn) - gold bowl
+- 金杯 (jīn bēi) - gold cup
+- 金首饰 (jīn shǒushì) - gold jewelry
+
+SILVER (银 - yín)
+- 银矿 (yínkuàng) - silver ore
+- 银条 (yíntiáo) - silver bar
+- 银币 (yínbì) - silver coin
+- 银匕首 (yín bǐshǒu) - silver dagger
+- 银戒指 (yín jièzhi) - silver ring
+- 银餐具 (yín cānjù) - silverware
+- 银碗 (yín wǎn) - silver bowl
+- 银首饰 (yín shǒushì) - silver jewelry
+
+IRON (铁 - tiě)
+- 铁矿 (tiěkuàng) - iron ore
+- 铁条 (tiětiáo) - iron bar
+- 铁币 (tiěbì) - iron coin
+- 铁匕首 (tiě bǐshǒu) - iron dagger
+- 铁剑 (tiě jiàn) - iron sword
+- 铁甲 (tiě jiǎ) - iron armor
+- 铁钉 (tiě dīng) - iron nail
+- 铁锤 (tiě chuí) - iron hammer
+
+COPPER (铜 - tóng)
+- 铜矿 (tóngkuàng) - copper ore
+- 铜条 (tóngtiáo) - copper bar
+- 铜币 (tóngbì) - copper coin
+- 铜匕首 (tóng bǐshǒu) - copper dagger
+- 铜像 (tóngxiàng) - bronze statue
+- 铜钟 (tóngzhōng) - bronze bell
+- 铜镜 (tóngjìng) - bronze mirror
+
+STEEL (钢 - gāng)
+- 钢条 (gāngtiáo) - steel bar
+- 钢匕首 (gāng bǐshǒu) - steel dagger
+- 钢剑 (gāng jiàn) - steel sword
+- 钢甲 (gāng jiǎ) - steel armor
+- 钢盾 (gāng dùn) - steel shield
+- 钢钉 (gāng dīng) - steel nail
+
+STONE AND MINERALS
+===============================================
+
+MARBLE (大理石 - dàlǐshí)
+- 大理石矿 (dàlǐshí kuàng) - marble quarry
+- 大理石板 (dàlǐshí bǎn) - marble slab
+- 大理石雕像 (dàlǐshí diāoxiàng) - marble statue
+- 大理石柱 (dàlǐshí zhù) - marble column
+- 大理石地板 (dàlǐshí dìbǎn) - marble floor
+
+JADE (玉 - yù)
+- 玉石 (yùshí) - jade stone
+- 玉矿 (yùkuàng) - jade mine
+- 玉雕 (yùdiāo) - jade carving
+- 玉镯 (yùzhuó) - jade bracelet
+- 玉佩 (yùpèi) - jade pendant
+- 玉戒指 (yù jièzhi) - jade ring
+- 玉碗 (yù wǎn) - jade bowl
+
+CLAY AND CERAMICS
+===============================================
+
+CLAY (粘土 - niántǔ)
+- 粘土矿 (niántǔ kuàng) - clay deposit
+- 粘土块 (niántǔ kuài) - clay lump
+- 粘土罐 (niántǔ guàn) - clay pot
+- 粘土碗 (niántǔ wǎn) - clay bowl
+- 粘土砖 (niántǔ zhuān) - clay brick
+- 粘土雕像 (niántǔ diāoxiàng) - clay statue
+
+POTTERY (陶器 - táoqì)
+- 陶土 (táotǔ) - pottery clay
+- 陶罐 (táoguàn) - pottery jar
+- 陶碗 (táowǎn) - pottery bowl
+- 陶盘 (táopán) - pottery plate
+- 陶俑 (táoyǒng) - pottery figurine
+
+PORCELAIN (瓷器 - cíqì)
+- 瓷土 (cítǔ) - porcelain clay
+- 瓷碗 (cíwǎn) - porcelain bowl
+- 瓷盘 (cípán) - porcelain plate
+- 瓷瓶 (cípíng) - porcelain vase
+- 瓷杯 (cíbēi) - porcelain cup
+
+PLANTS AND CROPS
+===============================================
+
+RICE (米 - mǐ)
+- 水稻 (shuǐdào) - rice plant
+- 大米 (dàmǐ) - rice grains
+- 米粉 (mǐfěn) - rice flour
+- 米饭 (mǐfàn) - cooked rice
+- 米酒 (mǐjiǔ) - rice wine
+- 米粥 (mǐzhōu) - rice porridge
+
+WHEAT (麦 - mài)
+- 小麦 (xiǎomài) - wheat plant
+- 麦粒 (màilì) - wheat grains
+- 面粉 (miànfěn) - wheat flour
+- 面包 (miànbāo) - bread
+- 麦秆 (màigǎn) - wheat straw
+- 麦田 (màitián) - wheat field
+
+COTTON (棉 - mián)
+- 棉花 (miánhuā) - cotton plant
+- 棉布 (miánbù) - cotton cloth
+- 棉线 (miánxiàn) - cotton thread
+- 棉衣 (miányī) - cotton clothing
+- 棉被 (miánbèi) - cotton quilt
+- 棉籽 (miánzǐ) - cotton seeds
+
+WATER AND LIQUIDS
+===============================================
+
+WATER (水 - shuǐ)
+- 河水 (héshuǐ) - river water
+- 湖水 (húshuǐ) - lake water
+- 海水 (hǎishuǐ) - sea water
+- 雨水 (yǔshuǐ) - rain water
+- 井水 (jǐngshuǐ) - well water
+- 泉水 (quánshuǐ) - spring water
+- 冰水 (bīngshuǐ) - ice water
+- 热水 (rèshuǐ) - hot water
+
+WINE (酒 - jiǔ)
+- 葡萄酒 (pútáojiǔ) - grape wine
+- 米酒 (mǐjiǔ) - rice wine
+- 白酒 (báijiǔ) - white liquor
+- 啤酒 (píjiǔ) - beer
+- 酒瓶 (jiǔpíng) - wine bottle
+- 酒杯 (jiǔbēi) - wine glass
+- 酒桶 (jiǔtǒng) - wine barrel
+
+PATTERN NOTES:
+- 树 (shù) = tree
+- 木 (mù) = wood
+- 枝 (zhī) = branch
+- 叶 (yè) = leaf
+- 花 (huā) = flower
+- 果 (guǒ) = fruit
+- 皮 (pí) = skin/leather
+- 肉 (ròu) = meat
+- 毛 (máo) = hair/wool
+- 骨 (gǔ) = bone
+- 矿 (kuàng) = ore/mine
+- 条 (tiáo) = bar
+- 币 (bì) = coin
+- 器 (qì) = vessel/ware
+```
+中国传统武器列表 - Chinese Traditional Weapons List
+====================================================
+
+本列表包含中国古代和传统武术中使用的各种武器，按类别分类。
+
+This list contains various weapons used in ancient China and traditional martial arts, categorized by type.
+
+远程武器 - Ranged Weapons
+----------------------------------------------------
+
+弓类 - Bows:
+- 弓 (gōng) - bow
+- 长弓 (chánggōng) - longbow
+- 短弓 (duǎngōng) - short bow
+- 反曲弓 (fǎnqūgōng) - recurve bow
+- 复合弓 (fùhégōng) - composite bow
+- 弩 (nǔ) - crossbow
+- 连弩 (liánnǔ) - repeating crossbow
+- 手弩 (shǒunǔ) - hand crossbow
+
+投射类 - Projectiles:
+- 箭 (jiàn) - arrow
+- 弩箭 (nǔjiàn) - crossbow bolt
+- 火箭 (huǒjiàn) - fire arrow
+- 响箭 (xiǎngjiàn) - whistling arrow
+- 镖 (biāo) - dart
+- 飞镖 (fēibiāo) - throwing dart
+- 石子 (shízǐ) - stone projectile
+- 弹丸 (dànwán) - pellet/ball
+
+短兵器 - Short Weapons
+----------------------------------------------------
+
+匕首类 - Daggers:
+- 匕首 (bǐshǒu) - dagger
+- 短剑 (duǎnjiàn) - short sword
+- 小刀 (xiǎodāo) - small knife
+- 腰刀 (yāodāo) - waist knife
+- 飞刀 (fēidāo) - throwing knife
+- 解腕刀 (jiěwàndāo) - wrist dagger
+- 峨眉刺 (éméicì) - Emei daggers
+
+短剑类 - Short Swords:
+- 剑 (jiàn) - double-edged sword
+- 短剑 (duǎnjiàn) - short sword
+- 佩剑 (pèijiàn) - carried sword
+- 鱼肠剑 (yúchángjiàn) - "Fish Gut Sword" (famous ancient sword)
+
+长兵器 - Long Weapons
+----------------------------------------------------
+
+长柄武器 - Polearms:
+- 枪 (qiāng) - spear
+- 长枪 (chángqiāng) - long spear
+- 红缨枪 (hóngyīngqiāng) - red-tasseled spear
+- 矛 (máo) - lance
+- 戟 (jǐ) - halberd
+- 方天画戟 (fāngtiānhuàjǐ) - "Sky Piercing Halberd"
+- 戈 (gē) - dagger-axe
+- 殳 (shū) - pole weapon
+- 棍 (gùn) - staff
+- 长棍 (chánggùn) - long staff
+- 齐眉棍 (qíméigùn) - eyebrow-height staff
+- 杖 (zhàng) - rod/staff
+- 棒 (bàng) - club
+- 狼筅 (lángxiǎn) - wolf-tooth staff
+- 耙 (pá) - rake
+- 镗 (táng) - fork weapon
+- 叉 (chā) - trident
+
+长刀类 - Long Blades:
+- 刀 (dāo) - single-edged sword/saber
+- 长刀 (chángdāo) - long saber
+- 大刀 (dàdāo) - big saber
+- 苗刀 (miáodāo) - Miao saber
+- 马刀 (mǎdāo) - cavalry saber
+- 双手刀 (shuāngshǒudāo) - two-handed saber
+- 斩马刀 (zhǎnmǎdāo) - horse-cutting saber
+- 朴刀 (pōdāo) - simple saber
+- 偃月刀 (yǎnyuèdāo) - crescent moon blade
+- 关刀 (guāndāo) - Guan Yu's saber
+- 陌刀 (mòdāo) - Tang dynasty long saber
+
+软兵器 - Flexible Weapons
+----------------------------------------------------
+
+链械类 - Chain Weapons:
+- 鞭 (biān) - whip
+- 九节鞭 (jiǔjiébiān) - nine-section whip
+- 七节鞭 (qījiébiān) - seven-section whip
+- 三节棍 (sānjiégùn) - three-section staff
+- 双节棍 (shuāngjiégùn) - nunchaku
+- 流星锤 (liúxīngchuí) - meteor hammer
+- 绳镖 (shéngbiāo) - rope dart
+- 飞铊 (fēituó) - flying weight
+
+绳索类 - Rope Weapons:
+- 套索 (tàosuǒ) - lasso
+- 飞爪 (fēizhuǎ) - flying claw
+- 锦套索 (jǐntàosuǒ) - brocade lasso
+
+暗器 - Hidden/Throwing Weapons
+----------------------------------------------------
+
+投掷类 - Throwing Weapons:
+- 飞镖 (fēibiāo) - throwing dart
+- 金钱镖 (jīnqiánbiāo) - coin darts
+- 飞刀 (fēidāo) - throwing knife
+- 飞针 (fēizhēn) - throwing needle
+- 飞刺 (fēicì) - throwing spike
+- 飞石 (fēishí) - throwing stone
+- 如意珠 (rúyìzhū) - wish-fulfilling pearl (throwing ball)
+
+特殊暗器 - Special Hidden Weapons:
+- 袖箭 (xiùjiàn) - sleeve arrow
+- 背箭 (bèijiàn) - back arrow
+- 鞋箭 (xiéjiàn) - shoe arrow
+- 吹箭 (chuījiàn) - blowgun dart
+- 铁莲花 (tiěliánhuā) - iron lotus
+- 铁蒺藜 (tiějílí) - caltrops
+
+特殊武器 - Special Weapons
+----------------------------------------------------
+
+奇门兵器 - Unusual Weapons:
+- 扇子 (shànzi) - war fan
+- 铁扇 (tiěshàn) - iron fan
+- 铁尺 (tiěchǐ) - iron ruler
+- 判官笔 (pànguānbǐ) - judge's pen
+- 鸳鸯钺 (yuānyangyuè) - mandarin duck blades
+- 子午鸳鸯钺 (zǐwǔyuānyangyuè) - midnight mandarin duck blades
+- 金刚杵 (jīngāngchǔ) - vajra
+- 铁佛珠 (tiěfózhū) - iron prayer beads
+- 铁烟斗 (tiěyāndǒu) - iron smoking pipe
+- 板凳 (bǎndèng) - bench
+
+防护武器 - Defensive Weapons:
+- 盾 (dùn) - shield
+- 圆盾 (yuándùn) - round shield
+- 方盾 (fāngdùn) - square shield
+- 藤牌 (téngpái) - rattan shield
+- 钩镶 (gōuxiāng) - hook shield
+- 铁手套 (tiěshǒutào) - gauntlet
+
+重型武器 - Heavy Weapons
+----------------------------------------------------
+
+大型武器 - Large Weapons:
+- 斧 (fǔ) - axe
+- 战斧 (zhànfǔ) - battle axe
+- 双斧 (shuāngfǔ) - double axes
+- 钺 (yuè) - battle axe (ceremonial)
+- 锤 (chuí) - hammer
+- 金瓜锤 (jīnguāchuí) - golden melon hammer
+- 骨朵 (gǔduǒ) - mace
+- 狼牙棒 (lángyábàng) - wolf-tooth club
+- 铜 (tóng) - mace/club
+
+双兵器 - Paired Weapons
+----------------------------------------------------
+
+双持类 - Dual Wield:
+- 双刀 (shuāngdāo) - double sabers
+- 双剑 (shuāngjiàn) - double swords
+- 双钩 (shuānggōu) - double hooks
+- 双鞭 (shuāngbiān) - double whips
+- 双锏 (shuāngjiǎn) - double maces
+- 双戟 (shuāngjǐ) - double halberds
+- 子母刀 (zǐmǔdāo) - mother-son swords
+- 鸳鸯刀 (yuānyangdāo) - mandarin duck swords
+
+武术器械 - Martial Arts Training Weapons
+----------------------------------------------------
+
+练习武器 - Training Weapons:
+- 木刀 (mùdāo) - wooden saber
+- 木剑 (mùjiàn) - wooden sword
+- 竹剑 (zhújiàn) - bamboo sword
+- 练习枪 (liànxíqiāng) - training spear
+- 蜡杆 (làgǎn) - waxwood pole
+- 石锁 (shísuǒ) - stone lock (for strength training)
+- 石担 (shídān) - stone barbell
+
+其他武器 - Other Weapons
+----------------------------------------------------
+
+杂项武器 - Miscellaneous:
+- 钩 (gōu) - hook
+- 拐 (guǎi) - tonfa
+- 锏 (jiǎn) - mace
+- 鞭锏 (biānjiǎn) - whip mace
+- 橛 (jué) - short stake
+- 铁笛 (tiědí) - iron flute
+- 铁琵琶 (tiěpípá) - iron lute
+
+====================================================
+武器分类说明 - Weapon Category Explanations:
+
+远程武器 - Projectile weapons for long-range attack
+短兵器 - Short weapons for close combat
+长兵器 - Long weapons for reach advantage  
+软兵器 - Flexible weapons requiring skill
+暗器 - Hidden or throwing weapons for surprise
+特殊武器 - Unconventional or specialized weapons
+重型武器 - Heavy weapons for powerful strikes
+双兵器 - Paired weapons for dual wielding
+武术器械 - Training weapons for practice
+
+功夫生存探索游戏动词列表 - Kung Fu Survival Exploration Roguelike Verbs List
+================================================================================
+
+战斗动作 - Combat Actions
+--------------------------------------------------------------------------------
+
+基本攻击 - Basic Attacks:
+- 打 (dǎ) - hit/strike
+- 击 (jī) - attack
+- 攻 (gōng) - assault
+- 斩 (zhǎn) - slash
+- 劈 (pī) - chop
+- 刺 (cì) - stab
+- 砍 (kǎn) - hack
+- 砸 (zá) - smash
+- 捶 (chuí) - pound
+- 捅 (tǒng) - thrust
+
+功夫招式 - Kung Fu Techniques:
+- 拳 (quán) - punch
+- 掌 (zhǎng) - palm strike
+- 踢 (tī) - kick
+- 踹 (chuài) - stomp kick
+- 扫 (sǎo) - sweep
+- 顶 (dǐng) - butt
+- 撞 (zhuàng) - ram
+- 抓 (zhuā) - grab
+- 拿 (ná) - seize
+- 扭 (niǔ) - twist
+- 摔 (shuāi) - throw
+- 投 (tóu) - toss
+- 锁 (suǒ) - lock
+- 压 (yā) - press
+- 按 (àn) - push down
+
+武器技巧 - Weapon Skills:
+- 射 (shè) - shoot
+- 抛 (pāo) - throw
+- 挥 (huī) - swing
+- 舞 (wǔ) - flourish
+- 挡 (dǎng) - block
+- 格 (gé) - parry
+- 架 (jià) - frame/block
+- 挑 (tiǎo) - lift up
+- 撩 (liáo) - upward cut
+- 削 (xiāo) - slice
+- 切 (qiē) - cut
+- 划 (huá) - scratch
+- 钩 (gōu) - hook
+
+防御闪避 - Defense & Evasion:
+- 防 (fáng) - defend
+- 守 (shǒu) - guard
+- 挡 (dǎng) - block
+- 闪 (shǎn) - dodge
+- 躲 (duǒ) - evade
+- 避 (bì) - avoid
+- 退 (tuì) - retreat
+- 撤 (chè) - withdraw
+- 滚 (gǔn) - roll
+- 翻 (fān) - flip
+- 跳 (tiào) - jump
+- 跃 (yuè) - leap
+- 蹲 (dūn) - crouch
+- 伏 (fú) - prone
+
+移动探索 - Movement & Exploration
+--------------------------------------------------------------------------------
+
+基本移动 - Basic Movement:
+- 走 (zǒu) - walk
+- 跑 (pǎo) - run
+- 冲 (chōng) - charge
+- 奔 (bēn) - sprint
+- 爬 (pá) - climb
+- 攀 (pān) - ascend
+- 登 (dēng) - climb up
+- 跳 (tiào) - jump
+- 跃 (yuè) - leap
+- 滑 (huá) - slide
+- 游 (yóu) - swim
+- 潜 (qián) - dive
+- 飞 (fēi) - fly
+- 落 (luò) - land
+- 降 (jiàng) - descend
+
+环境互动 - Environment Interaction:
+- 开 (kāi) - open
+- 关 (guān) - close
+- 推 (tuī) - push
+- 拉 (lā) - pull
+- 抬 (tái) - lift
+- 举 (jǔ) - raise
+- 搬 (bān) - carry
+- 拖 (tuō) - drag
+- 撬 (qiào) - pry
+- 挖 (wā) - dig
+- 掘 (jué) - excavate
+- 埋 (mái) - bury
+- 破 (pò) - break
+- 拆 (chāi) - dismantle
+- 修 (xiū) - repair
+
+生存动作 - Survival Actions
+--------------------------------------------------------------------------------
+
+资源收集 - Resource Gathering:
+- 采 (cǎi) - gather
+- 集 (jí) - collect
+- 收 (shōu) - harvest
+- 拾 (shí) - pick up
+- 捡 (jiǎn) - collect from ground
+- 摘 (zhāi) - pluck
+- 割 (gē) - cut
+- 剥 (bō) - peel
+- 剥皮 (bōpí) - skin
+- 捕 (bǔ) - catch
+- 猎 (liè) - hunt
+- 钓 (diào) - fish
+- 挖 (wā) - dig
+
+制作使用 - Crafting & Using:
+- 造 (zào) - create
+- 制 (zhì) - make
+- 炼 (liàn) - refine
+- 铸 (zhù) - forge
+- 合成 (héchéng) - combine
+- 调配 (diàopèi) - mix
+- 煮 (zhǔ) - cook
+- 烤 (kǎo) - roast
+- 烧 (shāo) - burn
+- 熔 (róng) - melt
+- 用 (yòng) - use
+- 服 (fú) - consume
+- 喝 (hē) - drink
+- 吃 (chī) - eat
+- 穿 (chuān) - wear
+- 戴 (dài) - put on (accessories)
+
+恢复调整 - Recovery & Adjustment:
+- 疗 (liáo) - heal
+- 治 (zhì) - cure
+- 恢 (huī) - recover
+- 复 (fù) - restore
+- 调 (tiáo) - adjust
+- 整 (zhěng) - arrange
+- 练 (liàn) - practice
+- 修 (xiū) - cultivate
+- 养 (yǎng) - nourish
+- 睡 (shuì) - sleep
+- 息 (xī) - rest
+- 坐 (zuò) - sit
+- 站 (zhàn) - stand
+- 跪 (guì) - kneel
+
+内力精神 - Internal Energy & Spirit
+--------------------------------------------------------------------------------
+
+气功内力 - Qi & Internal Power:
+- 运 (yùn) - circulate
+- 行 (xíng) - move (energy)
+- 聚 (jù) - gather (energy)
+- 凝 (níng) - concentrate
+- 发 (fā) - emit
+- 放 (fàng) - release
+- 收 (shōu) - withdraw
+- 导 (dǎo) - guide
+- 通 (tōng) - unblock
+- 贯 (guàn) - penetrate
+- 爆 (bào) - explode
+- 震 (zhèn) - shock
+- 吼 (hǒu) - roar (lion's roar technique)
+
+精神感知 - Mental & Perception:
+- 观 (guān) - observe
+- 察 (chá) - inspect
+- 探 (tàn) - probe
+- 感 (gǎn) - sense
+- 听 (tīng) - listen
+- 闻 (wén) - smell
+- 看 (kàn) - look
+- 见 (jiàn) - see
+- 寻 (xún) - search
+- 找 (zhǎo) - find
+- 盯 (dīng) - stare
+- 瞄 (miáo) - aim
+- 锁 (suǒ) - lock on
+
+交互社交 - Interaction & Social
+--------------------------------------------------------------------------------
+
+物品交互 - Item Interaction:
+- 拿 (ná) - take
+- 取 (qǔ) - get
+- 持 (chí) - hold
+- 握 (wò) - grip
+- 放 (fàng) - place
+- 置 (zhì) - put
+- 丢 (diū) - discard
+- 扔 (rēng) - throw away
+- 给 (gěi) - give
+- 交 (jiāo) - hand over
+- 换 (huàn) - exchange
+- 买 (mǎi) - buy
+- 卖 (mài) - sell
+- 存 (cún) - store
+- 藏 (cáng) - hide
+
+战斗策略 - Combat Tactics:
+- 诱 (yòu) - lure
+- 引 (yǐn) - lead
+- 骗 (piàn) - deceive
+- 诈 (zhà) - feint
+- 扰 (rǎo) - harass
+- 困 (kùn) - trap
+- 围 (wéi) - surround
+- 追 (zhuī) - chase
+- 逃 (táo) - escape
+- 救 (jiù) - rescue
+- 护 (hù) - protect
+- 帮 (bāng) - help
+- 协 (xié) - assist
+
+特殊动作 - Special Actions
+--------------------------------------------------------------------------------
+
+环境技能 - Environmental Skills:
+- 点 (diǎn) - light (fire)
+- 熄 (xī) - extinguish
+- 照 (zhào) - illuminate
+- 隐 (yǐn) - hide
+- 藏 (cáng) - conceal
+- 潜 (qián) - sneak
+- 偷 (tōu) - steal
+- 盗 (dào) - rob
+- 越 (yuè) - cross
+- 渡 (dù) - ferry
+- 穿 (chuān) - pass through
+- 绕 (rào) - go around
+- 返 (fǎn) - return
+- 回 (huí) - go back
+
+终极技能 - Ultimate Skills:
+- 必杀 (bìshā) - certain kill
+- 绝招 (juézhāo) - ultimate move
+- 奥义 (àoyì) - secret technique
+- 觉醒 (juéxǐng) - awaken
+- 变身 (biànshēn) - transform
+- 爆发 (bàofā) - erupt
+- 超 (chāo) - exceed/surpass
+- 极 (jí) - extreme
+- 无 (wú) - void/nothingness
+- 空 (kōng) - emptiness
+
+================================================================================
+游戏动词使用说明 - Game Verb Usage Notes:
+
+1. 动词可以组合使用创造连招 - Verbs can be combined to create combos
+2. 不同动词消耗不同资源 - Different verbs consume different resources
+3. 动词有冷却时间 - Verbs have cooldown periods
+4. 某些动词需要特定条件 - Some verbs require specific conditions
+5. 动词可升级提升效果 - Verbs can be upgraded to improve effects
+
+
+中国剑术技法大全 - Chinese Sword Techniques Comprehensive List
+================================================================================
+
+本列表包含中国传统剑术的各种技法、招式和技术，按剑法类型分类。
+
+This list contains various techniques, moves, and skills of traditional Chinese swordsmanship, categorized by sword method types.
+
+基本剑法 - Basic Sword Techniques
+--------------------------------------------------------------------------------
+
+核心技法 - Core Techniques:
+- 刺 (cì) - thrust/stab
+- 劈 (pī) - chop/split
+- 砍 (kǎn) - hack
+- 斩 (zhǎn) - slash
+- 点 (diǎn) - point
+- 崩 (bēng) - snap
+- 撩 (liáo) - upward cut
+- 挂 (guà) - hook/parry
+- 云 (yún) - cloud/circle
+- 抹 (mǒ) - wipe/slice
+- 带 (dài) - lead/draw
+- 抽 (chōu) - withdraw
+- 提 (tí) - lift/raise
+- 格 (gé) - parry/block
+- 击 (jī) - strike
+
+攻防基础 - Attack & Defense Basics:
+- 截 (jié) - intercept
+- 扫 (sǎo) - sweep
+- 削 (xiāo) - slice
+- 切 (qiē) - cut
+- 划 (huá) - scratch
+- 挑 (tiǎo) - lift up
+- 压 (yā) - press down
+- 架 (jià) - frame/block
+- 托 (tuō) - support/lift
+- 捧 (pěng) - hold up
+
+进阶剑术 - Advanced Sword Techniques
+--------------------------------------------------------------------------------
+
+身法配合 - Body Coordination:
+- 穿 (chuān) - pierce through
+- 插 (chā) - insert
+- 绞 (jiǎo) - twist
+- 缠 (chán) - entangle
+- 绕 (rào) - circle around
+- 旋 (xuán) - spin
+- 转 (zhuǎn) - turn
+- 翻 (fān) - flip
+- 舞 (wǔ) - dance/flourish
+- 挥 (huī) - swing
+
+力道控制 - Power Control:
+- 震 (zhèn) - shock/vibrate
+- 抖 (dǒu) - shake
+- 弹 (tán) - spring/flick
+- 崩 (bēng) - break/snap
+- 砸 (zá) - smash
+- 拍 (pāi) - slap
+- 按 (àn) - push down
+- 顶 (dǐng) - butt/resist
+
+防御技法 - Defense Techniques
+--------------------------------------------------------------------------------
+
+格挡类 - Blocking:
+- 挡 (dǎng) - block
+- 架 (jià) - frame
+- 格 (gé) - parry
+- 拦 (lán) - obstruct
+- 截 (jié) - intercept
+- 封 (fēng) - seal
+- 闭 (bì) - close
+
+闪避类 - Evasion:
+- 闪 (shǎn) - dodge
+- 避 (bì) - avoid
+- 让 (ràng) - yield
+- 退 (tuì) - retreat
+- 撤 (chè) - withdraw
+- 移 (yí) - shift
+- 侧 (cè) - sidestep
+
+剑术流派技法 - School-specific Techniques
+--------------------------------------------------------------------------------
+
+武当剑法 - Wudang Sword:
+- 太极剑 (tàijíjiàn) - Tai Chi Sword
+- 阴阳剑 (yīnyángjiàn) - Yin Yang Sword
+- 八卦剑 (bāguàjiàn) - Eight Trigram Sword
+- 绕指柔 (ràozhǐróu) - Around Finger Softness
+- 云龙剑 (yúnlóngjiàn) - Cloud Dragon Sword
+- 清风剑 (qīngfēngjiàn) - Gentle Wind Sword
+
+少林剑法 - Shaolin Sword:
+- 达摩剑 (dámójiàn) - Bodhidharma Sword
+- 罗汉剑 (luóhànjiàn) - Arhat Sword
+- 金刚剑 (jīngāngjiàn) - Vajra Sword
+- 伏魔剑 (fúmójiàn) - Demon Subduing Sword
+- 慈悲剑 (cíbēijiàn) - Compassion Sword
+
+峨眉剑法 - Emei Sword:
+- 玉女剑 (yùnǚjiàn) - Jade Maiden Sword
+- 素女剑 (sùnǚjiàn) - Plain Maiden Sword
+- 玄女剑 (xuánnǚjiàn) - Mysterious Maiden Sword
+- 飞凤剑 (fēifèngjiàn) - Flying Phoenix Sword
+
+青城剑法 - Qingcheng Sword:
+- 松风剑 (sōngfēngjiàn) - Pine Wind Sword
+- 青城剑 (qīngchéngjiàn) - Qingcheng Sword
+- 幽魂剑 (yōuhúnjiàn) - Ghost Sword
+
+连招组合 - Combination Techniques
+--------------------------------------------------------------------------------
+
+二连击 - Two-hit Combos:
+- 刺劈 (cì pī) - thrust then chop
+- 劈砍 (pī kǎn) - chop then hack
+- 砍斩 (kǎn zhǎn) - hack then slash
+- 斩撩 (zhǎn liáo) - slash then upward cut
+- 撩刺 (liáo cì) - upward cut then thrust
+- 点崩 (diǎn bēng) - point then snap
+- 崩挂 (bēng guà) - snap then hook
+
+三连击 - Three-hit Combos:
+- 刺劈砍 (cì pī kǎn) - thrust, chop, hack
+- 劈砍斩 (pī kǎn zhǎn) - chop, hack, slash
+- 砍斩撩 (kǎn zhǎn liáo) - hack, slash, upward cut
+- 斩撩刺 (zhǎn liáo cì) - slash, upward cut, thrust
+- 云抹带 (yún mǒ dài) - circle, wipe, draw
+
+剑术心法 - Sword Mental Methods
+--------------------------------------------------------------------------------
+
+内功配合 - Internal Power Coordination:
+- 以气御剑 (yǐ qì yù jiàn) - control sword with qi
+- 人剑合一 (rén jiàn hé yī) - human and sword become one
+- 心剑相通 (xīn jiàn xiāng tōng) - heart and sword connect
+- 意到剑到 (yì dào jiàn dào) - intention arrives, sword arrives
+- 剑随意动 (jiàn suí yì dòng) - sword moves with intention
+
+境界层次 - Realm Levels:
+- 手中有剑 (shǒu zhōng yǒu jiàn) - sword in hand
+- 手中无剑 (shǒu zhōng wú jiàn) - no sword in hand
+- 心中有剑 (xīn zhōng yǒu jiàn) - sword in heart
+- 心中无剑 (xīn zhōng wú jiàn) - no sword in heart
+- 无剑胜有剑 (wú jiàn shèng yǒu jiàn) - no sword surpasses having sword
+
+特殊剑技 - Special Sword Skills
+--------------------------------------------------------------------------------
+
+绝招类 - Ultimate Moves:
+- 万剑归宗 (wàn jiàn guī zōng) - Ten Thousand Swords Return to Origin
+- 天外飞仙 (tiān wài fēi xiān) - Celestial Flying Immortal
+- 剑神一笑 (jiàn shén yī xiào) - Sword God's Smile
+- 独孤九剑 (dúgū jiǔ jiàn) - Lonely Nine Swords
+- 六脉神剑 (liù mài shén jiàn) - Six Vein Divine Sword
+- 辟邪剑法 (pìxié jiànfǎ) - Evil Warding Sword
+- 玉女素心剑 (yùnǚ sùxīn jiàn) - Jade Maiden Pure Heart Sword
+
+秘传技法 - Secret Techniques:
+- 回风舞柳 (huí fēng wǔ liǔ) - Returning Wind Dancing Willow
+- 流星赶月 (liúxīng gǎn yuè) - Meteor Chasing Moon
+- 白虹贯日 (báihóng guàn rì) - White Rainbow Piercing Sun
+- 金雁横空 (jīnyàn héng kōng) - Golden Goose Crossing Sky
+- 长河落日 (chánghé luòrì) - Long River Setting Sun
+
+实战应用 - Practical Applications
+--------------------------------------------------------------------------------
+
+对敌策略 - Combat Strategies:
+- 以快打慢 (yǐ kuài dǎ màn) - use speed against slowness
+- 以巧破力 (yǐ qiǎo pò lì) - use skill to break strength
+- 以柔克刚 (yǐ róu kè gāng) - use softness to overcome hardness
+- 以静制动 (yǐ jìng zhì dòng) - use stillness to control movement
+- 后发先至 (hòu fā xiān zhì) - strike later but arrive first
+
+战术变化 - Tactical Variations:
+- 虚虚实实 (xū xū shí shí) - feint and real mixed
+- 声东击西 (shēng dōng jī xī) - feint east strike west
+- 指上打下 (zhǐ shàng dǎ xià) - point up strike down
+- 指南打北 (zhǐ nán dǎ běi) - point south strike north
+- 围魏救赵 (wéi wèi jiù zhào) - besiege Wei to rescue Zhao
+
+剑术训练 - Sword Training Methods
+--------------------------------------------------------------------------------
+
+基础训练 - Basic Training:
+- 站桩 (zhàn zhuāng) - stance training
+- 走剑 (zǒu jiàn) - sword walking
+- 练剑 (liàn jiàn) - sword practice
+- 舞剑 (wǔ jiàn) - sword dancing
+- 对剑 (duì jiàn) - sword sparring
+- 试剑 (shì jiàn) - sword testing
+- 磨剑 (mó jiàn) - sword sharpening
+
+高级训练 - Advanced Training:
+- 悟剑 (wù jiàn) - sword enlightenment
+- 修剑 (xiū jiàn) - sword cultivation
+- 养剑 (yǎng jiàn) - sword nurturing
+- 祭剑 (jì jiàn) - sword consecration
+- 藏剑 (cáng jiàn) - sword hiding
+- 出剑 (chū jiàn) - sword drawing
+- 收剑 (shōu jiàn) - sword sheathing
+
+================================================================================
+剑术技法说明 - Sword Technique Explanations:
+
+1. 基本剑法是所有剑术的基础 - Basic techniques are foundation of all swordsmanship
+2. 连招需要流畅衔接 - Combos require smooth transitions
+3. 心法决定剑术境界 - Mental methods determine sword realm
+4. 特殊剑技需要特定条件 - Special skills require specific conditions
+5. 实战应用需灵活变化 - Practical applications require flexible adaptation
+
+
+
+Roguelike Terrain Chinese Characters - 地牢地形汉字
+================================================================================
+
+LANDSCAPE FEATURES - 自然地形
+--------------------------------------------------------------------------------
+
+Mountains & Hills - 山丘:
+- 山 (shān) - mountain
+- 峰 (fēng) - peak
+- 岭 (lǐng) - mountain range
+- 丘 (qiū) - hill
+- 岗 (gǎng) - ridge
+- 崖 (yá) - cliff
+- 岩 (yán) - rock/crag
+- 坡 (pō) - slope
+
+Water Features - 水域:
+- 河 (hé) - river
+- 川 (chuān) - stream
+- 江 (jiāng) - large river
+- 湖 (hú) - lake
+- 海 (hǎi) - sea
+- 池 (chí) - pond
+- 泉 (quán) - spring
+- 溪 (xī) - brook
+- 渊 (yuān) - deep pool
+- 瀑 (pù) - waterfall
+- 沼 (zhǎo) - swamp
+- 泽 (zé) - marsh
+
+Valleys & Plains - 谷地平原:
+- 谷 (gǔ) - valley
+- 峡 (xiá) - gorge
+- 壑 (hè) - ravine
+- 原 (yuán) - plain
+- 野 (yě) - wilderness
+- 坪 (píng) - flat area
+- 甸 (diàn) - pasture
+
+STRUCTURAL ELEMENTS - 建筑结构
+--------------------------------------------------------------------------------
+
+Doors & Entrances - 门户:
+- 门 (mén) - door
+- 户 (hù) - entrance
+- 扉 (fēi) - door leaf
+- 闩 (shuān) - door bolt
+- 口 (kǒu) - opening
+- 洞 (dòng) - cave/opening
+- 穴 (xué) - hole/cave
+
+Walls & Barriers - 墙壁:
+- 墙 (qiáng) - wall
+- 壁 (bì) - wall/cliff face
+- 垣 (yuán) - low wall
+- 栏 (lán) - fence/railing
+- 障 (zhàng) - barrier
+- 屏 (píng) - screen
+- 垒 (lěi) - fortification
+
+Floors & Ground - 地面:
+- 地 (dì) - ground
+- 板 (bǎn) - floorboard
+- 石 (shí) - stone floor
+- 土 (tǔ) - earth
+- 砖 (zhuān) - brick
+- 台 (tái) - platform
+
+Ceilings & Roofs - 屋顶:
+- 顶 (dǐng) - ceiling/roof
+- 穹 (qióng) - dome/vault
+- 檐 (yán) - eaves
+- 梁 (liáng) - beam
+- 瓦 (wǎ) - tile
+
+DUNGEON FEATURES - 地牢特征
+--------------------------------------------------------------------------------
+
+Paths & Corridors - 通道:
+- 道 (dào) - path
+- 路 (lù) - road
+- 径 (jìng) - trail
+- 廊 (láng) - corridor
+- 巷 (xiàng) - alley
+- 隧 (suì) - tunnel
+- 桥 (qiáo) - bridge
+
+Rooms & Chambers - 房间:
+- 室 (shì) - room
+- 房 (fáng) - chamber
+- 厅 (tīng) - hall
+- 殿 (diàn) - palace hall
+- 宫 (gōng) - palace
+- 阁 (gé) - pavilion
+- 轩 (xuān) - veranda
+- 斋 (zhāi) - study
+
+Special Areas - 特殊区域:
+- 坛 (tán) - altar
+- 台 (tái) - platform/stage
+- 基 (jī) - foundation
+- 冢 (zhǒng) - tomb
+- 墓 (mù) - grave
+- 陵 (líng) - mausoleum
+- 庙 (miào) - temple
+- 寺 (sì) - monastery
+- 庵 (ān) - nunnery
+
+NATURAL OBSTACLES - 自然障碍
+--------------------------------------------------------------------------------
+
+Difficult Terrain - 复杂地形:
+- 林 (lín) - forest
+- 森 (sēn) - dense forest
+- 丛 (cóng) - thicket
+- 棘 (jí) - thorns
+- 荆 (jīng) - brambles
+- 藤 (téng) - vines
+- 石 (shí) - stones
+- 礁 (jiāo) - reef
+
+Hazardous Areas - 危险区域:
+- 火 (huǒ) - fire
+- 焰 (yàn) - flames
+- 炎 (yán) - blaze
+- 冰 (bīng) - ice
+- 雪 (xuě) - snow
+- 雾 (wù) - fog
+- 毒 (dú) - poison
+- 瘴 (zhàng) - miasma
+
+INTERACTIVE OBJECTS - 交互物体
+--------------------------------------------------------------------------------
+
+Containers - 容器:
+- 箱 (xiāng) - chest
+- 柜 (guì) - cabinet
+- 盒 (hé) - box
+- 匣 (xiá) - small box
+- 桶 (tǒng) - barrel
+- 罐 (guàn) - jar
+- 瓶 (píng) - bottle
+- 囊 (náng) - pouch
+
+Furniture - 家具:
+- 桌 (zhuō) - table
+- 椅 (yǐ) - chair
+- 床 (chuáng) - bed
+- 榻 (tà) - couch
+- 几 (jī) - small table
+- 案 (àn) - desk
+
+Mechanisms - 机关:
+- 机关 (jīguān) - mechanism
+- 锁 (suǒ) - lock
+- 钥 (yào) - key
+- 轮 (lún) - wheel
+- 轴 (zhóu) - axle
+- 杆 (gǎn) - lever
+- 钮 (niǔ) - button
+- 链 (liàn) - chain
+
+WEATHER & ENVIRONMENT - 天气环境
+--------------------------------------------------------------------------------
+
+Sky & Atmosphere - 天空大气:
+- 天 (tiān) - sky
+- 空 (kōng) - air/empty
+- 云 (yún) - cloud
+- 风 (fēng) - wind
+- 雨 (yǔ) - rain
+- 雷 (léi) - thunder
+- 电 (diàn) - lightning
+- 霞 (xiá) - sunset clouds
+
+Light & Darkness - 光明黑暗:
+- 光 (guāng) - light
+- 明 (míng) - bright
+- 暗 (àn) - dark
+- 影 (yǐng) - shadow
+- 幽 (yōu) - gloomy
+- 冥 (míng) - dark/underworld
+- 昼 (zhòu) - daytime
+- 夜 (yè) - nighttime
+
+SPECIAL TERRAIN - 特殊地形
+--------------------------------------------------------------------------------
+
+Magical Areas - 魔法区域:
+- 阵 (zhèn) - formation
+- 界 (jiè) - boundary
+- 域 (yù) - domain
+- 境 (jìng) - realm
+- 结 (jié) - seal
+- 印 (yìn) - sigil
+- 符 (fú) - talisman
+- 咒 (zhòu) - curse
+
+Elemental Areas - 元素区域:
+- 金 (jīn) - metal
+- 木 (mù) - wood
+- 水 (shuǐ) - water
+- 火 (huǒ) - fire
+- 土 (tǔ) - earth
+- 气 (qì) - air
+- 雷 (léi) - lightning
+- 冰 (bīng) - ice
+
+DIRECTIONAL & POSITIONAL - 方向位置
+--------------------------------------------------------------------------------
+
+Directions - 方向:
+- 东 (dōng) - east
+- 西 (xī) - west
+- 南 (nán) - south
+- 北 (běi) - north
+- 中 (zhōng) - center
+- 上 (shàng) - up/above
+- 下 (xià) - down/below
+- 左 (zuǒ) - left
+- 右 (yòu) - right
+- 前 (qián) - front
+- 后 (hòu) - back
+- 内 (nèi) - inside
+- 外 (wài) - outside
+
+Positions - 位置:
+- 角 (jiǎo) - corner
+- 边 (biān) - edge
+- 心 (xīn) - center/heart
+- 端 (duān) - end
+- 侧 (cè) - side
+- 面 (miàn) - face/surface
+- 底 (dǐ) - bottom
+- 顶 (dǐng) - top
+
+================================================================================
+USAGE NOTES - 使用说明:
+
+1. SINGLE CHARACTERS work best for roguelike terrain representation
+2. COMBINE characters for complex features: 石门 (stone door), 冰墙 (ice wall)
+3. USE directional characters for positioning: 北门 (north door), 东墙 (east wall)
+4. ELEMENTAL characters create magical terrain: 火河 (fire river), 雷池 (lightning pool)
+5. SIZE connotation: 溪 < 河 < 江 (small to large rivers)
+
+
+Roguelike Character Chinese Characters - 游戏角色汉字
+================================================================================
+
+COMMON PEOPLE - 平民百姓
+--------------------------------------------------------------------------------
+
+Professions - 职业:
+- 农 (nóng) - farmer
+- 工 (gōng) - worker
+- 商 (shāng) - merchant
+- 医 (yī) - doctor
+- 匠 (jiàng) - artisan
+- 渔 (yú) - fisherman
+- 樵 (qiáo) - woodcutter
+- 猎 (liè) - hunter
+
+Townsfolk - 镇民:
+- 民 (mín) - common people
+- 人 (rén) - person
+- 夫 (fū) - man
+- 妇 (fù) - woman
+- 老 (lǎo) - old person
+- 少 (shào) - youth
+- 孩 (hái) - child
+- 童 (tóng) - child
+
+WARRIORS & SOLDIERS - 武士士兵
+--------------------------------------------------------------------------------
+
+Military Ranks - 军衔:
+- 兵 (bīng) - soldier
+- 士 (shì) - warrior/officer
+- 卒 (zú) - foot soldier
+- 将 (jiàng) - general
+- 帅 (shuài) - marshal
+- 军 (jūn) - army
+- 卫 (wèi) - guard
+- 骑 (qí) - cavalry
+
+Warrior Types - 战士类型:
+- 武 (wǔ) - martial
+- 勇 (yǒng) - brave
+- 猛 (měng) - fierce
+- 壮 (zhuàng) - strong
+- 豪 (háo) - heroic
+- 侠 (xiá) - knight-errant
+- 剑 (jiàn) - swordsman
+- 刀 (dāo) - saber wielder
+
+MARTIAL ARTISTS & NINJAS - 武术家与忍者
+--------------------------------------------------------------------------------
+
+Chinese Martial Artists - 中国武术家:
+- 拳 (quán) - boxer
+- 掌 (zhǎng) - palm striker
+- 腿 (tuǐ) - kicker
+- 棍 (gùn) - staff fighter
+- 僧 (sēng) - monk
+- 道 (dào) - taoist
+- 侠 (xiá) - chivalrous expert
+
+Ninja & Assassins - 忍者刺客:
+- 忍 (rěn) - ninja
+- 影 (yǐng) - shadow
+- 暗 (àn) - dark/assassin
+- 刺 (cì) - assassin
+- 杀 (shā) - killer
+- 盗 (dào) - thief
+- 贼 (zéi) - bandit
+- 鬼 (guǐ) - ghost
+
+MAGES & SCHOLARS - 法师学者
+--------------------------------------------------------------------------------
+
+Magic Users - 魔法使用者:
+- 法 (fǎ) - mage
+- 术 (shù) - sorcerer
+- 巫 (wū) - witch/shaman
+- 道 (dào) - taoist mage
+- 仙 (xiān) - immortal
+- 僧 (sēng) - monk
+- 巫 (wū) - shaman
+
+Scholars & Sages - 学者智者:
+- 文 (wén) - scholar
+- 书 (shū) - scribe
+- 学 (xué) - learned one
+- 智 (zhì) - wise one
+- 贤 (xián) - virtuous
+- 师 (shī) - teacher
+- 儒 (rú) - confucian
+
+ROYALTY & NOBILITY - 皇室贵族
+--------------------------------------------------------------------------------
+
+Royal Family - 皇室:
+- 王 (wáng) - king
+- 皇 (huáng) - emperor
+- 帝 (dì) - emperor
+- 后 (hòu) - queen
+- 妃 (fēi) - concubine
+- 太 (tài) - grand (e.g., 太子 crown prince)
+
+Nobility - 贵族:
+- 贵 (guì) - noble
+- 侯 (hóu) - marquis
+- 伯 (bó) - count
+- 公 (gōng) - duke
+- 爵 (jué) - lord
+- 主 (zhǔ) - lord/master
+
+MONSTERS & CREATURES - 怪物生物
+--------------------------------------------------------------------------------
+
+Mythical Beasts - 神话野兽:
+- 龙 (lóng) - dragon
+- 凤 (fèng) - phoenix
+- 兽 (shòu) - beast
+- 妖 (yāo) - demon
+- 魔 (mó) - devil
+- 怪 (guài) - monster
+- 鬼 (guǐ) - ghost
+- 精 (jīng) - spirit
+
+Undead - 亡灵:
+- 尸 (shī) - corpse
+- 骷 (kū) - skeleton
+- 僵 (jiāng) - zombie
+- 魂 (hún) - spirit
+- 灵 (líng) - ghost
+- 亡 (wáng) - dead
+- 幽 (yōu) - specter
+
+RACES & FANTASY PEOPLES - 种族奇幻民族
+--------------------------------------------------------------------------------
+
+Humanoid Races - 人形种族:
+- 人 (rén) - human
+- 仙 (xiān) - celestial
+- 妖 (yāo) - demon race
+- 兽 (shòu) - beastman
+- 矮 (ǎi) - dwarf
+- 精 (jīng) - elf
+- 巨 (jù) - giant
+
+Mythical Peoples - 神话民族:
+- 蛮 (mán) - barbarian
+- 夷 (yí) - eastern tribes
+- 戎 (róng) - western tribes
+- 狄 (dí) - northern tribes
+- 胡 (hú) - nomadic tribes
+
+ENEMY TYPES - 敌人类型
+--------------------------------------------------------------------------------
+
+Basic Enemies - 基础敌人:
+- 敌 (dí) - enemy
+- 寇 (kòu) - bandit
+- 匪 (fěi) - outlaw
+- 盗 (dào) - robber
+- 叛 (pàn) - traitor
+- 逆 (nì) - rebel
+
+Boss Types - 头目类型:
+- 首 (shǒu) - leader
+- 头 (tóu) - chief
+- 王 (wáng) - king (boss)
+- 主 (zhǔ) - master
+- 魁 (kuí) - chieftain
+- 霸 (bà) - overlord
+
+TRADERS & CRAFTSMEN - 商人与工匠
+--------------------------------------------------------------------------------
+
+Shopkeepers - 店主:
+- 商 (shāng) - merchant
+- 贾 (gǔ) - trader
+- 贩 (fàn) - peddler
+- 店 (diàn) - shopkeeper
+- 铺 (pù) - store owner
+
+Craftsmen - 工匠:
+- 铁 (tiě) - blacksmith
+- 木 (mù) - carpenter
+- 石 (shí) - stonemason
+- 皮 (pí) - leatherworker
+- 药 (yào) - alchemist
+- 厨 (chú) - cook
+
+UNIQUE NPCS - 特殊NPC
+--------------------------------------------------------------------------------
+
+Quest Givers - 任务给予者:
+- 长 (zhǎng) - elder
+- 老 (lǎo) - old master
+- 先 (xiān) - sage
+- 圣 (shèng) - saint
+- 贤 (xián) - wise one
+
+Mysterious Figures - 神秘人物:
+- 异 (yì) - stranger
+- 奇 (qí) - mysterious one
+- 隐 (yǐn) - hermit
+- 游 (yóu) - wanderer
+- 客 (kè) - traveler
+
+ANIMAL COMPANIONS - 动物伙伴
+--------------------------------------------------------------------------------
+
+Pets & Familiars - 宠物使魔:
+- 宠 (chǒng) - pet
+- 兽 (shòu) - beast companion
+- 禽 (qín) - bird companion
+- 狼 (láng) - wolf
+- 鹰 (yīng) - eagle
+- 熊 (xióng) - bear
+- 虎 (hǔ) - tiger
+
+STATUS INDICATORS - 状态指示
+--------------------------------------------------------------------------------
+
+Conditions - 状态:
+- 伤 (shāng) - wounded
+- 病 (bìng) - sick
+- 毒 (dú) - poisoned
+- 晕 (yūn) - dazed
+- 狂 (kuáng) - berserk
+- 死 (sǐ) - dead
+- 活 (huó) - alive
+
+Factions - 阵营:
+- 友 (yǒu) - friend
+- 盟 (méng) - ally
+- 中 (zhōng) - neutral
+- 恶 (è) - evil
+- 善 (shàn) - good
+
+================================================================================
+USAGE GUIDE - 使用指南:
+
+1. SINGLE CHARACTERS work best for roguelike display
+2. COMBINE for specificity: 剑侠 (swordsman), 暗杀 (assassin)
+3. USE status indicators: 伤兵 (wounded soldier), 毒巫 (poison witch)
+4. TIER SYSTEM: 兵 < 士 < 将 < 帅 (increasing rank)
+5. GENDER: 夫 (male), 妇 (female), or omit for neutral
+6. RACE + CLASS: 妖术 (demon sorcerer), 仙剑 (celestial swordsman)

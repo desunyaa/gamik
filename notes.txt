@@ -3,3 +3,107 @@ impl Shearable for Sheep
 impl Name for Sheep
  -> "sheep"
 
+Use bold font for NPCs and Animals, things like that
+barely contrasting colors when using CJK for terrain, very contrasting colors for NPCs, medium for objects?
+use egui not bevy ui
+
+
+the character should be smart enough thaat he can manage his own inventory and weight
+building materials have no weight, but they must be first crafted out of materials that do have a weight
+
+
+Completely Real Time, host can pause and unpase the game.
+
+First class mouse support, mouse+kb as default way of playing
+
+All space that is walkable has black background, anything which is not walkable, uses a different bg color, green for thick forest, blue for unswimmable water
+
+Every tile cell has a water level, has to be <2 to be walkable.
+Walking makes a sound which shows as an exclamation if a person cant be seen
+time to turn, cant turn infinitely fast
+
+For Items on the floor use half sized characters, for walls and creatures use full sized
+
+For base terrain use basic ascii, chinese characters mainly for decorative items. Dangerous enemies should be ascii.
+
+Skyscrapers serve as dungeons which go up, underground labs or subway serve as dungeons that delve down.
+
+Each building can have only one window on each vertical line, to simplify ascii rendering of 3d
+
+Do something like doom's fake 3d thru non euclidean geometry of maps
+
+CONTROLS:
+Tank Controls
+WASD MOVEMENT
+IJKL Cursor
+Q - Go back in menus/verb actions
+
+B - Build
+F - Attack
+
+
+generate a world using petgraph, with each node being a seperate roguelike map of a certain size overlay it on top of a contiguous map
+
+
+
+first word second word system, with each one having a color, and for each chinese word a color assigned based on word position
+or
+
+
+
+every character is equipped with a loincloth and a small pouch for storing basic things like coins,seeds.
+
+
+Things to Implement:--------------------------------------------------------------------------------------------------
+
+latin body parts for modern anatomy
+add many freely licensed esoteric and religious books as full txts in the game files
+
+
+TECH----------------------------------------------------------------------------
+
+Generate lightweight optimized map of things that are transluscent, things that are passable or movable through, etc, update based on blocking entities updates
+use iroh endpoint id as rng
+
+
+AI--------------------------------------------------------------------
+
+NPCs have list of books they have read
+pathfinding
+have conversations with NPCs using AI models with prompts generated from the NPC rpg player profile and their knowledge of the world, as well as their knowledge of the player.
+all npc traits generated directly from their entity id+rng
+give all npcs lives and memories
+
+ACTIONS-----------------------------------------------------------
+
+inventory
+melee
+ranged
+saving and loading
+marriage and having children
+controlling game speed,pausing the game
+farming crops and raising animals and fruit trees
+building
+eating
+
+CRAFTING---------------------------------------------------
+embroidery,engraving,naming,plating,folding,wrapping,
+crafting,mining,gathering materials, 
+cooking,brewing
+wool, leather, cotton, silk, chainmail, platemail,linen,
+steel, iron, wood, oak, stone, ruby, diamond
+
+WORLDGEN----------------------------------------------------
+character creation
+races- elves, humans, orcs, goblins, dwarves, gnomes, etc
+mythic creatures- dragons, trolls, wyvern, dinosaur,
+various animals- sheep,cows,horses,alpacas,elephants,rhinos,
+
+generation of houses and cities and kingdoms and countries
+generation of farms
+roads
+mountains and rivers and plains and forests,tundra,canyon,swamp,sea,ocean,waterfall,glacier,volcanoe,cliff,dunes,desert,caves,island
+
+RENDERING--------------------------------------------------
+field of view
+coloring of tiles
