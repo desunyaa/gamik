@@ -24,7 +24,10 @@ pub struct TemplateApp {
 #[derive(Debug, Clone, PartialEq)]
 enum GameState {
     MainMenu,
-    Connecting,
+    CharacterCreation,
+    WorldCreation,
+    CharacterSelection,
+    WorldSelection,
     Playing,
 }
 impl Default for TemplateApp {
@@ -170,9 +173,11 @@ impl eframe::App for TemplateApp {
             GameState::MainMenu => {
                 self.show_main_menu(ctx);
             }
-            GameState::Connecting => {
-                self.show_connecting_screen(ctx);
-            }
+
+            GameState::CharacterCreation => {}
+            GameState::WorldCreation => {}
+            GameState::CharacterSelection => {}
+            GameState::WorldSelection => {}
             GameState::Playing => {
                 // Check for new message counts from server
                 if let Some(rx) = &mut self.server_to_client_rx {
@@ -205,7 +210,7 @@ impl TemplateApp {
     fn show_main_menu(&mut self, ctx: &egui::Context) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.vertical_centered(|ui| {
-                ui.add_space(100.0);
+                ui.add_space(50.0);
 
                 ui.heading(RichText::new("Roguelike Game").size(32.0));
 
@@ -215,70 +220,77 @@ impl TemplateApp {
                 ));
                 ui.add_space(50.0);
 
-                if ui
-                    .button(RichText::new("Start Singleplayer Game").size(20.0))
-                    .clicked()
-                {
-                    self.game_state = GameState::Playing;
-                    println!("LOL");
+                if ui.button(RichText::new("Start Game").size(20.0)).clicked() {
+                    self.game_state = GameState::WorldSelection;
                 }
 
                 ui.add_space(20.0);
 
                 if ui
-                    .button(RichText::new("Host Multiplayer Game").size(20.0))
+                    .button(RichText::new("Join Online Game").size(20.0))
                     .clicked()
                 {
-                    println!("LOL");
-                }
-
-                ui.add_space(20.0);
-
-                ui.separator();
-                ui.add_space(20.0);
-
-                ui.heading("Join Multiplayer Game");
-                ui.add_space(10.0);
-
-                ui.horizontal(|ui| {
-                    ui.label("Endpoint ID:");
-                    ui.text_edit_singleline(&mut self.multiplayer_endpoint_input);
-                });
-
-                ui.add_space(10.0);
-
-                if ui.button(RichText::new("Connect").size(18.0)).clicked() {
                     // Parse the endpoint address
                     match self.multiplayer_endpoint_input.parse::<EndpointId>() {
                         Ok(addr) => {
                             self.start_client(addr);
+
+                            self.game_state = GameState::Playing;
                         }
                         Err(e) => {
                             self.game_state = GameState::MainMenu;
                         }
                     }
-                    self.game_state = GameState::Playing;
-
-                    println!("LOL");
                 }
+
+                ui.add_space(20.0);
+
+                ui.label("Enter Server ID:");
+                ui.text_edit_singleline(&mut self.multiplayer_endpoint_input);
             });
         });
     }
 
-    fn show_connecting_screen(&mut self, ctx: &egui::Context) {
+    fn show_world_selection_menu(&mut self, ctx: &egui::Context) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.vertical_centered(|ui| {
-                ui.add_space(200.0);
+                ui.add_space(50.0);
 
-                ui.heading("lol");
-                ui.add_space(20.0);
-                ui.spinner();
+                ui.heading(RichText::new("Roguelike Game").size(32.0));
 
-                ui.add_space(40.0);
+                ui.heading(format!(
+                    "Endpoint ID: {}",
+                    self.router.as_ref().unwrap().endpoint().id()
+                ));
+                ui.add_space(50.0);
 
-                if ui.button("Cancel").clicked() {
-                    self.game_state = GameState::MainMenu;
+                if ui.button(RichText::new("Start Game").size(20.0)).clicked() {
+                    self.game_state = GameState::WorldSelection;
                 }
+
+                ui.add_space(20.0);
+
+                if ui
+                    .button(RichText::new("Join Online Game").size(20.0))
+                    .clicked()
+                {
+                    // Parse the endpoint address
+                    match self.multiplayer_endpoint_input.parse::<EndpointId>() {
+                        Ok(addr) => {
+                            self.start_client(addr);
+
+                            self.game_state = GameState::Playing;
+                        }
+                        Err(e) => {
+                            self.game_state = GameState::MainMenu;
+                        }
+                    }
+                }
+
+                ui.add_space(20.0);
+
+                ui.label("Enter Server ID:");
+                ui.text_edit_singleline(&mut self.multiplayer_endpoint_input);
             });
         });
     }

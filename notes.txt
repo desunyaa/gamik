@@ -5,7 +5,12 @@ impl Name for Sheep
 
 Use bold font for NPCs and Animals, things like that
 barely contrasting colors when using CJK for terrain, very contrasting colors for NPCs, medium for objects?
-use egui not bevy ui
+
+Main Menu----
+Start Game -> World Selection (Create or Existing) -> Character Selection (Create or Existing) -> Play
+Join Game (Enter server ID) -> Character Selection (Create or Existing) -> Play
+
+
 
 
 the character should be smart enough thaat he can manage his own inventory and weight
@@ -52,6 +57,10 @@ or
 
 
 every character is equipped with a loincloth and a small pouch for storing basic things like coins,seeds.
+
+
+TODO:
+make offline singleplayer work
 
 
 Things to Implement:--------------------------------------------------------------------------------------------------
