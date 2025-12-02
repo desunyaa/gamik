@@ -165,7 +165,7 @@ impl GameWorld {
         for entity in self.entities.values() {
             if entity.position == *point {
                 return match entity.entity_type {
-                    EntityType::Player => "@",
+                    EntityType::Player => "𓀙",
                     EntityType::Tree => "木",
                 };
             }

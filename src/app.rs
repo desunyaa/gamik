@@ -269,6 +269,7 @@ impl TemplateApp {
                     .clicked()
                 {
                     self.game_state = GameState::WorldCreation;
+                    self.game_state = GameState::Playing;
                 }
 
                 ui.add_space(30.0);
