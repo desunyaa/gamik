@@ -4,7 +4,13 @@ use iroh::EndpointId;
 use rustc_hash::FxHashMap;
 
 pub type EntityMap = FxHashMap<EntityID, Entity>;
-pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
+pub type EndpointMap = FxHashMap<EndpointId, PlayerState>;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
+pub struct PlayerState {
+    pub eid: EntityID,
+    pub creating_character: bool,
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct EntityID(pub u32);
