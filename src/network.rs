@@ -152,14 +152,21 @@ impl ProtocolHandler for Echo {
 
         let world = self.net_world.clone();
         let mut spawn_guard = world.lock().await;
-        let pid = spawn_guard.spawn_player();
-        spawn_guard.endpoints.insert(
-            endpoint_id,
-            PlayerState {
-                eid: pid,
-                creating_character: true,
-            },
-        );
+
+        /*
+
+
+                let pid = spawn_guard.spawn_player();
+                spawn_guard.endpoints.insert(
+                    endpoint_id,
+                    PlayerState {
+                        eid: pid,
+                        creating_character: true,
+                    },
+                );
+
+        */
+
         let conn_clone = connection.clone();
         drop(spawn_guard);
         // Spawn a task for periodic updates every 50ms
@@ -205,7 +212,7 @@ impl ProtocolHandler for Echo {
                                         if let Some(pid) =
                                             world_guard.endpoints.get(&endpoint_id).cloned()
                                         {
-                                            world_guard.event_queue.push((pid.eid, gmsg));
+                                            world_guard.event_queue.push((pid, gmsg));
                                         }
 
                                         // Don't process events here - let the periodic task handle it

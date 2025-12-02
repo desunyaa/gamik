@@ -4,13 +4,7 @@ use iroh::EndpointId;
 use rustc_hash::FxHashMap;
 
 pub type EntityMap = FxHashMap<EntityID, Entity>;
-pub type EndpointMap = FxHashMap<EndpointId, PlayerState>;
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
-pub struct PlayerState {
-    pub eid: EntityID,
-    pub creating_character: bool,
-}
+pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct EntityID(pub u32);
@@ -46,6 +40,7 @@ pub enum Direction {
 #[derive(Debug, Clone, Encode, Decode)]
 pub enum GameCommand {
     Move(Direction),
+    SpawnPlayer(String),
 }
 
 pub type GameEvent = (EntityID, GameCommand);
@@ -59,6 +54,7 @@ pub enum EntityType {
 #[derive(Debug, Clone, Encode, Decode)]
 pub struct Entity {
     pub position: Point,
+    pub name: Option<String>,
     pub entity_type: EntityType,
 }
 
@@ -73,11 +69,12 @@ pub struct GameWorld {
 }
 
 impl GameWorld {
-    pub fn spawn_player(&mut self) -> EntityID {
+    pub fn spawn_player(&mut self, name: String) -> EntityID {
         let player = self.entity_gen.new_entity();
         self.entities.insert(
             player,
             Entity {
+                name: Some(name),
                 position: Point { x: 10, y: 10 },
                 entity_type: EntityType::Player,
             },
@@ -104,6 +101,7 @@ impl GameWorld {
             entities.insert(
                 tree_id,
                 Entity {
+                    name: None,
                     position: pos,
                     entity_type: EntityType::Tree,
                 },
@@ -155,6 +153,9 @@ impl GameWorld {
             match command {
                 GameCommand::Move(direction) => {
                     self.move_entity(eid, direction);
+                }
+                GameCommand::SpawnPlayer(name) => {
+                    self.spawn_player(name);
                 }
             }
         }
