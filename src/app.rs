@@ -104,9 +104,9 @@ impl TemplateApp {
         let mut app = Self::default();
 
         // Start the networking
-        app.start_server();
-        let eid = app.router.as_ref().unwrap().endpoint().id();
-        app.start_client(eid);
+        //     app.start_server();
+        //   let eid = app.router.as_ref().unwrap().endpoint().id();
+        //  app.start_client(eid);
 
         app
     }
@@ -127,12 +127,12 @@ impl TemplateApp {
             run_client_internal(s_addr, msg_tx, event_rx).await;
         });
     }
-    fn start_server(&mut self) {
+    fn start_server(&mut self, world: GameWorld) {
         let (router_tx, mut router_rx) = mpsc::unbounded_channel();
 
         // Spawn an async task to start the server
         tokio::spawn(async move {
-            match run_server_internal().await {
+            match run_server_internal(world).await {
                 Ok(router) => {
                     println!(
                         "Server started successfully at {:#?}",
@@ -222,10 +222,6 @@ impl TemplateApp {
 
                 ui.heading(RichText::new("Roguelike Game").size(32.0));
 
-                ui.heading(format!(
-                    "Endpoint ID: {}",
-                    self.router.as_ref().unwrap().endpoint().id()
-                ));
                 ui.add_space(50.0);
 
                 if ui.button(RichText::new("Start Game").size(20.0)).clicked() {
@@ -294,7 +290,11 @@ impl TemplateApp {
                                     if let Some(name) = filename.to_str() {
                                         if ui.button(RichText::new(name).size(18.0)).clicked() {
                                             // Load the world here
-                                            self.load_world(&world_path);
+                                            if let Ok(world) =
+                                                GameWorld::load_from_file(&world_path)
+                                            {
+                                                self.start_server(world);
+                                            }
                                         }
                                     }
                                 }
@@ -361,22 +361,8 @@ impl TemplateApp {
                 }
             });
         });
-    } // Add this method to handle world loading
-    fn load_world(&mut self, path: &PathBuf) {
-        // Implement your world loading logic here
-        // For example:
-        match fs::read_to_string(path) {
-            Ok(data) => {
-                // Deserialize and load world data
-                // self.current_world = deserialize_world(&data);
-                // self.game_state = GameState::Playing;
-                println!("Loading world from: {:?}", path);
-            }
-            Err(e) => {
-                eprintln!("Failed to load world: {}", e);
-            }
-        }
     }
+
     pub fn input(&mut self, ctx: &egui::Context) {
         let mut messages_to_send = Vec::new();
 

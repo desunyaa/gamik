@@ -59,11 +59,13 @@ async fn recv_one_way(mut recv: iroh::endpoint::RecvStream) -> Result<Message> {
     Ok(msg)
 }
 
-pub async fn run_server_internal() -> Result<Router> {
+pub async fn run_server_internal(world: GameWorld) -> Result<Router> {
     let endpoint = Endpoint::bind().await?;
 
     endpoint.online().await;
-    let router = Router::builder(endpoint).accept(ALPN, Echo::new()).spawn();
+    let router = Router::builder(endpoint)
+        .accept(ALPN, Echo::new(world))
+        .spawn();
 
     // router.endpoint().online().await;
     println!("Server started at {:#?}", router.endpoint().addr());
@@ -77,9 +79,9 @@ struct Echo {
 }
 
 impl Echo {
-    fn new() -> Self {
+    fn new(world: GameWorld) -> Self {
         Self {
-            net_world: Arc::new(Mutex::new(GameWorld::create_test_world())),
+            net_world: Arc::new(Mutex::new(world)),
         }
     }
 }
@@ -152,20 +154,6 @@ impl ProtocolHandler for Echo {
 
         let world = self.net_world.clone();
         let mut spawn_guard = world.lock().await;
-
-        /*
-
-
-                let pid = spawn_guard.spawn_player();
-                spawn_guard.endpoints.insert(
-                    endpoint_id,
-                    PlayerState {
-                        eid: pid,
-                        creating_character: true,
-                    },
-                );
-
-        */
 
         let conn_clone = connection.clone();
         drop(spawn_guard);
