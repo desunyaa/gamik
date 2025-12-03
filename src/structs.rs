@@ -43,6 +43,7 @@ pub enum Direction {
 pub enum GameCommand {
     Move(Direction),
     SpawnPlayer(String),
+    SpawnAs(EntityID),
 }
 
 pub type GameEvent = (EntityID, GameCommand);
@@ -68,6 +69,7 @@ pub struct GameWorld {
 
     // entities now stored in a hashmap
     pub entities: EntityMap,
+    pub world_name: String,
 }
 
 // Serializable version of GameWorld (without the non-serializable fields)
@@ -75,6 +77,7 @@ pub struct GameWorld {
 pub struct SerializableGameWorld {
     pub entity_gen: EntityGenerator,
     pub entities: EntityMap,
+    pub world_name: String,
 }
 
 impl GameWorld {
@@ -105,6 +108,7 @@ impl GameWorld {
         let serializable = SerializableGameWorld {
             entity_gen: self.entity_gen,
             entities: self.entities.clone(),
+            world_name: self.world_name.clone(),
         };
 
         // Serialize to bytes
@@ -134,9 +138,10 @@ impl GameWorld {
             entities: serializable.entities,
             event_queue: Vec::new(),
             endpoints: EndpointMap::new(),
+            world_name: serializable.world_name,
         })
     }
-    pub fn create_test_world() -> Self {
+    pub fn create_test_world(name: String) -> Self {
         let mut entity_gen = EntityGenerator::default();
         let mut entities = EntityMap::default();
 
@@ -165,9 +170,21 @@ impl GameWorld {
         GameWorld {
             endpoints: EndpointMap::new(),
             entity_gen,
+            world_name: name,
             event_queue: Vec::new(),
             entities,
         }
+    }
+
+    pub fn get_playable_entities(&self) -> Vec<EntityID> {
+        let mut e_vec = Vec::new();
+        for (eid, e) in self.entities.iter() {
+            if e.entity_type == EntityType::Player {
+                e_vec.push(eid.clone());
+            }
+        }
+
+        e_vec
     }
 
     pub fn move_entity(&mut self, entity_id: EntityID, direction: Direction) {
@@ -209,6 +226,9 @@ impl GameWorld {
                     self.move_entity(eid, direction);
                 }
                 GameCommand::SpawnPlayer(name) => {
+                    // Do nothing here this is covered in the networking code
+                }
+                GameCommand::SpawnAs(eid) => {
                     // Do nothing here this is covered in the networking code
                 }
             }

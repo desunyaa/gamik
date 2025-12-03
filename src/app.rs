@@ -47,7 +47,7 @@ impl Default for TemplateApp {
             character_name_input: String::new(),
             world_name_input: String::new(), // Add this
             button_size: None,
-            world: GameWorld::create_test_world(),
+            world: GameWorld::create_test_world("default".into()),
             font_size: 20.0,
             server_to_client_rx: None,
             client_to_server_tx: None, // Initialize as None
@@ -342,18 +342,32 @@ impl TemplateApp {
 
                 ui.add_space(30.0);
 
-                // List existing worlds
-                let world_files = get_world_files();
+                let playables = self.world.get_playable_entities();
 
-                if world_files.is_empty() {
-                    ui.label("No available characters found");
+                if playables.is_empty() {
+                    ui.label("No existing characters found");
                 } else {
                     ui.label(RichText::new("Load Existing Character:").size(16.0));
                     ui.add_space(10.0);
 
                     egui::ScrollArea::vertical()
                         .max_height(300.0)
-                        .show(ui, |ui| {});
+                        .show(ui, |ui| {
+                            for playable in playables {
+                                if ui
+                                    .button(RichText::new(format!("{:#?}", playable)).size(18.0))
+                                    .clicked()
+                                {
+                                    if let Some(tx) = &self.client_to_server_tx {
+                                        if let Err(e) = tx.send(GameCommand::SpawnAs(playable)) {
+                                            eprintln!("Failed to send game event: {}", e);
+                                        } else {
+                                            self.game_state = GameState::Playing;
+                                        }
+                                    }
+                                }
+                            }
+                        });
                 }
 
                 ui.add_space(20.0);
@@ -400,7 +414,7 @@ impl TemplateApp {
                     };
 
                     // Create and save the world
-                    let new_world = GameWorld::create_test_world();
+                    let new_world = GameWorld::create_test_world(world_name.clone());
                     match new_world.save_to_file(&world_name) {
                         Ok(_) => {
                             println!("World '{}' created successfully!", world_name);

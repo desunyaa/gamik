@@ -23,6 +23,7 @@ pub enum ClientMessage {
 #[derive(Debug, Clone, Encode, Decode)]
 pub enum ServerMessage {
     EntityMap(EntityMap),
+    PlayableEntities(Vec<EntityID>),
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
@@ -202,6 +203,9 @@ impl ProtocolHandler for Echo {
                                             GameCommand::SpawnPlayer(name) => {
                                                 let pid = world_guard.spawn_player(name);
                                                 world_guard.endpoints.insert(endpoint_id, pid);
+                                            }
+                                            GameCommand::SpawnAs(eid) => {
+                                                world_guard.endpoints.insert(endpoint_id, eid);
                                             }
 
                                             _ => {
