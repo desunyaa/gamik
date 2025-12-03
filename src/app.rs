@@ -48,7 +48,7 @@ impl Default for TemplateApp {
             world_name_input: String::new(), // Add this
             button_size: None,
             world: GameWorld::create_test_world("default".into()),
-            font_size: 20.0,
+            font_size: 13.0,
             server_to_client_rx: None,
             client_to_server_tx: None, // Initialize as None
             single_player: true,
