@@ -23,7 +23,7 @@ pub enum ClientMessage {
 #[derive(Debug, Clone, Encode, Decode)]
 pub enum ServerMessage {
     EntityMap(EntityMap),
-    PlayableEntities(Vec<EntityID>),
+    PlayerID(EntityID),
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
@@ -154,30 +154,43 @@ impl ProtocolHandler for Echo {
         println!("Accepted connection from {}", endpoint_id);
 
         let world = self.net_world.clone();
-        let mut spawn_guard = world.lock().await;
 
         let conn_clone = connection.clone();
-        drop(spawn_guard);
         // Spawn a task for periodic updates every 50ms
         tokio::spawn(async move {
             let mut interval = tokio::time::interval(Duration::from_millis(50));
 
             loop {
                 interval.tick().await;
-
+                let mut responses = Vec::new();
                 // Lock the world, process any pending events, and generate update
                 let client_update = {
                     let mut world_guard = world.lock().await;
                     world_guard.process_events();
+
+                    if world_guard.pids_to_update.contains(&conn_clone.remote_id()) {
+                        world_guard.pids_to_update.remove(&conn_clone.remote_id());
+
+                        if let Some(pid) = world_guard.endpoints.get(&conn_clone.remote_id()) {
+                            let pid_response =
+                                Message::ServerMessage(ServerMessage::PlayerID(pid.clone()));
+
+                            responses.push(pid_response);
+                        }
+                    }
+
                     world_guard.gen_client_info()
                 };
 
                 // Send the periodic update
                 let response = Message::ServerMessage(ServerMessage::EntityMap(client_update));
+                responses.push(response);
 
-                if let Err(e) = send_one_way(&conn_clone, &response).await {
-                    eprintln!("Error sending periodic update to client: {}", e);
-                    break; // Exit if connection is broken
+                for r in responses {
+                    if let Err(e) = send_one_way(&conn_clone, &r).await {
+                        eprintln!("Error sending periodic update to client: {}", e);
+                        break; // Exit if connection is broken
+                    }
                 }
             }
         });
@@ -203,9 +216,17 @@ impl ProtocolHandler for Echo {
                                             GameCommand::SpawnPlayer(name) => {
                                                 let pid = world_guard.spawn_player(name);
                                                 world_guard.endpoints.insert(endpoint_id, pid);
+
+                                                world_guard
+                                                    .pids_to_update
+                                                    .insert(endpoint_id.clone());
                                             }
                                             GameCommand::SpawnAs(eid) => {
                                                 world_guard.endpoints.insert(endpoint_id, eid);
+
+                                                world_guard
+                                                    .pids_to_update
+                                                    .insert(endpoint_id.clone());
                                             }
 
                                             _ => {

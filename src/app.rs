@@ -163,11 +163,18 @@ impl eframe::App for TemplateApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         // Check for new message counts from server
         if let Some(rx) = &mut self.server_to_client_rx {
-            while let Ok(smsg) = rx.try_recv() {
-                if let Message::ServerMessage(ServerMessage::EntityMap(emap)) = smsg {
-                    for (eid, e) in emap.iter() {
-                        self.world.entities.insert(eid.clone(), e.clone());
-                    }
+            while let Ok(msg) = rx.try_recv() {
+                match msg {
+                    Message::ServerMessage(smsg) => match smsg {
+                        ServerMessage::EntityMap(emap) => {
+                            for (eid, e) in emap.iter() {
+                                self.world.entities.insert(eid.clone(), e.clone());
+                            }
+                        }
+                        ServerMessage::PlayerID(pid) => self.player_id = pid,
+                    },
+
+                    _ => {}
                 }
             }
         }
@@ -576,16 +583,31 @@ impl TemplateApp {
 
             let button_size = self.button_size.unwrap();
 
-            // Calculate available space
-            let available_size = ui.available_size();
+            // Calculate available space (use max_rect instead of available_size for accuracy)
+            let available_rect = ui.max_rect();
+            let available_width = available_rect.width();
+            let available_height = available_rect.height();
 
             // Calculate maximum number of buttons that can fit
-            let max_cols = (available_size.x / button_size).floor() as usize;
-            let max_rows = (available_size.y / button_size).floor() as usize;
+            let max_cols = ((available_width) / button_size).floor() as usize;
+            let max_rows = ((available_height) / button_size).floor() as usize;
 
             // Use all available space
             self.grid_cols = max_cols.max(1);
             self.grid_rows = max_rows.max(1);
+
+            // Get player position for camera centering
+            let camera_center =
+                if let Some(player_entity) = self.world.entities.get(&self.player_id) {
+                    player_entity.position.clone()
+                } else {
+                    // Default to origin if player not found
+                    Point { x: 0, y: 0 }
+                };
+
+            // Calculate camera offset to center player on screen
+            let camera_offset_x = camera_center.x - (self.grid_cols as i32 / 2);
+            let camera_offset_y = camera_center.y - (self.grid_rows as i32 / 2);
 
             // Set spacing to zero for the grid
             ui.spacing_mut().item_spacing = egui::vec2(0.0, 0.0);
@@ -597,9 +619,10 @@ impl TemplateApp {
                     for row in 0..self.grid_rows {
                         ui.horizontal(|ui| {
                             for col in 0..self.grid_cols {
+                                // Calculate world position based on camera offset
                                 let point = Point {
-                                    x: col as i32,
-                                    y: row as i32,
+                                    x: col as i32 + camera_offset_x,
+                                    y: row as i32 + camera_offset_y,
                                 };
 
                                 // Get the character to display at this position
@@ -614,7 +637,10 @@ impl TemplateApp {
                                 .corner_radius(0.0);
 
                                 if ui.add(button).clicked() {
-                                    println!("Button clicked at row: {}, col: {}", row, col);
+                                    println!(
+                                        "Button clicked at world position: x: {}, y: {}",
+                                        point.x, point.y
+                                    );
                                 }
                             }
                         });
