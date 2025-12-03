@@ -306,7 +306,7 @@ impl TemplateApp {
                                                 self.start_server(world);
 
                                                 let eid =
-                                                    self.router.as_ref().unwrap().endpoint().id();
+                                                    self.router.as_ref().unwrap().endpoint().addr();
                                                 self.start_client(eid);
                                                 self.game_state = GameState::CharacterSelection;
                                             }
@@ -476,7 +476,7 @@ impl TemplateApp {
                         if let Err(e) = tx.send(GameCommand::SpawnPlayer(char_name)) {
                             eprintln!("Failed to send game event: {}", e);
                         } else {
-                            self.game_state = GameState::Playing;
+                            self.game_state = GameState::CharacterSelection;
                         }
                     }
                 }

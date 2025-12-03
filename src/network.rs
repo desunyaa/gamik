@@ -63,7 +63,6 @@ async fn recv_one_way(mut recv: iroh::endpoint::RecvStream) -> Result<Message> {
 pub async fn run_server_internal(world: GameWorld) -> Result<Router> {
     let endpoint = Endpoint::bind().await?;
 
-    endpoint.online().await;
     let router = Router::builder(endpoint)
         .accept(ALPN, Echo::new(world))
         .spawn();
