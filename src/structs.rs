@@ -1,3 +1,5 @@
+use crate::ServerMessage;
+use crate::human::*;
 use bincode::{Decode, Encode};
 use egui::ahash::HashMapExt;
 use iroh::EndpointId;
@@ -6,8 +8,6 @@ use rustc_hash::FxHashSet;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
-
-use crate::ServerMessage;
 pub type EntityMap = FxHashMap<EntityID, Entity>;
 pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
 
@@ -52,56 +52,10 @@ pub enum GameCommand {
 
 pub type GameEvent = (EntityID, GameCommand);
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Encode, Decode)]
+#[derive(Debug, Clone, PartialEq, Eq, Encode, Decode)]
 pub enum EntityType {
-    Player,
+    Player(Human),
     Tree,
-}
-
-pub struct Human {
-    //  health: HumanHealth,
-    //wearing: HumanWearing,
-    body: HumanBody,
-}
-
-pub type BodyMod = (BodyPart, BodyAccesory);
-
-pub enum BodyAccesory {
-    Piercing,
-    Tattoo,
-}
-
-pub enum BodyPart {
-    Ear(BodySide),
-    Lip(BodyVertical),
-    Arm(BodySide),
-    Hand(BodySide),
-    Leg(BodySide),
-}
-pub enum BodySide {
-    Left,
-    Right,
-}
-pub enum BodyVertical {
-    Upper,
-    Lower,
-}
-pub enum SkinColor {
-    Bronze,
-}
-pub enum EyeColor {
-    Hazel,
-    Gray,
-}
-pub enum HairColor {
-    Brunette,
-}
-
-pub struct HumanBody {
-    skin_color: SkinColor,
-    hair_color: HairColor,
-    eye_color: EyeColor,
-    body_mods: Vec<BodyMod>,
 }
 
 #[derive(Debug, Clone, Encode, Decode)]
@@ -133,13 +87,15 @@ pub struct SerializableGameWorld {
 
 impl GameWorld {
     pub fn spawn_player(&mut self, name: String) -> EntityID {
+        let human = Human::new();
+
         let player = self.entity_gen.new_entity();
         self.entities.insert(
             player,
             Entity {
                 name: Some(name),
                 position: Point { x: 10, y: 10 },
-                entity_type: EntityType::Player,
+                entity_type: EntityType::Player(human),
             },
         );
 
@@ -233,8 +189,11 @@ impl GameWorld {
     pub fn get_playable_entities(&self) -> Vec<EntityID> {
         let mut e_vec = Vec::new();
         for (eid, e) in self.entities.iter() {
-            if e.entity_type == EntityType::Player {
-                e_vec.push(eid.clone());
+            match e.entity_type {
+                EntityType::Player(_) => {
+                    e_vec.push(eid.clone());
+                }
+                _ => {}
             }
         }
 
@@ -296,8 +255,8 @@ impl GameWorld {
     pub fn get_display_char(&self, point: &Point) -> &str {
         for entity in self.entities.values() {
             if entity.position == *point {
-                return match entity.entity_type {
-                    EntityType::Player => "@",
+                return match &entity.entity_type {
+                    EntityType::Player(human) => "@",
                     EntityType::Tree => "木",
                 };
             }
