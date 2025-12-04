@@ -58,6 +58,39 @@ pub enum EntityType {
     Tree,
 }
 
+pub struct Human {
+    //  health: HumanHealth,
+    //wearing: HumanWearing,
+    body: HumanBody,
+}
+
+pub type BodyMod = (BodyPart, BodyAccesory);
+
+pub enum BodyAccesory {
+    Piercing,
+    Tattoo,
+}
+
+pub enum BodyPart {
+    Ear(BodySide),
+    Lip(BodyVertical),
+}
+pub enum BodySide {
+    Left,
+    Right,
+}
+pub enum BodyVertical {
+    Upper,
+    Lower,
+}
+pub enum SkinColor {
+    Bronze,
+}
+pub struct HumanBody {
+    skin_color: SkinColor,
+    body_mods: Vec<BodyMod>,
+}
+
 #[derive(Debug, Clone, Encode, Decode)]
 pub struct Entity {
     pub position: Point,
