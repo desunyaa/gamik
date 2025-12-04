@@ -60,8 +60,7 @@ every character is equipped with a loincloth and a small pouch for storing basic
 
 
 TODO:
-make offline singleplayer work
-
+Add particle system for bullets sounds and lights.
 
 Things to Implement:--------------------------------------------------------------------------------------------------
 
