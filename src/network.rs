@@ -167,14 +167,12 @@ impl ProtocolHandler for Echo {
                     let mut world_guard = world.lock().await;
                     world_guard.process_events();
 
-                    if world_guard.pids_to_update.contains(&conn_clone.remote_id()) {
-                        world_guard.pids_to_update.remove(&conn_clone.remote_id());
-
-                        if let Some(pid) = world_guard.endpoints.get(&conn_clone.remote_id()) {
-                            let pid_response =
-                                Message::ServerMessage(ServerMessage::PlayerID(pid.clone()));
-
-                            responses.push(pid_response);
+                    if let Some(x) = world_guard
+                        .unique_server_messages
+                        .get_mut(&conn_clone.remote_id())
+                    {
+                        while let Some(a) = x.pop() {
+                            responses.push(Message::ServerMessage(a));
                         }
                     }
 
@@ -217,15 +215,19 @@ impl ProtocolHandler for Echo {
                                                 world_guard.endpoints.insert(endpoint_id, pid);
 
                                                 world_guard
-                                                    .pids_to_update
-                                                    .insert(endpoint_id.clone());
+                                                    .unique_server_messages
+                                                    .entry(endpoint_id.clone())
+                                                    .or_insert_with(Vec::new)
+                                                    .push(ServerMessage::PlayerID(pid));
                                             }
                                             GameCommand::SpawnAs(eid) => {
                                                 world_guard.endpoints.insert(endpoint_id, eid);
 
                                                 world_guard
-                                                    .pids_to_update
-                                                    .insert(endpoint_id.clone());
+                                                    .unique_server_messages
+                                                    .entry(endpoint_id.clone())
+                                                    .or_insert_with(Vec::new)
+                                                    .push(ServerMessage::PlayerID(eid));
                                             }
 
                                             _ => {

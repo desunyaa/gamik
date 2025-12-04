@@ -6,6 +6,8 @@ use rustc_hash::FxHashSet;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
+
+use crate::ServerMessage;
 pub type EntityMap = FxHashMap<EntityID, Entity>;
 pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
 
@@ -72,7 +74,7 @@ pub struct GameWorld {
     // entities now stored in a hashmap
     pub entities: EntityMap,
     pub world_name: String,
-    pub pids_to_update: FxHashSet<EndpointId>,
+    pub unique_server_messages: FxHashMap<EndpointId, Vec<ServerMessage>>,
 }
 
 // Serializable version of GameWorld (without the non-serializable fields)
@@ -137,7 +139,7 @@ impl GameWorld {
 
         // Reconstruct GameWorld
         Ok(GameWorld {
-            pids_to_update: FxHashSet::default(),
+            unique_server_messages: FxHashMap::default(),
             entity_gen: serializable.entity_gen,
             entities: serializable.entities,
             event_queue: Vec::new(),
@@ -172,7 +174,7 @@ impl GameWorld {
         }
 
         GameWorld {
-            pids_to_update: FxHashSet::default(),
+            unique_server_messages: FxHashMap::default(),
 
             endpoints: EndpointMap::new(),
             entity_gen,
