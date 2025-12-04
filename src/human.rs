@@ -6,7 +6,7 @@ pub struct Human {
     //wearing: HumanWearing,
     body: HumanBody,
 }
-
+//should add a from_rng() function for saving space on npcs
 impl Human {
     pub fn new() -> Self {
         Human {
@@ -80,8 +80,6 @@ pub enum BodyPart {
     // Hands (detailed)
     Hand(BodySide),
     Palm(BodySide),
-    BackOfHand(BodySide),
-    Thumb(BodySide),
     Finger(BodySide, FingerType), // new
     Knuckle(BodySide, FingerType),
 
@@ -97,7 +95,6 @@ pub enum BodyPart {
     Foot(BodySide),
     Heel(BodySide),
     Sole(BodySide),
-    TopOfFoot(BodySide),
     Toe(BodySide, ToeType), // new
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Encode, Decode)]
