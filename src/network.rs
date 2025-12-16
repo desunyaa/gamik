@@ -22,7 +22,7 @@ pub enum ClientMessage {
 
 #[derive(Debug, Clone, Encode, Decode)]
 pub enum ServerMessage {
-    EntityMap(EntityMap),
+    EntityMap(EntityVec),
     PlayerID(EntityID),
 }
 

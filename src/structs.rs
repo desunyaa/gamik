@@ -8,25 +8,40 @@ use rustc_hash::FxHashSet;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
-pub type EntityMap = FxHashMap<EntityID, Entity>;
-pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
-pub struct EntityID(pub u32);
+#[derive(Debug, Clone, Encode, Decode)]
+pub struct Entities {
+    pub e_vec: Vec<Entity>,
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
-pub struct EntityGenerator(u32);
-
-impl EntityGenerator {
+    free_list: Vec<usize>,
+}
+impl Default for Entities {
     fn default() -> Self {
-        EntityGenerator(0)
-    }
-
-    fn new_entity(&mut self) -> EntityID {
-        self.0 += 1;
-        EntityID(self.0)
+        Entities {
+            e_vec: Vec::new(),
+            free_list: Vec::new(),
+        }
     }
 }
+impl Entities {
+    pub fn add_entity(&mut self, entity: Entity) -> EntityID {
+        if let Some(id) = self.free_list.pop() {
+            self.e_vec[id] = entity;
+            id
+        } else {
+            let id = self.e_vec.len();
+            self.e_vec.push(entity);
+            id
+        }
+    }
+    pub fn update_entity(&mut self, eid: EntityID, entity: Entity) {
+        self.e_vec[eid] = entity;
+    }
+}
+
+pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
+
+pub type EntityID = usize;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct Point {
@@ -67,12 +82,11 @@ pub struct Entity {
 
 #[derive(Debug)]
 pub struct GameWorld {
-    pub entity_gen: EntityGenerator,
     pub event_queue: Vec<GameEvent>,
     pub endpoints: EndpointMap,
 
     // entities now stored in a hashmap
-    pub entities: EntityMap,
+    pub entities: Entities,
     pub world_name: String,
     pub unique_server_messages: FxHashMap<EndpointId, Vec<ServerMessage>>,
 }
@@ -80,8 +94,7 @@ pub struct GameWorld {
 // Serializable version of GameWorld (without the non-serializable fields)
 #[derive(Encode, Decode)]
 pub struct SerializableGameWorld {
-    pub entity_gen: EntityGenerator,
-    pub entities: EntityMap,
+    pub entities: Entities,
     pub world_name: String,
 }
 
@@ -89,17 +102,11 @@ impl GameWorld {
     pub fn spawn_player(&mut self, name: String) -> EntityID {
         let human = Human::new();
 
-        let player = self.entity_gen.new_entity();
-        self.entities.insert(
-            player,
-            Entity {
-                name: Some(name),
-                position: Point { x: 10, y: 10 },
-                entity_type: EntityType::Player(human),
-            },
-        );
-
-        player
+        self.entities.add_entity(Entity {
+            name: Some(name),
+            position: Point { x: 10, y: 10 },
+            entity_type: EntityType::Player(human),
+        })
     }
 
     /// Saves the GameWorld to a .world file in the worlds directory
@@ -113,7 +120,6 @@ impl GameWorld {
 
         // Create serializable version
         let serializable = SerializableGameWorld {
-            entity_gen: self.entity_gen,
             entities: self.entities.clone(),
             world_name: self.world_name.clone(),
         };
@@ -142,7 +148,6 @@ impl GameWorld {
         // Reconstruct GameWorld
         Ok(GameWorld {
             unique_server_messages: FxHashMap::default(),
-            entity_gen: serializable.entity_gen,
             entities: serializable.entities,
             event_queue: Vec::new(),
             endpoints: EndpointMap::new(),
@@ -150,8 +155,7 @@ impl GameWorld {
         })
     }
     pub fn create_test_world(name: String) -> Self {
-        let mut entity_gen = EntityGenerator::default();
-        let mut entities = EntityMap::default();
+        let mut entities = Entities::default();
 
         // Create some trees
         let tree_positions = vec![
@@ -164,22 +168,17 @@ impl GameWorld {
         ];
 
         for pos in tree_positions {
-            let tree_id = entity_gen.new_entity();
-            entities.insert(
-                tree_id,
-                Entity {
-                    name: None,
-                    position: pos,
-                    entity_type: EntityType::Tree,
-                },
-            );
+            entities.add_entity(Entity {
+                name: None,
+                position: pos,
+                entity_type: EntityType::Tree,
+            });
         }
 
         GameWorld {
             unique_server_messages: FxHashMap::default(),
 
             endpoints: EndpointMap::new(),
-            entity_gen,
             world_name: name,
             event_queue: Vec::new(),
             entities,
@@ -188,46 +187,41 @@ impl GameWorld {
 
     pub fn get_playable_entities(&self) -> Vec<EntityID> {
         let mut e_vec = Vec::new();
-        for (eid, e) in self.entities.iter() {
+        for (eid, e) in self.entities.e_vec.iter().enumerate() {
             match e.entity_type {
                 EntityType::Player(_) => {
-                    e_vec.push(eid.clone());
+                    e_vec.push(eid);
                 }
                 _ => {}
             }
         }
-
         e_vec
     }
-
     pub fn move_entity(&mut self, entity_id: EntityID, direction: Direction) {
-        if let Some(entity) = self.entities.get_mut(&entity_id) {
-            let current_pos = entity.position;
-            let new_pos = match direction {
-                Direction::Up => Point {
-                    x: current_pos.x,
-                    y: current_pos.y.saturating_sub(1),
-                },
-                Direction::Down => Point {
-                    x: current_pos.x,
-                    y: current_pos.y + 1,
-                },
-                Direction::Left => Point {
-                    x: current_pos.x.saturating_sub(1),
-                    y: current_pos.y,
-                },
-                Direction::Right => Point {
-                    x: current_pos.x + 1,
-                    y: current_pos.y,
-                },
-            };
-
-            entity.position = new_pos;
-        }
+        let entity = &mut self.entities.e_vec[entity_id];
+        let current_pos = entity.position;
+        let new_pos = match direction {
+            Direction::Up => Point {
+                x: current_pos.x,
+                y: current_pos.y.saturating_sub(1),
+            },
+            Direction::Down => Point {
+                x: current_pos.x,
+                y: current_pos.y + 1,
+            },
+            Direction::Left => Point {
+                x: current_pos.x.saturating_sub(1),
+                y: current_pos.y,
+            },
+            Direction::Right => Point {
+                x: current_pos.x + 1,
+                y: current_pos.y,
+            },
+        };
+        entity.position = new_pos;
     }
-
-    pub fn gen_client_info(&self) -> EntityMap {
-        self.entities.clone()
+    pub fn gen_client_info(&self) -> Vec<Entity> {
+        self.entities.e_vec.clone()
     }
 
     pub fn process_events(&mut self) {
@@ -253,7 +247,7 @@ impl GameWorld {
     }
 
     pub fn get_display_char(&self, point: &Point) -> &str {
-        for entity in self.entities.values() {
+        for entity in &self.entities.e_vec {
             if entity.position == *point {
                 return match &entity.entity_type {
                     EntityType::Player(human) => "@",
@@ -261,6 +255,6 @@ impl GameWorld {
                 };
             }
         }
-        "╣"
+        "."
     }
 }

@@ -39,7 +39,7 @@ impl Default for TemplateApp {
             menu_input_string: String::new(),
             router: None,
             game_state: GameState::MainMenu,
-            player_id: EntityID(0),
+            player_id: 0,
             grid_cols: 1,
             grid_rows: 1,
             button_size: None,
@@ -163,7 +163,7 @@ impl eframe::App for TemplateApp {
                 match msg {
                     Message::ServerMessage(smsg) => match smsg {
                         ServerMessage::EntityMap(emap) => {
-                            for (eid, e) in emap.iter() {
+                            for (eid, e) in emap.iter().enumerate() {
                                 self.world.entities.insert(eid.clone(), e.clone());
                             }
                         }
@@ -199,7 +199,7 @@ impl eframe::App for TemplateApp {
                 if let Some(rx) = &mut self.server_to_client_rx {
                     while let Ok(smsg) = rx.try_recv() {
                         if let Message::ServerMessage(ServerMessage::EntityMap(emap)) = smsg {
-                            for (eid, e) in emap.iter() {
+                            for (eid, e) in emap.iter().enumerate() {
                                 self.world.entities.insert(eid.clone(), e.clone());
                             }
                         }
@@ -592,14 +592,10 @@ impl TemplateApp {
             self.grid_cols = max_cols.max(1);
             self.grid_rows = max_rows.max(1);
 
+            let player_entity = &self.world.entities[self.player_id];
+
             // Get player position for camera centering
-            let camera_center =
-                if let Some(player_entity) = self.world.entities.get(&self.player_id) {
-                    player_entity.position.clone()
-                } else {
-                    // Default to origin if player not found
-                    Point { x: 0, y: 0 }
-                };
+            let camera_center = player_entity.position.clone();
 
             // Calculate camera offset to center player on screen
             let camera_offset_x = camera_center.x - (self.grid_cols as i32 / 2);
