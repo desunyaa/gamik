@@ -2040,3 +2040,118 @@ USAGE GUIDE - 使用指南:
 4. TIER SYSTEM: 兵 < 士 < 将 < 帅 (increasing rank)
 5. GENDER: 夫 (male), 妇 (female), or omit for neutral
 6. RACE + CLASS: 妖术 (demon sorcerer), 仙剑 (celestial swordsman)
+Firearm Core Components (步枪核心部件)
+
+    Upper Receiver (上机匣) - Contains barrel, bolt carrier group.
+
+    Lower Receiver (下机匣) - The legally controlled "firearm" part; houses trigger group.
+
+    Bolt Carrier Group (BCG) (枪机组件) - Includes bolt, carrier, firing pin.
+
+    Charging Handle (拉机柄) - Used to manually cycle the action.
+
+    Dust Cover (防尘盖) - Covers the ejection port.
+
+Trigger Group (击发组件)
+
+    Trigger (扳机)
+
+    Trigger Guard (扳机护圈)
+
+    Hammer (击锤)
+
+    Disconnector (阻铁/分离器) - Prevents full-auto fire in semi-auto guns.
+
+    Safety Selector (保险选择钮) - Fire/Safe selector switch.
+
+Internal Parts (内部零件)
+
+    Buffer Tube (缓冲管) - Holds recoil buffer and spring.
+
+    Buffer Spring (缓冲簧) - Recoil spring in the stock/buffer tube.
+
+    Recoil Spring (复进簧) - Returns the bolt/action forward.
+
+    Firing Pin (击针)
+
+    Extractor (抽壳钩)
+
+    Ejector (抛壳挺)
+
+External Parts & Furniture (外部部件与配件)
+
+    Pistol Grip (手枪式握把)
+
+    Buttstock / Stock (枪托)
+
+    Handguard / Rail System (护木 / 导轨系统) - e.g., Picatinny Rail (皮卡汀尼导轨), M-LOK (M-LOK接口), KeyMod (KeyMod接口).
+
+    Barrel (枪管)
+
+    Muzzle Device (枪口装置):
+
+        Flash Hider (消焰器)
+
+        Muzzle Brake (枪口制退器)
+
+        Compensator (补偿器)
+
+        Suppressor / Silencer (消音器)
+
+    Gas System (导气系统):
+
+        Gas Block (导气箍)
+
+        Gas Tube (导气管) - e.g., Carbine-length (卡宾型长度), Mid-length (中型长度), Rifle-length (步枪型长度).
+
+    Iron Sights (机械瞄具):
+
+        Front Sight Post (准星)
+
+        Rear Sight Aperture (照门)
+
+    Optic / Sight (光学瞄具):
+
+        Red Dot Sight (红点瞄准镜)
+
+        Holographic Sight (全息瞄准镜)
+
+        Low Power Variable Optic (LPVO) (低倍率可变倍瞄准镜)
+
+        ACOG (先进战斗光学瞄准镜)
+
+Ammunition & Feeding (弹药与供弹)
+
+    Magazine (弹匣) - Often distinguished from Clip (弹夹), which is a stripper clip.
+
+    Cartridge / Round (子弹/一发弹药):
+
+        Case (弹壳)
+
+        Bullet (弹头)
+
+        Primer (底火)
+
+        Propellant (发射药)
+
+    Caliber (口径) - e.g., 5.56x45mm NATO (5.56×45毫米北约弹), 7.62x39mm (7.62×39毫米弹).
+
+Advanced Tactical & General Terms (高级战术与通用术语)
+
+    Action (枪机) - Semi-automatic (半自动), Automatic (全自动), Burst (点射).
+
+    Cyclic Rate of Fire (理论射速)
+
+    Effective Firing Range (有效射程)
+
+    MOA (Minute of Angle) (角分) - Accuracy measurement.
+
+    Zeroing (归零) - Sight calibration.
+
+    Forward Assist (辅助推机柄) - Manually seats the bolt.
+
+    Bipod (两脚架)
+
+    Vertical Foregrip (垂直前握把)
+
+    Sling (枪背带)
