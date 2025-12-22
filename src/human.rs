@@ -1,3 +1,7 @@
+/*
+
+
+
 use bitcode::{Decode, Encode};
 
 #[derive(Debug, Clone, PartialEq, Eq, Encode, Decode)]
@@ -146,3 +150,5 @@ pub struct HumanBody {
     eye_color: EyeColor,
     body_mods: Vec<BodyMod>,
 }
+
+*/

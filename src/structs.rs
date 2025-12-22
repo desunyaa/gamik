@@ -54,7 +54,7 @@ pub type GameEvent = (EntityID, GameCommand);
 
 #[derive(Debug, Clone, PartialEq, Eq, Encode, Decode)]
 pub enum EntityType {
-    Player(Human),
+    Player,
     Tree,
 }
 
@@ -87,15 +87,13 @@ pub struct SerializableGameWorld {
 
 impl GameWorld {
     pub fn spawn_player(&mut self, name: String) -> EntityID {
-        let human = Human::new();
-
         let player = self.entity_gen.new_entity();
         self.entities.insert(
             player,
             Entity {
                 name: Some(name),
                 position: Point { x: 10, y: 10 },
-                entity_type: EntityType::Player(human),
+                entity_type: EntityType::Player,
             },
         );
 
@@ -187,7 +185,7 @@ impl GameWorld {
         let mut e_vec = Vec::new();
         for (eid, e) in self.entities.iter() {
             match e.entity_type {
-                EntityType::Player(_) => {
+                EntityType::Player => {
                     e_vec.push(eid.clone());
                 }
                 _ => {}
@@ -253,7 +251,7 @@ impl GameWorld {
         for entity in self.entities.values() {
             if entity.position == *point {
                 return match &entity.entity_type {
-                    EntityType::Player(human) => "@",
+                    EntityType::Player => "@",
                     EntityType::Tree => "木",
                 };
             }
