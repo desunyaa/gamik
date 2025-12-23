@@ -14,8 +14,6 @@ const TEST_MODE: bool = true;
 
 pub struct TemplateApp {
     player_id: EntityID,
-    grid_cols: usize,
-    grid_rows: usize,
     button_size: Option<f32>,
     menu_input_string: String,
 
@@ -53,11 +51,9 @@ impl Default for TemplateApp {
                 GameState::MainMenu
             },
             player_id: EntityID(0),
-            grid_cols: 1,
-            grid_rows: 1,
             button_size: None,
             world: GameWorld::create_test_world("default".into()),
-            font_size: 12.0,
+            font_size: 14.0,
             server_to_client_rx: None,
             client_to_server_tx: None,
             single_player: true,
@@ -638,12 +634,12 @@ impl TemplateApp {
             let available_height = available_rect.height();
 
             // Calculate maximum number of buttons that can fit
-            let max_cols = ((available_width) / button_size).floor() as usize;
-            let max_rows = ((available_height) / button_size).floor() as usize;
+            let max_cols = ((available_width) / button_size) as usize;
+            let max_rows = ((available_height) / button_size) as usize;
 
             // Use all available space
-            self.grid_cols = max_cols.max(1);
-            self.grid_rows = max_rows.max(1);
+            let max_cols = max_cols.max(1);
+            let max_rows = max_rows.max(1);
 
             // Get player position for camera centering
             let camera_center =
@@ -655,8 +651,8 @@ impl TemplateApp {
                 };
 
             // Calculate camera offset to center player on screen
-            let camera_offset_x = camera_center.x - (self.grid_cols as i32 / 2);
-            let camera_offset_y = camera_center.y - (self.grid_rows as i32 / 2);
+            let camera_offset_x = camera_center.x - (max_cols as i32 / 2);
+            let camera_offset_y = camera_center.y - (max_rows as i32 / 2);
 
             // Set spacing to zero for the grid
             ui.spacing_mut().item_spacing = egui::vec2(0.0, 0.0);
@@ -665,9 +661,9 @@ impl TemplateApp {
             ui.centered_and_justified(|ui| {
                 ui.vertical_centered(|ui| {
                     // Create the grid
-                    for row in 0..self.grid_rows {
+                    for row in 0..max_rows {
                         ui.horizontal(|ui| {
-                            for col in 0..self.grid_cols {
+                            for col in 0..max_cols {
                                 // Calculate world position based on camera offset
                                 let point = Point {
                                     x: col as i32 + camera_offset_x,
