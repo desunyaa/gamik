@@ -10,6 +10,10 @@ use iroh::protocol::Router;
 use std::fs;
 use std::path::PathBuf;
 use tokio::sync::mpsc;
+
+// Toggle this constant to enable/disable test mode
+const TEST_MODE: bool = true;
+
 pub struct TemplateApp {
     player_id: EntityID,
     grid_cols: usize,
@@ -22,10 +26,14 @@ pub struct TemplateApp {
     router: Option<Router>,
     // Networking state
     server_to_client_rx: Option<mpsc::UnboundedReceiver<Message>>,
-    client_to_server_tx: Option<mpsc::UnboundedSender<GameCommand>>, // New field
+    client_to_server_tx: Option<mpsc::UnboundedSender<GameCommand>>,
     game_state: GameState,
     single_player: bool,
+
+    // Test mode field
+    test_mode_initialized: bool,
 }
+
 #[derive(Debug, Clone, PartialEq)]
 enum GameState {
     MainMenu,
@@ -35,12 +43,17 @@ enum GameState {
     WorldSelection,
     Playing,
 }
+
 impl Default for TemplateApp {
     fn default() -> Self {
         Self {
             menu_input_string: String::new(),
             router: None,
-            game_state: GameState::MainMenu,
+            game_state: if TEST_MODE {
+                GameState::Playing
+            } else {
+                GameState::MainMenu
+            },
             player_id: EntityID(0),
             grid_cols: 1,
             grid_rows: 1,
@@ -48,8 +61,9 @@ impl Default for TemplateApp {
             world: GameWorld::create_test_world("default".into()),
             font_size: 13.0,
             server_to_client_rx: None,
-            client_to_server_tx: None, // Initialize as None
+            client_to_server_tx: None,
             single_player: true,
+            test_mode_initialized: false,
         }
     }
 }
@@ -103,11 +117,7 @@ impl TemplateApp {
         // Apply the fonts to the context
         cc.egui_ctx.set_fonts(fonts);
 
-        let app = Self::default();
-
-        // Start the networking
-
-        app
+        Self::default()
     }
 
     fn start_client<A>(&mut self, addr: A)
@@ -126,6 +136,7 @@ impl TemplateApp {
             let _ = run_client_internal(s_addr, msg_tx, event_rx).await;
         });
     }
+
     fn start_server(&mut self, world: GameWorld) {
         let (router_tx, mut router_rx) = mpsc::unbounded_channel();
 
@@ -154,11 +165,52 @@ impl TemplateApp {
             }
         }
     }
+
+    fn initialize_test_mode(&mut self) {
+        if self.test_mode_initialized {
+            return;
+        }
+
+        println!("Test mode: Initializing...");
+
+        // Create or load a test world
+        let test_world = get_world_files()
+            .first()
+            .and_then(|path| GameWorld::load_from_file(path).ok())
+            .unwrap_or_else(|| {
+                println!("Test mode: Creating new test world");
+                let world = GameWorld::create_test_world("test_world".into());
+                let _ = world.save_to_file();
+                world
+            });
+
+        // Start server (blocking)
+        self.start_server(test_world);
+
+        // Connect as client
+        if let Some(router) = &self.router {
+            let eid = router.endpoint().addr();
+            self.start_client(eid);
+        }
+
+        // Spawn test player
+        if let Some(tx) = &self.client_to_server_tx {
+            let _ = tx.send(GameCommand::SpawnPlayer("TestPlayer".to_string()));
+        }
+
+        self.test_mode_initialized = true;
+        println!("Test mode: Initialization complete!");
+    }
 }
 
 impl eframe::App for TemplateApp {
     /// Called each time the UI needs repainting, which may be many times per second.
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        // Initialize test mode once
+        if TEST_MODE && !self.test_mode_initialized {
+            self.initialize_test_mode();
+        }
+
         // Check for new message counts from server
         if let Some(rx) = &mut self.server_to_client_rx {
             while let Ok(msg) = rx.try_recv() {
@@ -179,6 +231,7 @@ impl eframe::App for TemplateApp {
 
         // Request continuous repainting to keep UI responsive
         ctx.request_repaint();
+
         match self.game_state {
             GameState::MainMenu => {
                 self.show_main_menu(ctx);
