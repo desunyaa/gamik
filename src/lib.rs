@@ -1,9 +1,10 @@
 #![warn(clippy::all, rust_2018_idioms)]
+
 mod human;
-pub use human::*;
+
+pub mod game;
+pub mod net;
+pub mod ui;
+
 mod app;
 pub use app::TemplateApp;
-mod structs;
-pub use structs::*;
-mod network;
-pub use network::*;
