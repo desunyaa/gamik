@@ -51,7 +51,7 @@ opt-level = 2
 workspace = true
 
 [workspace]
-members = ["items"]
+members = []
 
 [workspace.lints.rust]
 unsafe_code = "deny"
