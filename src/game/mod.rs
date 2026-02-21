@@ -98,6 +98,58 @@ impl GameState {
             .map(|(eid, _)| *eid)
             .collect()
     }
+
+    /// Generate a forest world with randomly scattered trees.
+    ///
+    /// * `width` × `height` — map dimensions (tiles are at 0..width, 0..height)
+    /// * `density` — probability [0.0, 1.0] that any given tile contains a tree
+    /// * `seed` — deterministic seed for reproducibility
+    ///
+    /// Player spawn point `(width/2, height/2)` and a small area around it are
+    /// kept clear of trees.
+    pub fn create_forest_world(name: String, width: i32, height: i32, density: f64, seed: u64) -> Self {
+        let mut entity_gen = EntityGenerator::default();
+        let mut entities = EntityMap::default();
+
+        let spawn = Point {
+            x: width / 2,
+            y: height / 2,
+        };
+        let clear_radius = 3;
+
+        // Simple deterministic hash-based PRNG for tree placement.
+        for y in 0..height {
+            for x in 0..width {
+                // Keep spawn area clear.
+                let dx = (x - spawn.x).abs();
+                let dy = (y - spawn.y).abs();
+                if dx <= clear_radius && dy <= clear_radius {
+                    continue;
+                }
+
+                // Deterministic pseudo-random: hash (seed, x, y).
+                let hash = simple_hash(seed, x, y);
+                let threshold = (density * f64::from(u32::MAX)) as u64;
+                if (hash & 0xFFFF_FFFF) < threshold {
+                    let id = entity_gen.next_id();
+                    entities.insert(
+                        id,
+                        Entity {
+                            name: None,
+                            position: Point { x, y },
+                            entity_type: EntityType::Tree,
+                        },
+                    );
+                }
+            }
+        }
+
+        Self {
+            entity_gen,
+            entities,
+            world_name: name,
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -143,12 +195,44 @@ pub fn spawn_player(state: &mut GameState, name: String) -> EntityID {
 }
 
 /// Move an entity one tile in the given direction.
+///
+/// The move is rejected if the destination tile is occupied by an entity that
+/// blocks movement (e.g. a tree).
 pub fn move_entity(state: &mut GameState, entity_id: EntityID, direction: Direction) {
-    if let Some(entity) = state.entities.get_mut(&entity_id) {
+    if let Some(entity) = state.entities.get(&entity_id) {
         let (dx, dy) = direction.delta();
-        entity.position.x = entity.position.x.saturating_add(dx);
-        entity.position.y = entity.position.y.saturating_add(dy);
+        let new_pos = Point {
+            x: entity.position.x.saturating_add(dx),
+            y: entity.position.y.saturating_add(dy),
+        };
+
+        // Check if any entity at the destination blocks movement.
+        let blocked = state
+            .entities
+            .values()
+            .any(|e| e.position == new_pos && e.entity_type.blocks_movement());
+
+        if !blocked {
+            if let Some(entity) = state.entities.get_mut(&entity_id) {
+                entity.position = new_pos;
+            }
+        }
     }
+}
+
+/// Simple deterministic hash for world generation.
+///
+/// Produces a pseudo-random u64 from a seed and grid coordinates.
+fn simple_hash(seed: u64, x: i32, y: i32) -> u64 {
+    let mut h = seed;
+    h = h.wrapping_add(x as u64);
+    h ^= h << 13;
+    h ^= h >> 7;
+    h = h.wrapping_add(y as u64).wrapping_mul(0x517c_c1b7_2722_0a95);
+    h ^= h >> 17;
+    h = h.wrapping_mul(0x6c62_e91d_b73b_840b);
+    h ^= h >> 31;
+    h
 }
 
 // ---------------------------------------------------------------------------
@@ -408,5 +492,91 @@ mod tests {
     #[test]
     fn player_does_not_block_sight() {
         assert!(!EntityType::Player.blocks_sight());
+    }
+
+    // -- collision -----------------------------------------------------------
+
+    #[test]
+    fn tree_blocks_movement() {
+        assert!(EntityType::Tree.blocks_movement());
+    }
+
+    #[test]
+    fn player_does_not_block_movement() {
+        assert!(!EntityType::Player.blocks_movement());
+    }
+
+    #[test]
+    fn move_blocked_by_tree() {
+        let mut state = empty_state();
+        let pid = spawn_player(&mut state, "P".into());
+        // Place player at (5, 5).
+        state
+            .entities
+            .get_mut(&pid)
+            .expect("exists")
+            .position = Point { x: 5, y: 5 };
+
+        // Place a tree at (6, 5) — one step to the right.
+        let tid = state.entity_gen.next_id();
+        state.entities.insert(
+            tid,
+            Entity {
+                name: None,
+                position: Point { x: 6, y: 5 },
+                entity_type: EntityType::Tree,
+            },
+        );
+
+        move_entity(&mut state, pid, Direction::Right);
+        // Player should NOT have moved.
+        assert_eq!(
+            state.entities[&pid].position,
+            Point { x: 5, y: 5 },
+            "player should be blocked by tree"
+        );
+    }
+
+    // -- forest world gen ----------------------------------------------------
+
+    #[test]
+    fn forest_world_has_trees() {
+        let state = GameState::create_forest_world("forest".into(), 50, 50, 0.15, 42);
+        let tree_count = state
+            .entities
+            .values()
+            .filter(|e| e.entity_type == EntityType::Tree)
+            .count();
+        assert!(
+            tree_count > 0,
+            "forest world should have trees"
+        );
+    }
+
+    #[test]
+    fn forest_world_spawn_area_clear() {
+        let state = GameState::create_forest_world("forest".into(), 50, 50, 0.5, 42);
+        let spawn = Point { x: 25, y: 25 };
+        let clear_radius = 3;
+
+        for e in state.entities.values() {
+            if e.entity_type == EntityType::Tree {
+                let dx = (e.position.x - spawn.x).abs();
+                let dy = (e.position.y - spawn.y).abs();
+                assert!(
+                    dx > clear_radius || dy > clear_radius,
+                    "tree at ({}, {}) is inside spawn clear zone",
+                    e.position.x,
+                    e.position.y,
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn forest_world_deterministic() {
+        let state_a = GameState::create_forest_world("f".into(), 30, 30, 0.2, 99);
+        let state_b = GameState::create_forest_world("f".into(), 30, 30, 0.2, 99);
+        assert_eq!(state_a, state_b, "same seed should produce identical worlds");
     }
 }

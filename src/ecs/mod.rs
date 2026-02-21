@@ -71,6 +71,10 @@ impl EntityType {
     pub fn blocks_sight(&self) -> bool {
         matches!(self, Self::Tree)
     }
+
+    pub fn blocks_movement(&self) -> bool {
+        matches!(self, Self::Tree)
+    }
 }
 
 /// An entity in the game world.
