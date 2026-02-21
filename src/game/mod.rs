@@ -25,15 +25,11 @@ pub type EntityMap = FxHashMap<EntityID, Entity>;
 pub struct EntityID(pub u32);
 
 /// Monotonically increasing generator for [`EntityID`] values.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
 pub struct EntityGenerator(u32);
 
 impl EntityGenerator {
-    fn default() -> Self {
-        Self(0)
-    }
-
-    fn new_entity(&mut self) -> EntityID {
+    fn next(&mut self) -> EntityID {
         self.0 += 1;
         EntityID(self.0)
     }
@@ -55,6 +51,18 @@ pub enum Direction {
     Right,
 }
 
+impl Direction {
+    /// Returns the `(dx, dy)` offset for one step in this direction.
+    pub const fn delta(self) -> (i32, i32) {
+        match self {
+            Self::Up => (0, -1),
+            Self::Down => (0, 1),
+            Self::Left => (-1, 0),
+            Self::Right => (1, 0),
+        }
+    }
+}
+
 /// The kind of entity.
 #[derive(Debug, Clone, PartialEq, Eq, Encode, Decode)]
 pub enum EntityType {
@@ -64,10 +72,7 @@ pub enum EntityType {
 
 impl EntityType {
     pub fn blocks_sight(&self) -> bool {
-        match self {
-            Self::Player => false,
-            Self::Tree => true,
-        }
+        matches!(self, Self::Tree)
     }
 }
 
@@ -128,7 +133,7 @@ impl GameState {
         let mut entity_gen = EntityGenerator::default();
         let mut entities = EntityMap::default();
 
-        let tree_positions = vec![
+        let tree_positions = [
             Point { x: 5, y: 5 },
             Point { x: 15, y: 5 },
             Point { x: 5, y: 15 },
@@ -138,9 +143,9 @@ impl GameState {
         ];
 
         for pos in tree_positions {
-            let tree_id = entity_gen.new_entity();
+            let id = entity_gen.next();
             entities.insert(
-                tree_id,
+                id,
                 Entity {
                     name: None,
                     position: pos,
@@ -163,11 +168,6 @@ impl GameState {
             .filter(|(_, e)| e.entity_type == EntityType::Player)
             .map(|(eid, _)| *eid)
             .collect()
-    }
-
-    /// Clone the full entity map (used for sending state to clients).
-    pub fn gen_client_info(&self) -> EntityMap {
-        self.entities.clone()
     }
 }
 
@@ -201,41 +201,24 @@ pub fn apply(state: &mut GameState, entity_id: EntityID, action: &GameAction) ->
 
 /// Spawn a new player entity and return its ID.
 pub fn spawn_player(state: &mut GameState, name: String) -> EntityID {
-    let player = state.entity_gen.new_entity();
+    let id = state.entity_gen.next();
     state.entities.insert(
-        player,
+        id,
         Entity {
             name: Some(name),
             position: Point { x: 10, y: 10 },
             entity_type: EntityType::Player,
         },
     );
-    player
+    id
 }
 
 /// Move an entity one tile in the given direction.
 pub fn move_entity(state: &mut GameState, entity_id: EntityID, direction: Direction) {
     if let Some(entity) = state.entities.get_mut(&entity_id) {
-        let current_pos = entity.position;
-        let new_pos = match direction {
-            Direction::Up => Point {
-                x: current_pos.x,
-                y: current_pos.y.saturating_sub(1),
-            },
-            Direction::Down => Point {
-                x: current_pos.x,
-                y: current_pos.y + 1,
-            },
-            Direction::Left => Point {
-                x: current_pos.x.saturating_sub(1),
-                y: current_pos.y,
-            },
-            Direction::Right => Point {
-                x: current_pos.x + 1,
-                y: current_pos.y,
-            },
-        };
-        entity.position = new_pos;
+        let (dx, dy) = direction.delta();
+        entity.position.x = entity.position.x.saturating_add(dx);
+        entity.position.y = entity.position.y.saturating_add(dy);
     }
 }
 

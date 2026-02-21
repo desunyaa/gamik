@@ -1302,21 +1302,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "eframe_template"
-version = "0.1.0"
-dependencies = [
- "bitcode",
- "eframe",
- "egui",
- "iroh",
- "n0-error",
- "rustc-hash 2.1.1",
- "tokio",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
 name = "egui"
 version = "0.33.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1771,6 +1756,21 @@ dependencies = [
  "pin-project-lite",
  "pin-utils",
  "slab",
+]
+
+[[package]]
+name = "gamik"
+version = "0.1.0"
+dependencies = [
+ "bitcode",
+ "eframe",
+ "egui",
+ "iroh",
+ "n0-error",
+ "rustc-hash 2.1.1",
+ "tokio",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]

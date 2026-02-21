@@ -5,4 +5,4 @@ pub mod net;
 pub mod ui;
 
 mod app;
-pub use app::TemplateApp;
+pub use app::GamikApp;

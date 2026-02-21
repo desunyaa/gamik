@@ -37,11 +37,6 @@ pub type EndpointMap = FxHashMap<EndpointId, EntityID>;
 // ---------------------------------------------------------------------------
 
 #[derive(Debug, Clone, Encode, Decode)]
-pub enum ClientMessage {
-    GameMessage(GameAction),
-}
-
-#[derive(Debug, Clone, Encode, Decode)]
 pub enum ServerMessage {
     EntityMap(EntityMap),
     PlayerID(EntityID),
@@ -49,9 +44,8 @@ pub enum ServerMessage {
 
 #[derive(Debug, Clone, Encode, Decode)]
 pub enum Message {
-    ClientMessage(ClientMessage),
-    ServerMessage(ServerMessage),
-    Blank,
+    Client(GameAction),
+    Server(ServerMessage),
 }
 
 // ---------------------------------------------------------------------------
@@ -209,14 +203,14 @@ impl ProtocolHandler for Echo {
                         .get_mut(&conn_clone.remote_id())
                     {
                         while let Some(a) = x.pop() {
-                            responses.push(Message::ServerMessage(a));
+                            responses.push(Message::Server(a));
                         }
                     }
 
-                    guard.game.gen_client_info()
+                    guard.game.entities.clone()
                 };
 
-                let response = Message::ServerMessage(ServerMessage::EntityMap(client_update));
+                let response = Message::Server(ServerMessage::EntityMap(client_update));
                 responses.push(response);
 
                 for r in responses {
@@ -238,43 +232,38 @@ impl ProtocolHandler for Echo {
 
                     tokio::spawn(async move {
                         match recv_one_way(recv).await {
-                            Ok(Message::ClientMessage(msg)) => match msg {
-                                ClientMessage::GameMessage(gmsg) => {
-                                    let mut guard = state.lock().await;
+                            Ok(Message::Client(action)) => {
+                                let mut guard = state.lock().await;
 
-                                    match gmsg {
-                                        GameAction::SpawnPlayer(name) => {
-                                            let pid = game::spawn_player(&mut guard.game, name);
-                                            guard.endpoints.insert(endpoint_id, pid);
-                                            guard
-                                                .unique_server_messages
-                                                .entry(endpoint_id)
-                                                .or_insert_with(Vec::new)
-                                                .push(ServerMessage::PlayerID(pid));
-                                        }
-                                        GameAction::SpawnAs(eid) => {
-                                            guard.endpoints.insert(endpoint_id, eid);
-                                            guard
-                                                .unique_server_messages
-                                                .entry(endpoint_id)
-                                                .or_insert_with(Vec::new)
-                                                .push(ServerMessage::PlayerID(eid));
-                                        }
-                                        _ => {
-                                            if let Some(pid) =
-                                                guard.endpoints.get(&endpoint_id).copied()
-                                            {
-                                                guard.event_queue.push((pid, gmsg));
-                                            }
+                                match action {
+                                    GameAction::SpawnPlayer(name) => {
+                                        let pid = game::spawn_player(&mut guard.game, name);
+                                        guard.endpoints.insert(endpoint_id, pid);
+                                        guard
+                                            .unique_server_messages
+                                            .entry(endpoint_id)
+                                            .or_default()
+                                            .push(ServerMessage::PlayerID(pid));
+                                    }
+                                    GameAction::SpawnAs(eid) => {
+                                        guard.endpoints.insert(endpoint_id, eid);
+                                        guard
+                                            .unique_server_messages
+                                            .entry(endpoint_id)
+                                            .or_default()
+                                            .push(ServerMessage::PlayerID(eid));
+                                    }
+                                    other => {
+                                        if let Some(pid) =
+                                            guard.endpoints.get(&endpoint_id).copied()
+                                        {
+                                            guard.event_queue.push((pid, other));
                                         }
                                     }
                                 }
-                            },
-                            Ok(Message::ServerMessage(_)) => {
-                                eprintln!("Server received unexpected ServerMessage");
                             }
-                            Ok(Message::Blank) => {
-                                eprintln!("Server received unexpected Blank message");
+                            Ok(Message::Server(_)) => {
+                                eprintln!("Server received unexpected ServerMessage");
                             }
                             Err(e) => {
                                 eprintln!("Error receiving message: {e}");
@@ -327,9 +316,8 @@ pub async fn run_client_internal(
     // Send loop
     loop {
         match rx.recv().await {
-            Some(game_action) => {
-                let client_msg = ClientMessage::GameMessage(game_action);
-                let msg = Message::ClientMessage(client_msg);
+            Some(action) => {
+                let msg = Message::Client(action);
 
                 if let Err(e) = send_one_way(&conn, &msg).await {
                     eprintln!("Error sending message: {e}");
@@ -357,19 +345,20 @@ mod tests {
     fn mock_transport_pair_round_trips() {
         let (a, mut b) = mock_transport_pair();
 
-        a.send(Message::Blank).expect("send should succeed");
+        a.send(Message::Client(GameAction::SaveWorld))
+            .expect("send should succeed");
         let received = b.try_recv();
         assert!(received.is_some());
     }
 
     #[test]
     fn protocol_message_encodes_and_decodes() {
-        let original = Message::ServerMessage(ServerMessage::PlayerID(EntityID(42)));
+        let original = Message::Server(ServerMessage::PlayerID(EntityID(42)));
         let bytes = bitcode::encode(&original);
         let decoded: Message = bitcode::decode(&bytes).expect("decode should succeed");
 
         match decoded {
-            Message::ServerMessage(ServerMessage::PlayerID(id)) => assert_eq!(id, EntityID(42)),
+            Message::Server(ServerMessage::PlayerID(id)) => assert_eq!(id, EntityID(42)),
             other => panic!("unexpected variant: {other:?}"),
         }
     }
