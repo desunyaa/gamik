@@ -4,6 +4,7 @@
 //! channels, protocol message types, and the iroh-based server/client.
 
 use crate::game::{self, EntityID, EntityMap, GameAction, GameState};
+use crate::fov::{PlayerFov, PlayerFovMap, DEFAULT_FOV_RADIUS, FOV_NETWORK_MARGIN};
 
 use bitcode::{Decode, Encode};
 use iroh::{
@@ -101,6 +102,7 @@ pub struct ServerState {
     pub endpoints: EndpointMap,
     pub unique_server_messages: FxHashMap<EndpointId, Vec<ServerMessage>>,
     pub event_queue: Vec<(EntityID, GameAction)>,
+    pub player_fovs: PlayerFovMap,
 }
 
 impl ServerState {
@@ -110,17 +112,23 @@ impl ServerState {
             endpoints: EndpointMap::default(),
             unique_server_messages: FxHashMap::default(),
             event_queue: Vec::new(),
+            player_fovs: PlayerFovMap::default(),
         }
     }
 
     /// Drain the event queue and apply each action to the game state.
+    ///
+    /// After processing, recomputes FOV for any player that moved.
     pub fn process_events(&mut self) {
         let events: Vec<(EntityID, GameAction)> = self.event_queue.drain(..).collect();
+
+        let mut moved_players = Vec::new();
 
         for (eid, action) in &events {
             match action {
                 GameAction::Move(_) => {
                     game::apply(&mut self.game, *eid, action);
+                    moved_players.push(*eid);
                 }
                 GameAction::SpawnPlayer(_) | GameAction::SpawnAs(_) => {
                     // Handled at connection time in the protocol handler.
@@ -130,6 +138,55 @@ impl ServerState {
                 }
             }
         }
+
+        // Recompute FOV for players that moved.
+        for pid in moved_players {
+            if let Some(entity) = self.game.entities.get(&pid) {
+                let origin = entity.position;
+                self.player_fovs
+                    .entry(pid)
+                    .or_insert_with(|| PlayerFov::new(DEFAULT_FOV_RADIUS))
+                    .recompute(origin, &self.game.entities);
+            }
+        }
+    }
+
+    /// Initialize FOV for a newly spawned/connected player.
+    pub fn init_player_fov(&mut self, pid: EntityID) {
+        if let Some(entity) = self.game.entities.get(&pid) {
+            let origin = entity.position;
+            let mut pfov = PlayerFov::new(DEFAULT_FOV_RADIUS);
+            pfov.recompute(origin, &self.game.entities);
+            self.player_fovs.insert(pid, pfov);
+        }
+    }
+
+    /// Return the subset of entities visible to the given player (FOV + margin).
+    pub fn entities_for_player(&self, pid: EntityID) -> EntityMap {
+        let Some(pfov) = self.player_fovs.get(&pid) else {
+            // No FOV computed yet — fall back to sending everything.
+            return self.game.entities.clone();
+        };
+        let Some(player) = self.game.entities.get(&pid) else {
+            return EntityMap::default();
+        };
+
+        let radius = pfov.fov_radius + FOV_NETWORK_MARGIN;
+        let px = player.position.x;
+        let py = player.position.y;
+
+        let mut filtered = EntityMap::default();
+        #[expect(clippy::iter_over_hash_type, reason = "order not significant for filtering")]
+        for (&eid, entity) in &self.game.entities {
+            let ex = entity.position.x;
+            let ey = entity.position.y;
+            let in_fov = pfov.current_fov.contains(&(ex, ey));
+            let in_margin = (ex - px).abs() <= radius && (ey - py).abs() <= radius;
+            if in_fov || in_margin {
+                filtered.insert(eid, entity.clone());
+            }
+        }
+        filtered
     }
 }
 
@@ -207,7 +264,12 @@ impl ProtocolHandler for Echo {
                         }
                     }
 
-                    guard.game.entities.clone()
+                    // Send only entities within this player's FOV + margin.
+                    let pid = guard.endpoints.get(&conn_clone.remote_id()).copied();
+                    match pid {
+                        Some(pid) => guard.entities_for_player(pid),
+                        None => guard.game.entities.clone(),
+                    }
                 };
 
                 let response = Message::Server(ServerMessage::EntityMap(client_update));
@@ -239,6 +301,7 @@ impl ProtocolHandler for Echo {
                                     GameAction::SpawnPlayer(name) => {
                                         let pid = game::spawn_player(&mut guard.game, name);
                                         guard.endpoints.insert(endpoint_id, pid);
+                                        guard.init_player_fov(pid);
                                         guard
                                             .unique_server_messages
                                             .entry(endpoint_id)
@@ -247,6 +310,7 @@ impl ProtocolHandler for Echo {
                                     }
                                     GameAction::SpawnAs(eid) => {
                                         guard.endpoints.insert(endpoint_id, eid);
+                                        guard.init_player_fov(eid);
                                         guard
                                             .unique_server_messages
                                             .entry(endpoint_id)
@@ -382,6 +446,36 @@ mod tests {
                 x: start.x + 1,
                 y: start.y
             }
+        );
+    }
+
+    #[test]
+    fn entities_for_player_excludes_far_entities() {
+        let game = GameState::create_test_world("test".into());
+        let mut server = ServerState::new(game);
+
+        let pid = game::spawn_player(&mut server.game, "Alice".into());
+        server.init_player_fov(pid);
+
+        // Place a distant entity far outside FOV + margin.
+        let far_id = server.game.entity_gen.next_id();
+        server.game.entities.insert(
+            far_id,
+            game::Entity {
+                name: None,
+                position: game::Point { x: 500, y: 500 },
+                entity_type: game::EntityType::Tree,
+            },
+        );
+
+        let filtered = server.entities_for_player(pid);
+        assert!(
+            !filtered.contains_key(&far_id),
+            "distant entity should not be in FOV-scoped update"
+        );
+        assert!(
+            filtered.contains_key(&pid),
+            "player should see themselves"
         );
     }
 }
