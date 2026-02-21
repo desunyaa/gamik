@@ -4,14 +4,85 @@
 //! state mutations, and the pure [`apply`] function that advances the game.
 
 use bitcode::{Decode, Encode};
+use rustc_hash::FxHashMap;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
 
-// Re-export ECS types so existing consumers can still use `game::*`.
-pub use crate::ecs::{
-    Direction, Entity, EntityGenerator, EntityID, EntityMap, EntityType, Point,
-};
+// ---------------------------------------------------------------------------
+// Type aliases
+// ---------------------------------------------------------------------------
+
+/// Map from entity IDs to their data.
+pub type EntityMap = FxHashMap<EntityID, Entity>;
+
+// ---------------------------------------------------------------------------
+// Core value types
+// ---------------------------------------------------------------------------
+
+/// Unique identifier for an entity in the game world.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
+pub struct EntityID(pub u32);
+
+/// Monotonically increasing generator for [`EntityID`] values.
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
+pub struct EntityGenerator(u32);
+
+impl EntityGenerator {
+    fn next(&mut self) -> EntityID {
+        self.0 += 1;
+        EntityID(self.0)
+    }
+}
+
+/// A 2-D point on the game grid.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Encode, Decode)]
+pub struct Point {
+    pub x: i32,
+    pub y: i32,
+}
+
+/// Cardinal direction for movement.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Encode, Decode)]
+pub enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
+impl Direction {
+    /// Returns the `(dx, dy)` offset for one step in this direction.
+    pub const fn delta(self) -> (i32, i32) {
+        match self {
+            Self::Up => (0, -1),
+            Self::Down => (0, 1),
+            Self::Left => (-1, 0),
+            Self::Right => (1, 0),
+        }
+    }
+}
+
+/// The kind of entity.
+#[derive(Debug, Clone, PartialEq, Eq, Encode, Decode)]
+pub enum EntityType {
+    Player,
+    Tree,
+}
+
+impl EntityType {
+    pub fn blocks_sight(&self) -> bool {
+        matches!(self, Self::Tree)
+    }
+}
+
+/// An entity in the game world.
+#[derive(Debug, Clone, PartialEq, Eq, Encode, Decode)]
+pub struct Entity {
+    pub position: Point,
+    pub name: Option<String>,
+    pub entity_type: EntityType,
+}
 
 // ---------------------------------------------------------------------------
 // Actions & events
@@ -72,7 +143,7 @@ impl GameState {
         ];
 
         for pos in tree_positions {
-            let id = entity_gen.next_id();
+            let id = entity_gen.next();
             entities.insert(
                 id,
                 Entity {
@@ -97,58 +168,6 @@ impl GameState {
             .filter(|(_, e)| e.entity_type == EntityType::Player)
             .map(|(eid, _)| *eid)
             .collect()
-    }
-
-    /// Generate a forest world with randomly scattered trees.
-    ///
-    /// * `width` × `height` — map dimensions (tiles are at 0..width, 0..height)
-    /// * `density` — probability [0.0, 1.0] that any given tile contains a tree
-    /// * `seed` — deterministic seed for reproducibility
-    ///
-    /// Player spawn point `(width/2, height/2)` and a small area around it are
-    /// kept clear of trees.
-    pub fn create_forest_world(name: String, width: i32, height: i32, density: f64, seed: u64) -> Self {
-        let mut entity_gen = EntityGenerator::default();
-        let mut entities = EntityMap::default();
-
-        let spawn = Point {
-            x: width / 2,
-            y: height / 2,
-        };
-        let clear_radius = 3;
-
-        // Simple deterministic hash-based PRNG for tree placement.
-        for y in 0..height {
-            for x in 0..width {
-                // Keep spawn area clear.
-                let dx = (x - spawn.x).abs();
-                let dy = (y - spawn.y).abs();
-                if dx <= clear_radius && dy <= clear_radius {
-                    continue;
-                }
-
-                // Deterministic pseudo-random: hash (seed, x, y).
-                let hash = simple_hash(seed, x, y);
-                let threshold = (density * f64::from(u32::MAX)) as u64;
-                if (hash & 0xFFFF_FFFF) < threshold {
-                    let id = entity_gen.next_id();
-                    entities.insert(
-                        id,
-                        Entity {
-                            name: None,
-                            position: Point { x, y },
-                            entity_type: EntityType::Tree,
-                        },
-                    );
-                }
-            }
-        }
-
-        Self {
-            entity_gen,
-            entities,
-            world_name: name,
-        }
     }
 }
 
@@ -182,7 +201,7 @@ pub fn apply(state: &mut GameState, entity_id: EntityID, action: &GameAction) ->
 
 /// Spawn a new player entity and return its ID.
 pub fn spawn_player(state: &mut GameState, name: String) -> EntityID {
-    let id = state.entity_gen.next_id();
+    let id = state.entity_gen.next();
     state.entities.insert(
         id,
         Entity {
@@ -195,45 +214,12 @@ pub fn spawn_player(state: &mut GameState, name: String) -> EntityID {
 }
 
 /// Move an entity one tile in the given direction.
-///
-/// The move is rejected if the destination tile is occupied by an entity that
-/// blocks movement (e.g. a tree).
 pub fn move_entity(state: &mut GameState, entity_id: EntityID, direction: Direction) {
-    if let Some(entity) = state.entities.get(&entity_id) {
+    if let Some(entity) = state.entities.get_mut(&entity_id) {
         let (dx, dy) = direction.delta();
-        let new_pos = Point {
-            x: entity.position.x.saturating_add(dx),
-            y: entity.position.y.saturating_add(dy),
-        };
-
-        // Check if any entity at the destination blocks movement.
-        let blocked = state
-            .entities
-            .values()
-            .any(|e| e.position == new_pos && e.entity_type.blocks_movement());
-
-        if !blocked {
-            if let Some(entity) = state.entities.get_mut(&entity_id) {
-                entity.position = new_pos;
-            }
-        }
+        entity.position.x = entity.position.x.saturating_add(dx);
+        entity.position.y = entity.position.y.saturating_add(dy);
     }
-}
-
-/// Simple deterministic hash for world generation.
-///
-/// Produces a pseudo-random u64 from a seed and grid coordinates.
-/// Uses Stafford variant 13 mixing constants for good bit distribution.
-fn simple_hash(seed: u64, x: i32, y: i32) -> u64 {
-    let mut h = seed;
-    h = h.wrapping_add(x as u64);
-    h ^= h << 13;
-    h ^= h >> 7;
-    h = h.wrapping_add(y as u64).wrapping_mul(0x517c_c1b7_2722_0a95); // mixing constant
-    h ^= h >> 17;
-    h = h.wrapping_mul(0x6c62_e91d_b73b_840b); // mixing constant
-    h ^= h >> 31;
-    h
 }
 
 // ---------------------------------------------------------------------------
@@ -493,91 +479,5 @@ mod tests {
     #[test]
     fn player_does_not_block_sight() {
         assert!(!EntityType::Player.blocks_sight());
-    }
-
-    // -- collision -----------------------------------------------------------
-
-    #[test]
-    fn tree_blocks_movement() {
-        assert!(EntityType::Tree.blocks_movement());
-    }
-
-    #[test]
-    fn player_does_not_block_movement() {
-        assert!(!EntityType::Player.blocks_movement());
-    }
-
-    #[test]
-    fn move_blocked_by_tree() {
-        let mut state = empty_state();
-        let pid = spawn_player(&mut state, "P".into());
-        // Place player at (5, 5).
-        state
-            .entities
-            .get_mut(&pid)
-            .expect("exists")
-            .position = Point { x: 5, y: 5 };
-
-        // Place a tree at (6, 5) — one step to the right.
-        let tid = state.entity_gen.next_id();
-        state.entities.insert(
-            tid,
-            Entity {
-                name: None,
-                position: Point { x: 6, y: 5 },
-                entity_type: EntityType::Tree,
-            },
-        );
-
-        move_entity(&mut state, pid, Direction::Right);
-        // Player should NOT have moved.
-        assert_eq!(
-            state.entities[&pid].position,
-            Point { x: 5, y: 5 },
-            "player should be blocked by tree"
-        );
-    }
-
-    // -- forest world gen ----------------------------------------------------
-
-    #[test]
-    fn forest_world_has_trees() {
-        let state = GameState::create_forest_world("forest".into(), 50, 50, 0.15, 42);
-        let tree_count = state
-            .entities
-            .values()
-            .filter(|e| e.entity_type == EntityType::Tree)
-            .count();
-        assert!(
-            tree_count > 0,
-            "forest world should have trees"
-        );
-    }
-
-    #[test]
-    fn forest_world_spawn_area_clear() {
-        let state = GameState::create_forest_world("forest".into(), 50, 50, 0.5, 42);
-        let spawn = Point { x: 25, y: 25 };
-        let clear_radius = 3;
-
-        for e in state.entities.values() {
-            if e.entity_type == EntityType::Tree {
-                let dx = (e.position.x - spawn.x).abs();
-                let dy = (e.position.y - spawn.y).abs();
-                assert!(
-                    dx > clear_radius || dy > clear_radius,
-                    "tree at ({}, {}) is inside spawn clear zone",
-                    e.position.x,
-                    e.position.y,
-                );
-            }
-        }
-    }
-
-    #[test]
-    fn forest_world_deterministic() {
-        let state_a = GameState::create_forest_world("f".into(), 30, 30, 0.2, 99);
-        let state_b = GameState::create_forest_world("f".into(), 30, 30, 0.2, 99);
-        assert_eq!(state_a, state_b, "same seed should produce identical worlds");
     }
 }
