@@ -72,7 +72,7 @@ impl GameState {
         ];
 
         for pos in tree_positions {
-            let id = entity_gen.next();
+            let id = entity_gen.next_id();
             entities.insert(
                 id,
                 Entity {
@@ -130,7 +130,7 @@ pub fn apply(state: &mut GameState, entity_id: EntityID, action: &GameAction) ->
 
 /// Spawn a new player entity and return its ID.
 pub fn spawn_player(state: &mut GameState, name: String) -> EntityID {
-    let id = state.entity_gen.next();
+    let id = state.entity_gen.next_id();
     state.entities.insert(
         id,
         Entity {

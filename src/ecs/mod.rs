@@ -26,7 +26,7 @@ pub struct EntityID(pub u32);
 pub struct EntityGenerator(u32);
 
 impl EntityGenerator {
-    pub fn next(&mut self) -> EntityID {
+    pub fn next_id(&mut self) -> EntityID {
         self.0 += 1;
         EntityID(self.0)
     }
