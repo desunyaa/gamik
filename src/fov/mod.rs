@@ -113,9 +113,12 @@ pub struct AwareEntity {
 ///
 /// Currently only FOV (sight) feeds into awareness. The design allows adding
 /// additional sources (e.g. `Sound`) without changing the FOV system.
+///
+/// `fov_radius` should match the radius used for the FOV computation.
 pub fn build_awareness(
     fov_set: &FxHashSet<(i32, i32)>,
     entities: &EntityMap,
+    fov_radius: i32,
     margin: i32,
     player_pos: Point,
 ) -> Vec<AwareEntity> {
@@ -127,8 +130,8 @@ pub fn build_awareness(
         let dx = (p.x - player_pos.x).abs();
         let dy = (p.y - player_pos.y).abs();
         let in_fov = fov_set.contains(&(p.x, p.y));
-        let in_margin = dx <= DEFAULT_FOV_RADIUS + margin
-            && dy <= DEFAULT_FOV_RADIUS + margin;
+        let in_margin = dx <= fov_radius + margin
+            && dy <= fov_radius + margin;
         if in_fov || in_margin {
             aware.push(AwareEntity {
                 entity_id: eid,
@@ -476,7 +479,7 @@ mod tests {
         let mut fov = FxHashSet::default();
         fov.insert((1, 0));
 
-        let aware = build_awareness(&fov, &entities, 0, Point { x: 0, y: 0 });
+        let aware = build_awareness(&fov, &entities, DEFAULT_FOV_RADIUS, 0, Point { x: 0, y: 0 });
         assert_eq!(aware.len(), 1);
         assert_eq!(aware.first().expect("non-empty").entity_id, EntityID(1));
         assert_eq!(aware.first().expect("non-empty").source, AwarenessSource::Sight);

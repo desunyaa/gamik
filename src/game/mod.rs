@@ -223,14 +223,15 @@ pub fn move_entity(state: &mut GameState, entity_id: EntityID, direction: Direct
 /// Simple deterministic hash for world generation.
 ///
 /// Produces a pseudo-random u64 from a seed and grid coordinates.
+/// Uses Stafford variant 13 mixing constants for good bit distribution.
 fn simple_hash(seed: u64, x: i32, y: i32) -> u64 {
     let mut h = seed;
     h = h.wrapping_add(x as u64);
     h ^= h << 13;
     h ^= h >> 7;
-    h = h.wrapping_add(y as u64).wrapping_mul(0x517c_c1b7_2722_0a95);
+    h = h.wrapping_add(y as u64).wrapping_mul(0x517c_c1b7_2722_0a95); // mixing constant
     h ^= h >> 17;
-    h = h.wrapping_mul(0x6c62_e91d_b73b_840b);
+    h = h.wrapping_mul(0x6c62_e91d_b73b_840b); // mixing constant
     h ^= h >> 31;
     h
 }
